@@ -1,0 +1,27 @@
+/* Media Width's */
+$min-Width-Mobile: 0px;
+$max-Width-Mobile: 720px;
+$min-Width-Tablet: 721px;
+$max-Width-Tablet: 1024px;
+$min-Width-normalPc: 1025px;
+$max-Width-normalPc: 1366px;
+$min-Width-fhdPc: 1367px;
+$max-Width-fhdPc: 1920px;
+$min-Width-fourK: 1921px;
+$max-Width-fourK: 3840px;
+$max-Width: 100vw;
+
+/* Media Height's */
+$min-Height-Mobile-1: 1024px;
+$max-Height-Mobile-1: 1366px;
+$min-Height-Mobile-2: 1367px;
+$max-Height-Mobile-2: 1600px;
+$max-Height-normalPc: 720px;
+$min-Height-fhdPc: 721px;
+$max-Height-fhdPc: 1080px;
+$min-Height-fourK: 1081px;
+$max-Height-fourK: 2160px;
+$max-Height: 100vh;
+
+/* Padding's */
+$asdButtonMargin: calc($max-Width-normalPc / 24 * 0.15);

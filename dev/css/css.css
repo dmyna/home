@@ -1,0 +1,267 @@
+@charset "UTF-8";
+/* Lib */ /* Widths Responsivos */
+/* Height Responsivos */
+/* Predefinições Media */
+/* Mixin's Gerais */
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+/* Configs */
+/* Importações */ /* Media Width's */
+/* Media Height's */
+/* Padding's */
+/* Padrões */
+body {
+  /* Remoção da Margem Padrão */
+  margin: 0px;
+}
+
+* {
+  /* Regras Padrões */
+  box-sizing: border-box;
+  transition: width 0.2s, height 0.2s;
+}
+
+img {
+  user-select: none;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+/* Declarações */
+body {
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+body aside {
+  width: 45.5333333333px;
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+}
+body aside nav {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+body aside nav div.navTopDivision {
+  width: 100%;
+  height: 45.5333333333px;
+}
+body aside nav div.navTopDivision a.asdLogo {
+  width: 45.5333333333px;
+  height: 45.5333333333px;
+  display: flex;
+}
+body aside nav div.navTopDivision a.asdLogo > img {
+  border-radius: 100%;
+  margin: 4.26875px;
+}
+body aside nav div.navCenterDivision {
+  width: 100%;
+  height: calc(100vh - 91.0666666667px);
+}
+body aside nav div.navBottomDivision {
+  width: 100%;
+  height: 45.5333333333px;
+}
+body aside nav div.asdButtonSpace {
+  width: 45.5333333333px;
+  height: 45.5333333333px;
+  display: flex;
+  margin: 0px 0px 8.5375px;
+  transition: width 0.2s ease-out;
+}
+body aside nav div.asdButtonSpace:hover {
+  width: 281.7375px;
+}
+body aside nav div.asdButtonSpace:hover > div.asdButtonLogo {
+  margin-right: 8.5375px;
+}
+body aside nav div.asdButtonSpace:hover > div.asdButtonMenu {
+  visibility: visible;
+  width: 227.6666666667px;
+}
+body aside nav div.asdButtonSpace * {
+  z-index: 3;
+}
+body aside nav div.asdButtonSpace > div.asdButtonLogo {
+  width: 45.5333333333px;
+  height: 45.5333333333px;
+}
+body aside nav div.asdButtonSpace > div.asdButtonLogo > div,
+body aside nav div.asdButtonSpace > div.asdButtonLogo a {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 450 1.9em "Ubuntu", sans-serif;
+}
+body aside nav div.asdButtonSpace > div.asdButtonLogo > div > img,
+body aside nav div.asdButtonSpace > div.asdButtonLogo a > img {
+  width: 80%;
+  height: 80%;
+}
+body aside nav div.asdButtonSpace > div.asdButtonMenu {
+  width: 0px;
+  visibility: hidden;
+  height: 45.5333333333px;
+  border-radius: 8.5375px;
+}
+body aside nav div.asdButtonSpace > div.asdButtonMenu:hover {
+  height: 100%;
+}
+body aside nav hr.asdHr {
+  width: 90%;
+  border-radius: 25%;
+  margin: 4.26875px 0px;
+}
+body main {
+  /* Conteúdo */
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+}
+body main header {
+  /* Cabeçalho */
+  height: 45.5333333333px;
+  width: 100%;
+  font: 700 1.25em "Ubuntu", sans-serif;
+  user-select: none;
+  position: relative;
+  z-index: 3;
+}
+body main header div {
+  /* Conteúdo do Cabeçalho */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+body main section:first-of-type {
+  position: relative;
+  height: calc(100vh - 45.5333333333px);
+  overflow-x: hidden;
+  position: relative;
+  z-index: 1;
+}
+body main section:first-of-type > * {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+body main section:first-of-type article {
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  border-radius: 0.6em 0em 0em 0.6em;
+}
+body main section:first-of-type article div#playlistBg {
+  background: no-repeat center;
+  background-size: 100%;
+  height: 100%;
+  border-radius: 0.6em 0em 0em 0.6em;
+}
+body main section:first-of-type article div#playlistBg > div#playlistBgGradient {
+  height: 100%;
+  border-radius: 0.6em 0em 0em 0.6em;
+}
+body main section:first-of-type > div.dev-alert {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+body main section:first-of-type > div.dev-alert > div {
+  text-align: center;
+  width: 100%;
+  padding: 0px 28.4583333333px;
+}
+body main section:first-of-type > div.dev-alert > div:first-child {
+  font: 500 3em "Ubuntu", sans-serif;
+  margin: 0px 0px 14.2291666667px 0px;
+}
+body main section:first-of-type > div.dev-alert > div:last-child > span {
+  font: 400 1.25em "Ubuntu", sans-serif;
+}
+@media screen and (max-width: 500px) {
+  body main section:first-of-type > div.dev-alert > div:first-child {
+    font: 500 2.25em "Ubuntu", sans-serif;
+  }
+  body main section:first-of-type > div.dev-alert > div:last-child > span {
+    font: 400 0.75em "Ubuntu", sans-serif;
+  }
+}
+body main div.radiusOne {
+  top: 0px;
+}
+
+/* Theme */
+/* Importações */ /* Cores De Fundo */
+/* Cores de Texto */
+::selection {
+  /* Seleção do Texto */
+  background: #90f;
+  color: #ccc;
+}
+
+* {
+  scrollbar-color: #222 #333;
+}
+
+*:hover {
+  scrollbar-color: #90f #333;
+}
+
+a:link {
+  color: #a0f;
+}
+
+body {
+  color: #bbb;
+}
+body aside {
+  background: #222;
+  box-shadow: 8px 0px 12px rgba(0, 0, 0, 0.2);
+}
+body aside nav hr.asdHr {
+  border: 1px solid #888;
+}
+body aside nav div.asdButtonSpace > div.asdButtonLogo a:link {
+  color: #ccc;
+}
+body aside nav div.asdButtonSpace > div.asdButtonMenu {
+  background: #333;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+body main header {
+  background: #222;
+  color: #ccc;
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+body main section:first-of-type article div#playlistBg > div#playlistBgGradient {
+  background: radial-gradient(rgba(0, 0, 0, 0.0666666667), rgba(42, 42, 42, 0.3137254902));
+  backdrop-filter: blur(20px);
+}
+body main section:first-of-type div.radiusOne {
+  background: #222;
+}
+body main footer {
+  background: #333;
+  color: #ccc;
+}
+
+body#init article {
+  background: #2a2a2a;
+}
+
+/*# sourceMappingURL=css.css.map */
