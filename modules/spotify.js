@@ -1,8 +1,10 @@
 'use strict';
-const request = require('request');
-const jsonDir = `${__rootdir}apps/custom/devmyna_page/data/json/`;
+const data = require(';')
+
+const jsonDir = `${global.__rootdir}data/json/`;
 
 // Dev Version
+const request = require('request');
 const fs = require('fs');
 
 /** Documentação do Módulo
@@ -51,7 +53,7 @@ const spotifyMain = () => {
         },
         updatePlaylistsList: () => {// Atualizar as playlists
             obj.requestSpotify(`${apiBase}users/${myUser}/playlists?limit=50`, (res, body) => {
-                fs.writeFileSync(`${jsonDir}/playlists.json`, JSON.stringify(body));
+                fs.writeFileSync(`${jsonDir}playlists.json`, JSON.stringify(body));
                 obj.repeatRequestIfNextExists();
                 obj.writeAllPlaylists();
             });
@@ -65,7 +67,7 @@ const spotifyMain = () => {
                 obj.requestSpotify(newJSON.next, (res, body) => {
                     newJSON.items = newJSON.items.concat(body.items);
                     newJSON.next = body.next;
-                    fs.writeFileSync(`${jsonDir}/playlists.json`, JSON.stringify(newJSON));
+                    fs.writeFileSync(`${jsonDir}playlists.json`, JSON.stringify(newJSON));
 
                     if (!newJSON.next) return;
 
