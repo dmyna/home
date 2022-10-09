@@ -1,11 +1,9 @@
 'use strict';
-const data = require(';')
-
-const jsonDir = `${global.__rootdir}data/json/`;
-
-// Dev Version
-const request = require('request');
 const fs = require('fs');
+const request = require('request');
+
+const global = require('./global.js');
+const jsonDir = `${global.__rootdir}data/json/`;
 
 /** Documentação do Módulo
     @param {Factory} spotifyMain - Factory das funções gerais do spotify
