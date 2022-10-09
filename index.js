@@ -13,7 +13,6 @@ require('dotenv').config({ path: `${global.__rootdir}.env` });
 // Módulos
 const spotifyData = require('./modules/spotify.js');
 
-
 router.get('/', (req, res) => {
     res.sendFile(`${global.__rootdir}index.html`);
 });
