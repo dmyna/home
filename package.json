@@ -19,7 +19,7 @@
     "@babel/preset-react": "^7.16.7"
   },
   "scripts": {
-    "start": "chmod +x scripts/* && scripts/init.sh",
+    "start": "node ./index.js",
     "devStart": "chmod +x scripts/* && scripts/devInit.sh"
   }
 }
