@@ -6,6 +6,7 @@
   "homepage": "https://devmyna.xyz",
   "repository": "https://github.com/Minatiuu/my",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "jquery": "^3.6.1",
     "react": "^18.2.0",
