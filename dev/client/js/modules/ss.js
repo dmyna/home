@@ -3,8 +3,8 @@
  *
  *
 **/
-import { global } from './global.js';
-import { data } from './data.js';
+import { global } from './global.jsx';
+import { data } from './data.jsx';
 const mainRoot = global.root('article#main');
 
 const main = () => {

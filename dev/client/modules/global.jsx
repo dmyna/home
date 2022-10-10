@@ -9,5 +9,4 @@ const main = () => {
     }
     return { obj }
 }
-
 export const global = main().obj;
