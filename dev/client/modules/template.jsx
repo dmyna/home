@@ -43,17 +43,17 @@ const main = () => {
             )
             return content;
         },
-        playlistContainer: (data) => {
+        playlistContainer: (data, id) => {
             const content = (data,
-                <div className="playlistContainer">
-                    <div id="playlistImageSpace">
-                        <div id="playlistImage" style={{
+                <div id={id} className="playlistContainer">
+                    <div className="playlistLeftSpace">
+                        <div className="playlistImage" style={{
                             backgroundImage: `url(${data.images[0].url})`
-                        }}/>
+                        }} />
                     </div>
-                    <div id="playlistDataSpace">
-                        <div id="playlistTitle">{data.name}</div>
-                        <div id="playlistDescription">{data.description}</div>
+                    <div className="playlistRightSpace">
+                        <div className="playlistTitle">{data.name}</div>
+                        <div className="playlistDescription">{global.convertHTMLHex(data, data.description)}</div>
                     </div>
                 </div>
             )

@@ -43,23 +43,24 @@ const main = () => {
       }, component));
       return content;
     },
-    playlistContainer: data => {
+    playlistContainer: (data, id) => {
       const content = (data, /*#__PURE__*/React.createElement("div", {
+        id: id,
         className: "playlistContainer"
       }, /*#__PURE__*/React.createElement("div", {
-        id: "playlistImageSpace"
+        className: "playlistLeftSpace"
       }, /*#__PURE__*/React.createElement("div", {
-        id: "playlistImage",
+        className: "playlistImage",
         style: {
           backgroundImage: `url(${data.images[0].url})`
         }
       })), /*#__PURE__*/React.createElement("div", {
-        id: "playlistDataSpace"
+        className: "playlistRightSpace"
       }, /*#__PURE__*/React.createElement("div", {
-        id: "playlistTitle"
+        className: "playlistTitle"
       }, data.name), /*#__PURE__*/React.createElement("div", {
-        id: "playlistDescription"
-      }, data.description))));
+        className: "playlistDescription"
+      }, global.convertHTMLHex(data, data.description)))));
       return content;
     }
   };
