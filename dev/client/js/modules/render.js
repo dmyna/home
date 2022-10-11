@@ -1,6 +1,7 @@
 import { global } from './global.js';
 import { data } from './data.js';
 import { template } from './template.js';
+import { button } from './button.js';
 const mainRoot = global.root('article#main');
 /**
  * @param {Function} individualPlaylist - Página da Playlist individual
@@ -19,6 +20,9 @@ const main = () => {
       data.getPlaylist(id, data => {
         mainRoot.render(template.mainPage(data, template.playlistContainer(data, id)));
       });
+      setTimeout(() => {
+        button().individualPlaylist(id);
+      }, 1000);
     }
   };
   return obj;

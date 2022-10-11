@@ -12,9 +12,9 @@ import { button } from './modules/button.js';
 // Main
 
 $(() => {
-  button(); // For Foguinho
+  // For Foguinho
   // For Kwi
   // render.individualPlaylist('5MdH8lh5RAk1RGnYbL0xSo'); // Foguinho
-
   render.mainPagePlaylists('5MdH8lh5RAk1RGnYbL0xSo');
+  button();
 });

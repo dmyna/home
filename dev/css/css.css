@@ -266,7 +266,7 @@ a:link {
 }
 
 a:visited {
-  color: #ccc;
+  color: none;
 }
 
 body {

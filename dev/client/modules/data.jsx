@@ -7,6 +7,8 @@ const main = () => {
     const obj = {
         // Funções
         getPlaylist: (id, callback) => {
+            if (id == undefined || null) return;
+
             $.getJSON(`${jsonDir}playlists/${id}.json`, (data) => {
                 callback(data);
             });
