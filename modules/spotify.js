@@ -22,12 +22,14 @@ const spotifyMain = () => {
     const client_secret = process.env.DEVMYNA_PAGE_SPOTIFY_CLIENT_SECRET;
     const myUser = process.env.DEVMYNA_PAGE_SPOTIFY_USER;
     const apiBase = "https://api.spotify.com/v1/";
+    const authorization = client_id + ":" + client_secret;
+
     const obj = {
         authOptions: {
             url: 'https://accounts.spotify.com/api/token',
             headers: {
                 'Authorization': "Basic " +
-                    (new Buffer(client_id + ":" + client_secret).toString('base64'))
+                    (new Buffer.alloc(authorization.length, authorization).toString('base64'))
             },
             form: {
                 grant_type: 'client_credentials'
@@ -73,29 +75,29 @@ const spotifyMain = () => {
                 });
             });
         },
-        listPlaylistsId: callback => {
+        listPlaylistsId: (callback) => {
             fs.readFile(`${jsonDir}playlists.json`, 'utf-8', (err, data) => {
                 const dataJSON = JSON.parse(data);
                 var playlists = [];
-                for (let i = 0; i <= dataJSON.items.length - 1; i++) {
-                    playlists.push(dataJSON.items[i].id);
+                for (let i of dataJSON.items) {
+                    playlists.push(i.id);
                 }
                 callback(playlists);
             });
         },
-        writePlaylistArchive: currentPlaylist => {
+        writePlaylistArchive: (currentPlaylist) => {
             obj.requestSpotify(`${apiBase}playlists/${currentPlaylist}`, (res, body) => {
                 fs.writeFileSync(`${jsonDir + "playlists/" + currentPlaylist}.json`, JSON.stringify(body));
             });
         },
         writeAllPlaylists: () => {
             obj.listPlaylistsId((playlists) => {
-                for (let i = 0; i <= playlists.length - 1; i++) {
-                    obj.writePlaylistArchive(playlists[i]);
+                for (let i of playlists) {
+                    obj.writePlaylistArchive(i);
                 }
             })
         }
     }
-    return { obj };
+    return obj;
 }
-module.exports = spotifyMain().obj;
+module.exports = spotifyMain();

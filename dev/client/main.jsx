@@ -3,6 +3,7 @@ import { global } from './modules/global.js'
 import { data } from './modules/data.js'
 import { template } from './modules/template.js'
 import { render } from './modules/render.js'
+import { button } from './modules/button.js'
 
 /**
  *
@@ -12,15 +13,11 @@ import { render } from './modules/render.js'
 
 // Main
 $(() => {
-    const renderMain = () => {
-        global.root('article#main');
+    button();
 
-        var index = "Teste";
-        var content = <div>{index}</div>;
+    // For Foguinho
+    // For Kwi
 
-        root.render(content);
-    }
-    // data.renderPlaylist('5Hg7hDtY7jtvV42xa2lq5R'); // Little Fire
-    render.individualPlaylist('5MdH8lh5RAk1RGnYbL0xSo'); // Foguinho
-    // data.renderPlaylist('3ScQ3tLNss0Nyf9pT3NpTP') // Rainy Night
+    // render.individualPlaylist('5MdH8lh5RAk1RGnYbL0xSo'); // Foguinho
+    render.mainPagePlaylists('5MdH8lh5RAk1RGnYbL0xSo');
 })

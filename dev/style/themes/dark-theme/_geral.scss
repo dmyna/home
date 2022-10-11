@@ -15,6 +15,9 @@
 a:link {
     color: $txtPrimaryColor;
 }
+a:visited {
+    color: $txtSecondaryColor
+}
 
 body {
     color: $txtTertiaryColor;
@@ -48,11 +51,22 @@ body {
             z-index: 3;
         }
         section:first-of-type {
-            article {
+            article#main {
+                background: $bgSecondaryColor;
+
                 div#playlistBg {
                     & > div#playlistBgGradient {
                         background: radial-gradient(#0001, #2a2a2a50);
                         backdrop-filter: blur(20px);
+                    }
+                }
+                div#playlistsSpace {
+                    & > div#playlistsList {
+                        & > div.playlistContainer {
+                            background: $bgQuaternaryColor;
+                            border: 2px solid #000b;
+                            box-shadow: 0.25em 0.25em 0.5em #0003;
+                        }
                     }
                 }
             }
@@ -64,10 +78,5 @@ body {
             background: $bgQuaternaryColor;
             color: $txtSecondaryColor;
         }
-    }
-}
-body#init {
-    article {
-        background: $bgSecondaryColor;
     }
 }

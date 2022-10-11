@@ -9,11 +9,20 @@ const main = () => {
       $.getJSON(`${jsonDir}playlists/${id}.json`, data => {
         callback(data);
       });
+    },
+    getPlaylistList: callback => {
+      $.getJSON(`${jsonDir}playlists.json`, data => {
+        var list = [];
+
+        for (let i of data.items) {
+          list.push(i.id);
+        }
+
+        callback(list);
+      });
     }
   };
-  return {
-    obj
-  };
+  return obj;
 };
 
-export const data = main().obj;
+export const data = main();

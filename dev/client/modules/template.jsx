@@ -11,7 +11,7 @@ const main = () => {
     const obj = {
         background: (data, component) => {
             const content = (
-                <div id="playlistBg" style={{ backgroundImage: `url(${data.playlistImg})` }}>
+                <div id="playlistBg" style={{ backgroundImage: `url(${data.images[0].url})` }}>
                     <div id="playlistBgGradient">
                         {component}
                     </div>
@@ -23,20 +23,38 @@ const main = () => {
             const content = obj.background(data,
                 <div id="playlistSpace">
                     <div id="playlistImgSpace">
-                        <img src={data.playlistImg}></img>
+                        <img src={data.images[0].url}></img>
                     </div>
                     <div id="playlistDataSpace">
-                        <div id="playlistName">{data.playlistName}</div>
-                        <div id="playlistDescription">{data.playlistDescription}</div>
+                        <div id="playlistName">{data.name}</div>
+                        <div id="playlistDescription">{data.description}</div>
                     </div>
                 </div>
             )
             return content;
         },
-        mainPage: (data) => {
-            const content = obj.background(data,
+        mainPage: (data, component) => {
+            const content = (
                 <div id="playlistsSpace">
-
+                    <div id="playlistsList">
+                        {component}
+                    </div>
+                </div>
+            )
+            return content;
+        },
+        playlistContainer: (data) => {
+            const content = (data,
+                <div className="playlistContainer">
+                    <div id="playlistImageSpace">
+                        <div id="playlistImage" style={{
+                            backgroundImage: `url(${data.images[0].url})`
+                        }}/>
+                    </div>
+                    <div id="playlistDataSpace">
+                        <div id="playlistTitle">{data.name}</div>
+                        <div id="playlistDescription">{data.description}</div>
+                    </div>
                 </div>
             )
             return content;

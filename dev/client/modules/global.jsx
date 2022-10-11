@@ -1,12 +1,12 @@
 const main = () => {
     const obj = {
         // Variáveis
-        __rootdir: "/media/veracrypt1/prog/reps/my/Central/",
+        __rootdir: "/media/veracrypt1/prog/reps/my/Central/apps/custom/devmyna_page/",
         // Funções
         root: dir => {// Definir Diretório Root
             return ReactDOM.createRoot(document.querySelector(dir));
         }
     }
-    return { obj }
+    return obj;
 }
-export const global = main().obj;
+export const global = main();
