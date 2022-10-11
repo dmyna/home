@@ -14,6 +14,11 @@ const main = () => {
       $('#mainPlaylistsPage').on('click', () => {
         render.mainPagePlaylists('5MdH8lh5RAk1RGnYbL0xSo');
       });
+    },
+    individualPlaylist: id => {
+      $(`#${id}`).on('click', () => {
+        render.individualPlaylist(id);
+      });
     }
   };
   obj.mainPageButton();
