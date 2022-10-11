@@ -17,7 +17,7 @@ const main = () => {
     },
     mainPagePlaylists: id => {
       data.getPlaylist(id, data => {
-        mainRoot.render(template.mainPage(data, template.playlistContainer(data)));
+        mainRoot.render(template.mainPage(data, template.playlistContainer(data, id)));
       });
     }
   };

@@ -18,7 +18,7 @@ body {
 * {
   /* Regras Padrões */
   box-sizing: border-box;
-  transition: width 0.2s, height 0.2s;
+  transition: 0.2s;
 }
 
 img {
@@ -179,16 +179,39 @@ body main section:first-of-type article#main div#playlistsSpace {
 }
 body main section:first-of-type article#main div#playlistsSpace > div#playlistsList {
   width: 100%;
-  height: 300px;
+  height: 23em;
   padding: 1.25em 1em;
   overflow-x: auto;
   overflow-y: hidden;
 }
 body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer {
-  width: 400px;
-  height: 100%;
+  width: 25em;
+  height: 50%;
   padding: 0.5em;
   border-radius: 1em;
+  display: flex;
+}
+body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer > div.playlistLeftSpace {
+  height: 100%;
+  display: flex;
+}
+body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer > div.playlistLeftSpace > div.playlistImage {
+  width: 9em;
+  height: 9em;
+  background-size: 100% 100%;
+}
+body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer > div.playlistRightSpace > div.playlistTitle {
+  height: 40%;
+  display: flex;
+  padding: 0.5rem 0em 0em 0.5rem;
+  font: bold 2.25em "Ubuntu", sans-serif;
+}
+body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer > div.playlistRightSpace > div.playlistDescription {
+  font: 0.9rem "Ubuntu", sans-serif;
+  padding: 0.5rem;
+  height: 60%;
+  text-overflow: ellipsis;
+  overflow-y: hidden;
 }
 body main section:first-of-type > div.dev-alert {
   height: 100%;
@@ -251,7 +274,6 @@ body {
 }
 body aside {
   background: #222;
-  box-shadow: 8px 0px 12px rgba(0, 0, 0, 0.2);
 }
 body aside nav hr.asdHr {
   border: 1px solid #888;
@@ -266,7 +288,6 @@ body aside nav div.asdButtonSpace > div.asdButtonMenu {
 body main header {
   background: #222;
   color: #ccc;
-  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
   z-index: 3;
 }
 body main section:first-of-type article#main {
@@ -277,9 +298,17 @@ body main section:first-of-type article#main div#playlistBg > div#playlistBgGrad
   backdrop-filter: blur(20px);
 }
 body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer {
-  background: #333;
-  border: 2px solid rgba(0, 0, 0, 0.7333333333);
-  box-shadow: 0.25em 0.25em 0.5em rgba(0, 0, 0, 0.2);
+  background: rgba(51, 51, 51, 0.4);
+  border: 2px solid rgba(0, 0, 0, 0);
+  box-shadow: 0.1em 0.1em 0.75em rgba(0, 0, 0, 0.1333333333);
+}
+body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer div.playlistImage {
+  box-shadow: 0em 0em 0.5em rgba(0, 0, 0, 0.2666666667);
+}
+body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer:hover {
+  background: rgba(34, 34, 34, 0.4);
+  border: 2px solid #70d;
+  box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.3333333333);
 }
 body main section:first-of-type div.radiusOne {
   background: #222;

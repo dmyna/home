@@ -6,6 +6,11 @@ const main = () => {
     root: dir => {
       // Definir Diretório Root
       return ReactDOM.createRoot(document.querySelector(dir));
+    },
+    convertHTMLHex: (data, content) => {
+      const html = $.parseHTML(content);
+      const text = $.text(html);
+      return text;
     }
   };
   return obj;

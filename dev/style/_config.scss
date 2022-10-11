@@ -9,7 +9,7 @@ body {
 * {
     /* Regras Padrões */
     box-sizing: border-box;
-    transition: width 0.2s, height 0.2s;
+    transition: 0.2s;
 }
 img {
     user-select: none;
@@ -181,16 +181,43 @@ body {
 
                     & > div#playlistsList {
                         width: 100%;
-                        height: 300px;
+                        height: 23em;
                         padding: 1.25em 1em;
                         overflow-x: auto;
                         overflow-y: hidden;
 
                         & > div.playlistContainer {
-                            width: 400px;
-                            height: 100%;
+                            width: 25em;
+                            height: 50%;
                             padding: 0.5em;
                             border-radius: 1em;
+                            display: flex;
+
+                            & > div.playlistLeftSpace{
+                                height: 100%;
+                                display: flex;
+
+                                & > div.playlistImage {
+                                    width: 9em;
+                                    height: 9em;
+                                    background-size: 100% 100%;
+                                }
+                            }
+                            & > div.playlistRightSpace {
+                                & > div.playlistTitle {
+                                    height: 40%;
+                                    display: flex;
+                                    padding: 0.5rem 0em 0em 0.5rem;
+                                    font: bold 2.25em 'Ubuntu', sans-serif;
+                                }
+                                & > div.playlistDescription {
+                                    font: 0.9rem 'Ubuntu', sans-serif;
+                                    padding: 0.5rem;
+                                    height: 60%;
+                                    text-overflow: ellipsis;
+                                    overflow-y: hidden;
+                                }
+                            }
                         }
                     }
                 }
