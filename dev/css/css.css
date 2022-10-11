@@ -94,16 +94,14 @@ body aside nav div.asdButtonSpace > div.asdButtonLogo {
   width: 45.5333333333px;
   height: 45.5333333333px;
 }
-body aside nav div.asdButtonSpace > div.asdButtonLogo > div,
-body aside nav div.asdButtonSpace > div.asdButtonLogo a {
+body aside nav div.asdButtonSpace > div.asdButtonLogo > div, body aside nav div.asdButtonSpace > div.asdButtonLogo > a {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font: 450 1.9em "Ubuntu", sans-serif;
 }
-body aside nav div.asdButtonSpace > div.asdButtonLogo > div > img,
-body aside nav div.asdButtonSpace > div.asdButtonLogo a > img {
+body aside nav div.asdButtonSpace > div.asdButtonLogo > div > img, body aside nav div.asdButtonSpace > div.asdButtonLogo > a > img {
   width: 80%;
   height: 80%;
 }
@@ -157,21 +155,40 @@ body main section:first-of-type > * {
   position: absolute;
   z-index: 1;
 }
-body main section:first-of-type article {
+body main section:first-of-type article#main {
   height: 100%;
   position: absolute;
   z-index: 2;
   border-radius: 0.6em 0em 0em 0.6em;
 }
-body main section:first-of-type article div#playlistBg {
+body main section:first-of-type article#main div#playlistBg {
   background: no-repeat center;
   background-size: 100%;
   height: 100%;
   border-radius: 0.6em 0em 0em 0.6em;
 }
-body main section:first-of-type article div#playlistBg > div#playlistBgGradient {
+body main section:first-of-type article#main div#playlistBg > div#playlistBgGradient {
   height: 100%;
   border-radius: 0.6em 0em 0em 0.6em;
+}
+body main section:first-of-type article#main div#playlistsSpace {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+body main section:first-of-type article#main div#playlistsSpace > div#playlistsList {
+  width: 100%;
+  height: 300px;
+  padding: 1.25em 1em;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer {
+  width: 400px;
+  height: 100%;
+  padding: 0.5em;
+  border-radius: 1em;
 }
 body main section:first-of-type > div.dev-alert {
   height: 100%;
@@ -225,6 +242,10 @@ a:link {
   color: #a0f;
 }
 
+a:visited {
+  color: #ccc;
+}
+
 body {
   color: #bbb;
 }
@@ -248,9 +269,17 @@ body main header {
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
   z-index: 3;
 }
-body main section:first-of-type article div#playlistBg > div#playlistBgGradient {
+body main section:first-of-type article#main {
+  background: #2a2a2a;
+}
+body main section:first-of-type article#main div#playlistBg > div#playlistBgGradient {
   background: radial-gradient(rgba(0, 0, 0, 0.0666666667), rgba(42, 42, 42, 0.3137254902));
   backdrop-filter: blur(20px);
+}
+body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer {
+  background: #333;
+  border: 2px solid rgba(0, 0, 0, 0.7333333333);
+  box-shadow: 0.25em 0.25em 0.5em rgba(0, 0, 0, 0.2);
 }
 body main section:first-of-type div.radiusOne {
   background: #222;
@@ -258,10 +287,6 @@ body main section:first-of-type div.radiusOne {
 body main footer {
   background: #333;
   color: #ccc;
-}
-
-body#init article {
-  background: #2a2a2a;
 }
 
 /*# sourceMappingURL=css.css.map */

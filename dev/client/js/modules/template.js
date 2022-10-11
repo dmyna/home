@@ -12,7 +12,7 @@ const main = () => {
       const content = /*#__PURE__*/React.createElement("div", {
         id: "playlistBg",
         style: {
-          backgroundImage: `url(${data.playlistImg})`
+          backgroundImage: `url(${data.images[0].url})`
         }
       }, /*#__PURE__*/React.createElement("div", {
         id: "playlistBgGradient"
@@ -25,20 +25,41 @@ const main = () => {
       }, /*#__PURE__*/React.createElement("div", {
         id: "playlistImgSpace"
       }, /*#__PURE__*/React.createElement("img", {
-        src: data.playlistImg
+        src: data.images[0].url
       })), /*#__PURE__*/React.createElement("div", {
         id: "playlistDataSpace"
       }, /*#__PURE__*/React.createElement("div", {
         id: "playlistName"
-      }, data.playlistName), /*#__PURE__*/React.createElement("div", {
+      }, data.name), /*#__PURE__*/React.createElement("div", {
         id: "playlistDescription"
-      }, data.playlistDescription))));
+      }, data.description))));
       return content;
     },
-    mainPage: data => {
-      const content = obj.background(data, /*#__PURE__*/React.createElement("div", {
+    mainPage: (data, component) => {
+      const content = /*#__PURE__*/React.createElement("div", {
         id: "playlistsSpace"
-      }));
+      }, /*#__PURE__*/React.createElement("div", {
+        id: "playlistsList"
+      }, component));
+      return content;
+    },
+    playlistContainer: data => {
+      const content = (data, /*#__PURE__*/React.createElement("div", {
+        className: "playlistContainer"
+      }, /*#__PURE__*/React.createElement("div", {
+        id: "playlistImageSpace"
+      }, /*#__PURE__*/React.createElement("div", {
+        id: "playlistImage",
+        style: {
+          backgroundImage: `url(${data.images[0].url})`
+        }
+      })), /*#__PURE__*/React.createElement("div", {
+        id: "playlistDataSpace"
+      }, /*#__PURE__*/React.createElement("div", {
+        id: "playlistTitle"
+      }, data.name), /*#__PURE__*/React.createElement("div", {
+        id: "playlistDescription"
+      }, data.description))));
       return content;
     }
   };
