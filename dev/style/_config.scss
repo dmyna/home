@@ -195,7 +195,7 @@ body {
                     }
                 }
             }
-            & > div.dev-alert {// Alerta da Página Principal
+            article#main > div.devAlert {// Alerta da Página Principal
                 height: 100%;
                 display: flex;
                 justify-content: center;
@@ -211,14 +211,14 @@ body {
                     font: 500 3em "Ubuntu", sans-serif;
                     margin: 0px 0px calc($max-Width-normalPc / 24 * 0.25) 0px;
                 }
-                & > div:last-child > span {
+                & > div:last-child {
                     font: 400 1.25em "Ubuntu", sans-serif;
                 }
                 @media screen and (max-width: 500px) {
                     & > div:first-child {
                         font: 500 2.25em "Ubuntu", sans-serif;
                     }
-                    & > div:last-child > span {
+                    & > div:last-child {
                         font: 400 0.75em "Ubuntu", sans-serif;
                     }
                 }

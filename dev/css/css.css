@@ -190,30 +190,30 @@ body main section:first-of-type article#main div#playlistsSpace > div#playlistsL
   padding: 0.5em;
   border-radius: 1em;
 }
-body main section:first-of-type > div.dev-alert {
+body main section:first-of-type article#main > div.devAlert {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-body main section:first-of-type > div.dev-alert > div {
+body main section:first-of-type article#main > div.devAlert > div {
   text-align: center;
   width: 100%;
   padding: 0px 28.4583333333px;
 }
-body main section:first-of-type > div.dev-alert > div:first-child {
+body main section:first-of-type article#main > div.devAlert > div:first-child {
   font: 500 3em "Ubuntu", sans-serif;
   margin: 0px 0px 14.2291666667px 0px;
 }
-body main section:first-of-type > div.dev-alert > div:last-child > span {
+body main section:first-of-type article#main > div.devAlert > div:last-child {
   font: 400 1.25em "Ubuntu", sans-serif;
 }
 @media screen and (max-width: 500px) {
-  body main section:first-of-type > div.dev-alert > div:first-child {
+  body main section:first-of-type article#main > div.devAlert > div:first-child {
     font: 500 2.25em "Ubuntu", sans-serif;
   }
-  body main section:first-of-type > div.dev-alert > div:last-child > span {
+  body main section:first-of-type article#main > div.devAlert > div:last-child {
     font: 400 0.75em "Ubuntu", sans-serif;
   }
 }

@@ -7,5 +7,6 @@ import{global}from"./modules/global.js";import{data}from"./modules/data.js";impo
 $(()=>{button();// For Foguinho
 // For Kwi
 // render.individualPlaylist('5MdH8lh5RAk1RGnYbL0xSo'); // Foguinho
-render.mainPagePlaylists("5MdH8lh5RAk1RGnYbL0xSo")});
+// render.mainPagePlaylists('5MdH8lh5RAk1RGnYbL0xSo');
+});
 //# sourceMappingURL=main.js.map
