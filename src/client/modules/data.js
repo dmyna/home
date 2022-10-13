@@ -1,3 +1,3 @@
-import{global}from"./global.js";import{template}from"./template.js";const jsonDir="./data/json/";const main=()=>{const obj={// Funções
-getPlaylist:(id,callback)=>{if(id==undefined||null)return;$.getJSON(`${jsonDir}playlists/${id}.json`,data=>{callback(data)})},getPlaylistList:callback=>{$.getJSON(`${jsonDir}playlists.json`,data=>{var list=[];for(let i of data.items){list.push(i.id)}callback(list)})}};return obj};export const data=main();
+import{global}from"./global.js";import{comp}from"./component.js";const jsonDir="./data/json/";const main=()=>{const obj={// Funções
+get:(reqUrl,callback,data)=>{$.getJSON(reqUrl,data,data=>{callback(data)})},getPlaylist:(id,callback)=>{obj.get(`${jsonDir}playlists/${id}.json`,callback)},getPlaylistList:callback=>{obj.get(`${jsonDir}playlists.json`,data=>{var list=[];for(let i of data.items){list.push(i.id)}callback(list)})},getUserData:callback=>{obj.get(`${jsonDir}user.json`,callback)}};return obj};export const data=main();
 //# sourceMappingURL=data.js.map

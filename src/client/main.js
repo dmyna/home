@@ -1,11 +1,8 @@
 // Importações
-import{global}from"./modules/global.js";import{data}from"./modules/data.js";import{template}from"./modules/template.js";import{render}from"./modules/render.js";import{button}from"./modules/button.js";/**
+import{global}from"./modules/global.js";import{data}from"./modules/data.js";import{comp}from"./modules/component.js";import{render}from"./modules/render.js";import{button}from"./modules/button.js";/**
  *
  *
  *
 **/ // Main
-$(()=>{// For Foguinho
-// For Kwi
-// render.individualPlaylist('5MdH8lh5RAk1RGnYbL0xSo'); // Foguinho
-render.mainPagePlaylists("5MdH8lh5RAk1RGnYbL0xSo");button()});
+$(()=>{render.mainPagePlaylists();button});
 //# sourceMappingURL=main.js.map

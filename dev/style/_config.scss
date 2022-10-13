@@ -185,6 +185,8 @@ body {
                         padding: 1.25em 1em;
                         overflow-x: auto;
                         overflow-y: hidden;
+                        display: flex;
+                        flex-direction: row;
 
                         & > div.playlistContainer {
                             width: 25em;
@@ -192,6 +194,7 @@ body {
                             padding: 0.5em;
                             border-radius: 1em;
                             display: flex;
+                            margin-right: 1em;
 
                             & > div.playlistLeftSpace{
                                 height: 100%;

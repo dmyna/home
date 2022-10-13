@@ -8,9 +8,8 @@ const main = () => {
         },
         convertHTMLHex: (data, content) => {
             const html = $.parseHTML(content);
-            const text = $.text(html);
 
-            return text;
+            return $.text(html);
         }
     }
     return obj;
