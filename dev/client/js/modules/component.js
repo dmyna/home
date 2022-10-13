@@ -1,5 +1,6 @@
 import { global } from './global.js';
 import { data } from './data.js';
+import { button } from './button.js';
 /**
  *
  *
@@ -46,29 +47,41 @@ const main = () => {
         }, p.component))
       });
     },
-    PlaylistContainer: p => {
-      return /*#__PURE__*/React.createElement("div", {
-        id: p.id,
-        className: "playlistContainer"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "playlistLeftSpace"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "playlistImage",
-        style: {
-          backgroundImage: `url(${p.data.images[0].url})`
-        }
-      })), /*#__PURE__*/React.createElement("div", {
-        className: "playlistRightSpace"
-      }, /*#__PURE__*/React.createElement("div", {
-        className: "playlistTitle"
-      }, p.data.name), /*#__PURE__*/React.createElement("div", {
-        className: "playlistDescription"
-      }, global.convertHTMLHex(p.data, p.data.description))));
+    PlaylistContainer: class PlaylistContainer extends React.Component {
+      constructor(p) {
+        super(p);
+        this.id = p.id;
+        this.data = p.data;
+      }
+
+      componentDidMount() {
+        button.individualPlaylist(this.id);
+      }
+
+      render() {
+        return /*#__PURE__*/React.createElement("div", {
+          key: this.key,
+          id: this.id,
+          className: "playlistContainer"
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "playlistLeftSpace"
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "playlistImage",
+          style: {
+            backgroundImage: `url(${this.data.images[0].url})`
+          }
+        })), /*#__PURE__*/React.createElement("div", {
+          className: "playlistRightSpace"
+        }, /*#__PURE__*/React.createElement("div", {
+          className: "playlistTitle"
+        }, this.data.name), /*#__PURE__*/React.createElement("div", {
+          className: "playlistDescription"
+        }, global.convertHTMLHex(this.data, this.data.description))));
+      }
+
     }
   };
-  return {
-    obj
-  };
+  return obj;
 };
 
-export const comp = main().obj;
+export const comp = main();

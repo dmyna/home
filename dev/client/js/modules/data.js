@@ -1,18 +1,20 @@
 import { global } from './global.js';
-import { template } from './template.js';
+import { comp } from './component.js';
 const jsonDir = './data/json/';
 
 const main = () => {
   const obj = {
     // Funções
-    getPlaylist: (id, callback) => {
-      if (id == undefined || null) return;
-      $.getJSON(`${jsonDir}playlists/${id}.json`, data => {
+    get: (reqUrl, callback, data) => {
+      $.getJSON(reqUrl, data, data => {
         callback(data);
       });
     },
+    getPlaylist: (id, callback) => {
+      obj.get(`${jsonDir}playlists/${id}.json`, callback);
+    },
     getPlaylistList: callback => {
-      $.getJSON(`${jsonDir}playlists.json`, data => {
+      obj.get(`${jsonDir}playlists.json`, data => {
         var list = [];
 
         for (let i of data.items) {
@@ -21,6 +23,9 @@ const main = () => {
 
         callback(list);
       });
+    },
+    getUserData: callback => {
+      obj.get(`${jsonDir}user.json`, callback);
     }
   };
   return obj;

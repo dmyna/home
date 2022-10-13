@@ -85,9 +85,14 @@ const spotifyMain = () => {
                 callback(playlists);
             });
         },
+        getUserData: (callback) => {
+            obj.requestSpotify(`${apiBase}users/${myUser}`, (res, body) => {
+                callback(body);
+            });
+        },
         writePlaylistArchive: (currentPlaylist) => {
             obj.requestSpotify(`${apiBase}playlists/${currentPlaylist}`, (res, body) => {
-                fs.writeFileSync(`${jsonDir + "playlists/" + currentPlaylist}.json`, JSON.stringify(body));
+                fs.writeFileSync(`${jsonDir}playlists/${currentPlaylist}.json`, JSON.stringify(body));
             });
         },
         writeAllPlaylists: () => {
@@ -95,6 +100,11 @@ const spotifyMain = () => {
                 for (let i of playlists) {
                     obj.writePlaylistArchive(i);
                 }
+            })
+        },
+        writeUserArchive: () => {
+            obj.getUserData((body) => {
+                fs.writeFileSync(`${jsonDir}user.json`, JSON.stringify(body));
             })
         }
     }
