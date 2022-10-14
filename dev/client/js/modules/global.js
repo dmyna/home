@@ -1,3 +1,5 @@
+'use strict';
+
 const main = () => {
   const obj = {
     // Variáveis

@@ -14,7 +14,8 @@
     <script type="module" src="src/client/main.js"></script>
 
 </head>
-<body id="init">
+
+<body>
     <aside>
         <nav>
             <div class="navTopDivision">
@@ -24,35 +25,21 @@
             </div>
             <hr class="asdHr" />
             <div class="navCenterDivision">
-                <div class="asdButtonSpace">
-                    <div class="asdButtonLogo">
-                        <a id="mainPlaylistsPage">
-                            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/571e5943-4616-4654-bf99-10b3c98f8686/d98301o-426f05ca-8fe5-4636-9009-db9dd1fca1f3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzU3MWU1OTQzLTQ2MTYtNDY1NC1iZjk5LTEwYjNjOThmODY4NlwvZDk4MzAxby00MjZmMDVjYS04ZmU1LTQ2MzYtOTAwOS1kYjlkZDFmY2ExZjMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0._SlX6x3jb9hDMoBDw92f_N0pVlwkrn-bMncfkRdFDXo">
-                        </a>
-                    </div>
-                    <div class="asdButtonMenu">
-
-                    </div>
+                <div id="mainPage" class="asdButton">
+                    <a id="mainPlaylistsPage">
+                        <img
+                            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/571e5943-4616-4654-bf99-10b3c98f8686/d98301o-426f05ca-8fe5-4636-9009-db9dd1fca1f3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzU3MWU1OTQzLTQ2MTYtNDY1NC1iZjk5LTEwYjNjOThmODY4NlwvZDk4MzAxby00MjZmMDVjYS04ZmU1LTQ2MzYtOTAwOS1kYjlkZDFmY2ExZjMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0._SlX6x3jb9hDMoBDw92f_N0pVlwkrn-bMncfkRdFDXo">
+                    </a>
                 </div>
-                <div class="asdButtonSpace">
-                    <div class="asdButtonLogo">
-                        <a href="../../../index.html">
-                            <p>C</p>
-                        </a>
-                    </div>
-                    <div class="asdButtonMenu">
-
-                    </div>
+                <div id="backToCentral" class="asdButton">
+                    <a>
+                        <p>C</p>
+                    </a>
                 </div>
-                <div class="asdButtonSpace">
-                    <div class="asdButtonLogo">
-                        <a href="index.html">
-                            <p>P</p>
-                        </a>
-                    </div>
-                    <div class="asdButtonMenu">
-
-                    </div>
+                <div id="productionPage" class="asdButton">
+                    <a>
+                        <p>P</p>
+                    </a>
                 </div>
             </div>
             <div class="navBottomDivision">
@@ -60,9 +47,12 @@
             </div>
         </nav>
     </aside>
+    <div class="floatBoxesController">
+
+    </div>
     <main>
         <header>
-            <div>Dev Myna</div>
+            <div></div>
         </header>
         <section>
             <article id="main">

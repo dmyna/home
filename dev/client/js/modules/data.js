@@ -1,5 +1,6 @@
+'use strict';
+
 import { global } from './global.js';
-import { comp } from './component.js';
 const jsonDir = './data/json/';
 
 const main = () => {

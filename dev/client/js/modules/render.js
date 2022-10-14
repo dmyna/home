@@ -1,8 +1,13 @@
+'use strict';
+
 import { global } from './global.js';
 import { data } from './data.js';
-import { comp } from './component.js';
-import { button } from './button.js';
+import { component } from './component.js';
+import { events } from './events.js';
+import { button } from './button.js'; // Root's
+
 const mainRoot = global.root('article#main');
+export const fbox = global.root('div.floatBoxesController');
 /**
  * @param {Function} individualPlaylist - Página da Playlist individual
  *
@@ -13,32 +18,54 @@ const main = () => {
   const obj = {
     individualPlaylist: id => {
       data.getPlaylist(id, data => {
-        mainRoot.render( /*#__PURE__*/React.createElement(comp.IndividualPlaylist, {
+        mainRoot.render( /*#__PURE__*/React.createElement(component.main.IndividualPlaylist, {
           data: data
         }));
       });
     },
     mainPagePlaylists: () => {
-      data.getUserData(user => {
-        data.getPlaylistList(list => {
-          var containers = [];
+      data.getPlaylistList(list => {
+        var containers = [];
 
-          for (let i of list) {
-            data.getPlaylist(i, data => {
-              containers.push( /*#__PURE__*/React.createElement(comp.PlaylistContainer, {
-                key: i,
-                id: i,
-                data: data
-              }));
-            });
-          }
+        for (let i of list) {
+          data.getPlaylist(i, data => {
+            containers.push( /*#__PURE__*/React.createElement(component.main.PlaylistContainer, {
+              key: i,
+              id: i,
+              data: data
+            }));
+          });
+        }
 
-          mainRoot.render( /*#__PURE__*/React.createElement(comp.MainPage, {
+        data.getUserData(user => {
+          mainRoot.render( /*#__PURE__*/React.createElement(component.main.MainPage, {
             bgData: user,
             component: containers
           }));
         });
       });
+    },
+    navMenu: id => {
+      const obj = {
+        unmount: () => {
+          fbox.render();
+        },
+        mount: () => {
+          fbox.render( /*#__PURE__*/React.createElement(component.nav.navMenu, {
+            className: "navFloatingMenu",
+            style: {
+              left: $('aside').width() + $('aside').width() / 100 * 15,
+              top: document.querySelector(`#${id}`).getBoundingClientRect().top
+            }
+          }));
+          setTimeout(() => {
+            button.clickOutside(`.navFloatingMenu`, () => {
+              render.navMenu().unmount();
+            });
+          }, 100);
+        }
+      };
+      return obj;
     }
   };
   return obj;
