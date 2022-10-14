@@ -1,9 +1,13 @@
+'use strict'
 import { global } from './global.js'
 import { data } from './data.js'
-import { comp } from './component.js'
+import { component } from './component.js'
+import { events } from './events.js'
 import { button } from './button.js'
 
+// Root's
 const mainRoot = global.root('article#main');
+export const fbox = global.root('div.floatBoxesController');
 
 /**
  * @param {Function} individualPlaylist - Página da Playlist individual
@@ -15,25 +19,44 @@ const main = () => {
     const obj = {
         individualPlaylist: (id) => {
             data.getPlaylist(id, (data) => {
-                mainRoot.render(<comp.IndividualPlaylist data={data} />);
+                mainRoot.render(<component.main.IndividualPlaylist data={data} />);
             });
         },
         mainPagePlaylists: () => {
-            data.getUserData((user) => {
-                data.getPlaylistList((list) => {
-                    var containers = []
-                    for (let i of list) {
-                        data.getPlaylist(i, (data) => {
-                            containers.push(
-                                <comp.PlaylistContainer key={i} id={i} data={data} />
-                            );
-                        })
-                    }
-                    mainRoot.render(<comp.MainPage bgData={user} component={
+            data.getPlaylistList((list) => {
+                var containers = []
+                for (let i of list) {
+                    data.getPlaylist(i, (data) => {
+                        containers.push(
+                            <component.main.PlaylistContainer key={i} id={i} data={data} />
+                        );
+                    })
+                }
+                data.getUserData((user) => {
+                    mainRoot.render(<component.main.MainPage bgData={user} component={
                         containers
                     } />)
                 });
             });
+        },
+        navMenu: (id) => {
+            const obj = {
+                unmount: () => {
+                    fbox.render()
+                },
+                mount: () => {
+                    fbox.render(<component.nav.navMenu className="navFloatingMenu" style={{
+                        left: $('aside').width() + ($('aside').width() / 100 * 15),
+                        top: document.querySelector(`#${id}`).getBoundingClientRect().top
+                    }} />);
+                    setTimeout(() => {
+                        button.clickOutside(`.navFloatingMenu`, () => {
+                            render.navMenu().unmount();
+                        })
+                    }, 100)
+                }
+            }
+            return obj;
         }
     }
     return obj;

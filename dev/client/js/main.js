@@ -1,7 +1,9 @@
-// Importações
+'use strict';
+
 import { global } from './modules/global.js';
 import { data } from './modules/data.js';
-import { comp } from './modules/component.js';
+import { events } from './modules/events.js';
+import { component } from './modules/component.js';
 import { render } from './modules/render.js';
 import { button } from './modules/button.js';
 /**
@@ -12,6 +14,7 @@ import { button } from './modules/button.js';
 // Main
 
 $(() => {
-  render.mainPagePlaylists();
+  events;
   button;
+  render.mainPagePlaylists();
 });
