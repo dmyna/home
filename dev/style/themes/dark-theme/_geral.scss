@@ -23,29 +23,22 @@ body {
     color: $txtTertiaryColor;
 
     aside {
-        background: $bgTertiaryColor;
-
+        background: $bgFifthColor;
 
         nav {
-            & hr.asdHr {
+            hr.asdHr {
                 border: 1px solid $h-bgRevertColor;
             }
-            div.asdButtonSpace {
-                & > div.asdButtonLogo {
-                    a:link {
-                        color: $txtSecondaryColor;
-                    }
-                }
-                & > div.asdButtonMenu {
-                    background: $bgQuaternaryColor;
-                    box-shadow: 0px 0px 10px #0003;
+            div.asdButton {
+                a:link {
+                    color: $txtSecondaryColor;
                 }
             }
         }
     }
     main {
         header {
-            background: $bgTertiaryColor;
+            background: $bgFifthColor;
             color: $txtSecondaryColor;
             z-index: 3;
         }
@@ -79,12 +72,18 @@ body {
                 }
             }
             div.radiusOne {
-                background: $bgTertiaryColor;
+                background: $bgFifthColor;
             }
         }
         footer {
             background: $bgQuaternaryColor;
             color: $txtSecondaryColor;
         }
+    }
+}
+div.floatBoxesController {
+    & > div.navFloatingMenu {
+        background: $bgSecondaryColor;
+        box-shadow: 0rem 0rem 1rem #0004;
     }
 }

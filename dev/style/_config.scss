@@ -32,6 +32,7 @@ body {
         z-index: 3;
 
         nav {
+            // Navegação
             height: 100vh;
             width: 100%;
             display: flex;
@@ -39,6 +40,7 @@ body {
             flex-direction: column;
 
             div.navTopDivision {
+                // Divisão superior do nav
                 width: 100%;
                 height: calc($max-Width-normalPc / 24 * 0.8);
 
@@ -54,63 +56,35 @@ body {
                 }
             }
             div.navCenterDivision {
+                // Divisão central do nav
                 width: 100%;
                 height: calc(100vh - ($max-Width-normalPc / 24 * 1.6));
             }
             div.navBottomDivision {
+                // Divisão inferior do nav
                 width: 100%;
                 height: calc($max-Width-normalPc / 24 * 0.8);
             }
-            div.asdButtonSpace {
+
+            div.asdButton {
                 width: calc($max-Width-normalPc / 24 * 0.8);
                 height: calc($max-Width-normalPc / 24 * 0.8);
-                display: flex;
-                margin: 0px 0px $asdButtonMargin;
-                transition: width 0.2s ease-out;
 
-                &:hover {
-                    width: calc(($max-Width-normalPc / 24 * (0.8 + 4)) + $asdButtonMargin);
-                }
-                &:hover > div.asdButtonLogo {
-                    margin-right: $asdButtonMargin;
-                }
-                &:hover > div.asdButtonMenu {
-                    visibility: visible;
-                    width: calc($max-Width-normalPc / 24 * 4);
-                }
+                & > div,
+                & > a {
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font: 450 1.9em "Ubuntu", sans-serif;
 
-                * {
-                    z-index: 3;
-                }
-                & > div.asdButtonLogo {
-                    width: calc($max-Width-normalPc / 24 * 0.8);
-                    height: calc($max-Width-normalPc / 24 * 0.8);
-
-                    & > div,
-                    & > a {
-                        height: 100%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font: 450 1.9em "Ubuntu", sans-serif;
-
-                        & > img {
-                            width: 80%;
-                            height: 80%;
-                        }
-                    }
-                }
-                & > div.asdButtonMenu {
-                    width: 0px;
-                    visibility: hidden;
-                    height: calc($max-Width-normalPc / 24 * 0.8);
-                    border-radius: calc($max-Width-normalPc / 24 * 0.15);
-
-                    &:hover {
-                        height: 100%;
+                    & > img {
+                        width: 80%;
+                        height: 80%;
                     }
                 }
             }
+
             & hr.asdHr {
                 width: 90%;
                 border-radius: 25%;
@@ -156,13 +130,15 @@ body {
                 position: absolute;
                 z-index: 1;
             }
-            article#main {// Main
+            article#main {
+                // Main
                 height: 100%;
                 position: absolute;
                 z-index: 2;
                 border-radius: 0.6em 0em 0em 0.6em;
 
-                div#playlistBg {// Background Geral
+                div#playlistBg {
+                    // Background Geral
                     background: no-repeat center;
                     background-size: 100%;
                     height: 100%;
@@ -181,22 +157,28 @@ body {
 
                     & > div#playlistsList {
                         width: 100%;
-                        height: 23em;
+                        height: 100%;
                         padding: 1.25em 1em;
                         overflow-x: auto;
                         overflow-y: hidden;
-                        display: flex;
-                        flex-direction: row;
+                        display: grid;
+                        grid-template-columns: auto auto auto;
+                        grid-gap: 0.75rem;
+                        justify-content: center;
+                        align-content: center;
+
+                        &::-webkit-scrollbar {
+                            width: 0px;
+                        }
 
                         & > div.playlistContainer {
-                            width: 25em;
-                            height: 50%;
-                            padding: 0.5em;
+                            width: calc($max-Width-normalPc / 24 * 7);
+
+                            padding: 0.5%;
                             border-radius: 1em;
                             display: flex;
-                            margin-right: 1em;
 
-                            & > div.playlistLeftSpace{
+                            & > div.playlistLeftSpace {
                                 height: 100%;
                                 display: flex;
 
@@ -211,10 +193,10 @@ body {
                                     height: 40%;
                                     display: flex;
                                     padding: 0.5rem 0em 0em 0.5rem;
-                                    font: bold 2.25em 'Ubuntu', sans-serif;
+                                    font: bold 2.25em "Ubuntu", sans-serif;
                                 }
                                 & > div.playlistDescription {
-                                    font: 0.9rem 'Ubuntu', sans-serif;
+                                    font: 0.9rem "Ubuntu", sans-serif;
                                     padding: 0.5rem;
                                     height: 60%;
                                     text-overflow: ellipsis;
@@ -225,7 +207,8 @@ body {
                     }
                 }
             }
-            & > div.dev-alert {// Alerta da Página Principal
+            & > div.dev-alert {
+                // Alerta da Página Principal
                 height: 100%;
                 display: flex;
                 justify-content: center;
@@ -257,5 +240,20 @@ body {
         div.radiusOne {
             top: 0px;
         }
+    }
+}
+div.floatBoxesController {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    & > div.navFloatingMenu {
+        position: absolute;
+        z-index: 2;
+        width: calc($max-Width-normalPc / 24 * 5.5);
+        height: 400px; // TEMP
+        border-radius: 0.75rem;
     }
 }
