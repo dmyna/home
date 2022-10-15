@@ -1,5 +1,6 @@
 'use strict';
 const fs = require('fs');
+const { waitForDebugger } = require('inspector');
 const request = require('request');
 
 const global = require('./global.js');
@@ -90,9 +91,21 @@ const spotifyMain = () => {
                 callback(body);
             });
         },
+        descriptionFilter: (body, id) => {
+            var text = body.description;
+            var search = text.indexOf("&#x2F;&#x2F; (");
+            if (search == -1) {
+                console.log(`${id}: Comentário não encontrado`);
+            } else {
+                var comment = text.slice(search);
+                body.description = text.replace(comment, "");
+            }
+            return body;
+        },
         writePlaylistArchive: (currentPlaylist) => {
             obj.requestSpotify(`${apiBase}playlists/${currentPlaylist}`, (res, body) => {
-                fs.writeFileSync(`${jsonDir}playlists/${currentPlaylist}.json`, JSON.stringify(body));
+                fs.writeFileSync(`${jsonDir}playlists/${currentPlaylist}.json`,
+                    JSON.stringify(obj.descriptionFilter(body, currentPlaylist)));
             });
         },
         writeAllPlaylists: () => {

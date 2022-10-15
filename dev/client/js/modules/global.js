@@ -7,14 +7,15 @@ const main = () => {
     // Funções
     root: dir => {
       // Definir Diretório Root
+      //@ts-ignore
       return ReactDOM.createRoot(document.querySelector(dir));
     },
-    convertHTMLHex: (data, content) => {
+    convertHexToHTML: (data, content) => {
       const html = $.parseHTML(content);
+      //@ts-ignore
       return $.text(html);
     }
   };
   return obj;
 };
-
 export const global = main();

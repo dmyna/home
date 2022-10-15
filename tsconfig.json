@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src/client/",
+        "jsx": "react-jsx",
+        "module": "ES6",
+        "target": "es2016",
+        "strict": true,
+        "allowUmdGlobalAccess": true
+    },
+
+    "include": [
+        "./**/*"
+    ]
+}

@@ -1,7 +1,7 @@
 'use strict';
 
-import { global } from './global.js';
 import { render } from './render.js';
+
 /**
  *
  *
@@ -13,13 +13,19 @@ const main = () => {
     asideButtons: () => {
       $('div.asdButton').on('click', e => {
         if ($('.navFloatingMenu').length == 0) {
-          render.navMenu(e.currentTarget.id).mount();
+          render.navMenu().mount(e.currentTarget.id);
+        } else {
+          render.navMenu().unmount();
+          const tOut = setInterval(() => {
+            render.navMenu().mount(e.currentTarget.id);
+            clearInterval(tOut);
+          }, 50);
         }
       });
     },
     clickOutside: (selector, callback) => {
       $('body').on('click', e => {
-        if (e.target != $(selector)) {
+        if (e.target != document.querySelector(selector)) {
           callback();
         }
       });
@@ -33,5 +39,4 @@ const main = () => {
   obj.asideButtons();
   return obj;
 };
-
 export const button = main();
