@@ -51,7 +51,7 @@ const main = () => {
                     fbox.render(null);
                 },
                 mount: (id: string) => {//@ts-ignore
-                    fbox.render(<component.nav.navMenu className="navFloatingMenu" style={{//@ts-ignore
+                    fbox.render(<component.nav.navMenu id={id} className="navFloatingMenu" style={{//@ts-ignore
                         left: $('aside').width() + ($('aside').width() / 100 * 15),//@ts-ignore
                         top: document.querySelector(`#${id}`).getBoundingClientRect().top
                     }} />);

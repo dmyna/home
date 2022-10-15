@@ -8,9 +8,7 @@ const fs = require('fs');
 
 // Variáveis Globais / Envs
 const myGlobal = require('../../modules/global.js');
-require('dotenv').config({
-  path: `${myGlobal.__rootdir}.env`
-});
+require('dotenv').config({ path: `${myGlobal.__rootdir}.env` });
 
 // Módulos
 const spotifyData = require('./modules/spotify.js');
@@ -25,7 +23,7 @@ const spotifyData = require('./modules/spotify.js');
 // });
 
 const main = () => {
-  spotifyData.updatePlaylistsList();
-  spotifyData.writeUserArchive();
-};
+    spotifyData.updatePlaylistsList();
+    spotifyData.writeUserArchive();
+}
 module.exports = main;
