@@ -125,6 +125,7 @@ const main = () => {
       navMenu: class navMenu extends React.Component {
         constructor(props) {
           super(props);
+          this.id = props.id;
           this.style = props.style;
           this.className = props.className;
         }
@@ -133,6 +134,7 @@ const main = () => {
         }
         render() {
           return /*#__PURE__*/React.createElement("div", {
+            id: this.id,
             className: "navFloatingMenu",
             style: this.style
           });

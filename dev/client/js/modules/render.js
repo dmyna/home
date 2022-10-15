@@ -61,6 +61,7 @@ const main = () => {
         mount: id => {
           //@ts-ignore
           fbox.render( /*#__PURE__*/React.createElement(component.nav.navMenu, {
+            id: id,
             className: "navFloatingMenu",
             style: {
               //@ts-ignore

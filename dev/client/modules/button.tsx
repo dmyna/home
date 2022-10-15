@@ -16,11 +16,15 @@ const main = () => {
                 if ($('.navFloatingMenu').length == 0) {
                     render.navMenu().mount(e.currentTarget.id);
                 } else {
-                    render.navMenu().unmount();
-                    const tOut = setInterval(() => {
-                        render.navMenu().mount(e.currentTarget.id);
-                        clearInterval(tOut);
-                    }, 50);
+                    if (e.currentTarget.id == $(`.navFloatingMenu`).attr('id')) {
+                        return;
+                    } else {
+                        render.navMenu().unmount();
+                        const tOut = setInterval(() => {
+                            render.navMenu().mount(e.currentTarget.id);
+                            clearInterval(tOut);
+                        }, 50);
+                    }
                 }
             });
         },
