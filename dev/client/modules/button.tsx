@@ -14,18 +14,24 @@ const main = () => {
         asideButtons: () => {
             $('div.asdButton').on('click', (e) => {
                 if ($('.navFloatingMenu').length == 0) {
-                    render.navMenu(e.currentTarget.id).mount();
+                    render.navMenu().mount(e.currentTarget.id);
+                } else {
+                    render.navMenu().unmount();
+                    const tOut = setInterval(() => {
+                        render.navMenu().mount(e.currentTarget.id);
+                        clearInterval(tOut);
+                    }, 50);
                 }
             });
         },
-        clickOutside: (selector, callback) => {
+        clickOutside: (selector: string, callback: Function) => {
             $('body').on('click', (e) => {
-                if (e.target != $(selector)) {
-                    callback()
+                if (e.target != document.querySelector(selector)) {
+                    callback();
                 }
             });
         },
-        individualPlaylist: (id) => {
+        individualPlaylist: (id: string) => {
             $(`#${id}`).on('click', () => {
                 render.individualPlaylist(id);
             });

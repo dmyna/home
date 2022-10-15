@@ -53,21 +53,19 @@ body {
                     }
                 }
                 div#playlistsSpace {
-                    & > div#playlistsList {
-                        & > div.playlistContainer {
-                            background: #3336;
-                            border: 2px solid #0000;
-                            box-shadow: 0.1em 0.1em 0.75em #0002;
+                    div.playlistContainer {
+                        background: #3338;
+                        border: 2px solid #0000;
+                        box-shadow: 0.1em 0.1em 0.75em #0002;
 
-                            div.playlistImage {
-                                box-shadow: 0em 0em 0.5em #0004;
-                            }
+                        div.playlistImage {
+                            box-shadow: 0em 0em 0.5em #0004;
                         }
-                        & > div.playlistContainer:hover {
-                            background: #2226;
-                            border: 2px solid $h-bgPrimaryColor;
-                            box-shadow: 0.1em 0.1em 1em #0005;
-                        }
+                    }
+                    div.playlistContainer:hover {
+                        background: #2228;
+                        border: 2px solid $h-bgPrimaryColor;
+                        box-shadow: 0.1em 0.1em 1em #0005;
                     }
                 }
             }

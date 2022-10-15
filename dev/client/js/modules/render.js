@@ -3,11 +3,13 @@
 import { global } from './global.js';
 import { data } from './data.js';
 import { component } from './component.js';
-import { events } from './events.js';
-import { button } from './button.js'; // Root's
+import { button } from './button.js';
 
+// Root's
 const mainRoot = global.root('article#main');
-export const fbox = global.root('div.floatBoxesController');
+const fbox = global.root('div.floatBoxesController');
+const asdRoot = global.root('aside');
+
 /**
  * @param {Function} individualPlaylist - Página da Playlist individual
  *
@@ -26,43 +28,53 @@ const main = () => {
     mainPagePlaylists: () => {
       data.getPlaylistList(list => {
         var containers = [];
-
         for (let i of list) {
           data.getPlaylist(i, data => {
-            containers.push( /*#__PURE__*/React.createElement(component.main.PlaylistContainer, {
+            containers.push(
+            /*#__PURE__*/
+            //@ts-ignore
+            React.createElement(component.main.PlaylistContainer, {
               key: i,
               id: i,
               data: data
             }));
           });
         }
-
         data.getUserData(user => {
           mainRoot.render( /*#__PURE__*/React.createElement(component.main.MainPage, {
             bgData: user,
-            component: containers
+            component: /*#__PURE__*/React.createElement(component.main.pages.AllPlaylists, {
+              component: containers
+            })
           }));
         });
       });
     },
-    navMenu: id => {
+    navegation: () => {
+      asdRoot.render( /*#__PURE__*/React.createElement(component.nav.Navegation, null));
+    },
+    navMenu: () => {
       const obj = {
         unmount: () => {
-          fbox.render();
+          fbox.render(null);
         },
-        mount: () => {
+        mount: id => {
+          //@ts-ignore
           fbox.render( /*#__PURE__*/React.createElement(component.nav.navMenu, {
             className: "navFloatingMenu",
             style: {
+              //@ts-ignore
               left: $('aside').width() + $('aside').width() / 100 * 15,
+              //@ts-ignore
               top: document.querySelector(`#${id}`).getBoundingClientRect().top
             }
           }));
-          setTimeout(() => {
+          const tOut = setTimeout(() => {
             button.clickOutside(`.navFloatingMenu`, () => {
               render.navMenu().unmount();
+              clearInterval(tOut);
             });
-          }, 100);
+          }, 50);
         }
       };
       return obj;
@@ -70,5 +82,4 @@ const main = () => {
   };
   return obj;
 };
-
 export const render = main();

@@ -7,7 +7,8 @@ import { button } from './button.js'
 
 // Root's
 const mainRoot = global.root('article#main');
-export const fbox = global.root('div.floatBoxesController');
+const fbox = global.root('div.floatBoxesController');
+const asdRoot = global.root('aside')
 
 /**
  * @param {Function} individualPlaylist - Página da Playlist individual
@@ -17,43 +18,49 @@ export const fbox = global.root('div.floatBoxesController');
 
 const main = () => {
     const obj = {
-        individualPlaylist: (id) => {
-            data.getPlaylist(id, (data) => {
+        individualPlaylist: (id: any) => {
+            data.getPlaylist(id, (data: any) => {
                 mainRoot.render(<component.main.IndividualPlaylist data={data} />);
             });
         },
         mainPagePlaylists: () => {
-            data.getPlaylistList((list) => {
-                var containers = []
+            data.getPlaylistList((list: string) => {
+                var containers: any[] = [];
                 for (let i of list) {
-                    data.getPlaylist(i, (data) => {
-                        containers.push(
+                    data.getPlaylist(i, (data: any) => {
+                        containers.push(//@ts-ignore
                             <component.main.PlaylistContainer key={i} id={i} data={data} />
                         );
                     })
                 }
-                data.getUserData((user) => {
+                data.getUserData((user: any) => {
                     mainRoot.render(<component.main.MainPage bgData={user} component={
-                        containers
+                        <component.main.pages.AllPlaylists component={
+                            containers
+                        } />
                     } />)
                 });
             });
         },
-        navMenu: (id) => {
+        navegation: () => {
+            asdRoot.render(<component.nav.Navegation  />)
+        },
+        navMenu: () => {
             const obj = {
                 unmount: () => {
-                    fbox.render()
+                    fbox.render(null);
                 },
-                mount: () => {
-                    fbox.render(<component.nav.navMenu className="navFloatingMenu" style={{
-                        left: $('aside').width() + ($('aside').width() / 100 * 15),
+                mount: (id: string) => {//@ts-ignore
+                    fbox.render(<component.nav.navMenu className="navFloatingMenu" style={{//@ts-ignore
+                        left: $('aside').width() + ($('aside').width() / 100 * 15),//@ts-ignore
                         top: document.querySelector(`#${id}`).getBoundingClientRect().top
                     }} />);
-                    setTimeout(() => {
+                    const tOut = setTimeout(() => {
                         button.clickOutside(`.navFloatingMenu`, () => {
                             render.navMenu().unmount();
+                            clearInterval(tOut);
                         })
-                    }, 100)
+                    }, 50);
                 }
             }
             return obj;

@@ -73,6 +73,7 @@ body aside nav div.navBottomDivision {
 body aside nav div.asdButton {
   width: 45.5333333333px;
   height: 45.5333333333px;
+  cursor: pointer;
 }
 body aside nav div.asdButton > div, body aside nav div.asdButton > a {
   height: 100%;
@@ -150,46 +151,77 @@ body main section:first-of-type article#main div#playlistsSpace {
 }
 body main section:first-of-type article#main div#playlistsSpace > div#playlistsList {
   width: 100%;
-  height: 100%;
+  height: max-content;
   padding: 1.25em 1em;
   overflow-x: auto;
   overflow-y: hidden;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 0.75rem;
-  justify-content: center;
-  align-content: center;
+  display: flex;
+  flex-direction: row;
 }
 body main section:first-of-type article#main div#playlistsSpace > div#playlistsList::-webkit-scrollbar {
   width: 0px;
 }
 body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer {
-  width: 398.4166666667px;
-  padding: 0.5%;
+  margin-right: 1rem;
+}
+body main section:first-of-type article#main div#playlistsSpace > div#allPlaylists {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  grid-gap: 1rem;
+  margin: 2rem;
+}
+body main section:first-of-type article#main div#playlistsSpace > div#allPlaylists > div.playlistContainer {
+  margin-right: 0px;
+}
+body main section:first-of-type article#main div.playlistContainer {
+  min-width: 398.4166666667px;
+  max-width: 398.4166666667px;
+  height: max-content;
   border-radius: 1em;
   display: flex;
+  cursor: pointer;
 }
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer > div.playlistLeftSpace {
+body main section:first-of-type article#main div.playlistContainer > div.playlistLeftSpace {
+  padding: 0.5rem;
   height: 100%;
   display: flex;
 }
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer > div.playlistLeftSpace > div.playlistImage {
-  width: 9em;
-  height: 9em;
+body main section:first-of-type article#main div.playlistContainer > div.playlistLeftSpace > div.playlistImage {
+  width: calc(20vh - 1rem);
+  height: calc(20vh - 1rem);
   background-size: 100% 100%;
+  border-radius: 0.5rem;
 }
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer > div.playlistRightSpace > div.playlistTitle {
-  height: 40%;
+body main section:first-of-type article#main div.playlistContainer > div.playlistRightSpace {
   display: flex;
-  padding: 0.5rem 0em 0em 0.5rem;
-  font: bold 2.25em "Ubuntu", sans-serif;
-}
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer > div.playlistRightSpace > div.playlistDescription {
-  font: 0.9rem "Ubuntu", sans-serif;
+  flex-direction: column;
+  width: max-content;
   padding: 0.5rem;
-  height: 60%;
+}
+body main section:first-of-type article#main div.playlistContainer > div.playlistRightSpace > div.playlistTitle {
+  width: 100%;
+  height: 38%;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 4%;
+  font: bold 1.4rem "Ubuntu", sans-serif;
+}
+body main section:first-of-type article#main div.playlistContainer > div.playlistRightSpace > div.playlistDescription {
+  height: 46.5%;
+  display: flex;
+  align-items: flex-start;
+}
+body main section:first-of-type article#main div.playlistContainer > div.playlistRightSpace > div.playlistDescription > p {
+  display: -webkit-box;
+  margin: 0px;
+  font: 0.85rem "Ubuntu", sans-serif;
   text-overflow: ellipsis;
-  overflow-y: hidden;
+  overflow: hidden;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 body main section:first-of-type > div.dev-alert {
   height: 100%;
@@ -286,16 +318,16 @@ body main section:first-of-type article#main div#playlistBg > div#playlistBgGrad
   background: radial-gradient(rgba(0, 0, 0, 0.0666666667), rgba(42, 42, 42, 0.3137254902));
   backdrop-filter: blur(20px);
 }
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer {
-  background: rgba(51, 51, 51, 0.4);
+body main section:first-of-type article#main div#playlistsSpace div.playlistContainer {
+  background: rgba(51, 51, 51, 0.5333333333);
   border: 2px solid rgba(0, 0, 0, 0);
   box-shadow: 0.1em 0.1em 0.75em rgba(0, 0, 0, 0.1333333333);
 }
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer div.playlistImage {
+body main section:first-of-type article#main div#playlistsSpace div.playlistContainer div.playlistImage {
   box-shadow: 0em 0em 0.5em rgba(0, 0, 0, 0.2666666667);
 }
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer:hover {
-  background: rgba(34, 34, 34, 0.4);
+body main section:first-of-type article#main div#playlistsSpace div.playlistContainer:hover {
+  background: rgba(34, 34, 34, 0.5333333333);
   border: 2px solid #70d;
   box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.3333333333);
 }

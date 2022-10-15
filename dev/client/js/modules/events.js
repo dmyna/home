@@ -20,5 +20,4 @@ const main = () => {
   };
   return obj;
 };
-
 export const events = main();

@@ -1,8 +1,6 @@
 'use strict';
 
-import { global } from './global.js';
 const jsonDir = './data/json/';
-
 const main = () => {
   const obj = {
     // Funções
@@ -17,11 +15,9 @@ const main = () => {
     getPlaylistList: callback => {
       obj.get(`${jsonDir}playlists.json`, data => {
         var list = [];
-
         for (let i of data.items) {
           list.push(i.id);
         }
-
         callback(list);
       });
     },
@@ -31,5 +27,4 @@ const main = () => {
   };
   return obj;
 };
-
 export const data = main();

@@ -2,7 +2,7 @@
 
 const main = () => {
     const obj = {
-        mousePosition: (callback) => {
+        mousePosition: (callback: Function) => {
             $(window).on('click', (e) => {
                 var mouse = {
                     page: {
