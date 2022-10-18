@@ -19,6 +19,23 @@ a:visited {
     color: none;
 }
 
+* {
+    &::-webkit-scrollbar {
+        background: $bgScrollbar;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $bgScrollbarThumb;
+    }
+}
+*:hover {
+    &::-webkit-scrollbar {
+        background: $h-bgScrollbar;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $bgScrollbarThumb;
+    }
+}
+
 body {
     color: $txtTertiaryColor;
 
@@ -36,16 +53,16 @@ body {
             }
         }
     }
-    main {
+    div#main-flex {
         header {
             background: $bgFifthColor;
             color: $txtSecondaryColor;
             z-index: 3;
         }
-        section:first-of-type {
-            article#main {
-                background: $bgSecondaryColor;
+        main {
+            background: $bgFifthColor;
 
+            article#main {
                 div#playlistBg {
                     & > div#playlistBgGradient {
                         background: radial-gradient(#0001, #2a2a2a50);
@@ -68,9 +85,6 @@ body {
                         box-shadow: 0.1em 0.1em 1em #0005;
                     }
                 }
-            }
-            div.radiusOne {
-                background: $bgFifthColor;
             }
         }
         footer {

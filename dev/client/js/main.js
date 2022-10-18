@@ -3,16 +3,10 @@
 import { events } from './modules/events.js';
 import { render } from './modules/render.js';
 import { button } from './modules/button.js';
-
-/**
- *
- *
- *
-**/
-
-// Main
 $(() => {
+  // Main
   events;
   button;
+  render.navegation();
   render.mainPagePlaylists();
 });

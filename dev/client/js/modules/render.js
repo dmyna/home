@@ -30,10 +30,7 @@ const main = () => {
         var containers = [];
         for (let i of list) {
           data.getPlaylist(i, data => {
-            containers.push(
-            /*#__PURE__*/
-            //@ts-ignore
-            React.createElement(component.main.PlaylistContainer, {
+            containers.push( /*#__PURE__*/React.createElement(component.main.PlaylistContainer, {
               key: i,
               id: i,
               data: data
@@ -51,7 +48,12 @@ const main = () => {
       });
     },
     navegation: () => {
-      asdRoot.render( /*#__PURE__*/React.createElement(component.nav.Navegation, null));
+      data.getUiData(data => {
+        asdRoot.render( /*#__PURE__*/React.createElement(component.nav.Navegation, {
+          data: data
+        }));
+        setTimeout(() => button.asideButtons(), 100);
+      });
     },
     navMenu: () => {
       const obj = {
@@ -59,7 +61,6 @@ const main = () => {
           fbox.render(null);
         },
         mount: id => {
-          //@ts-ignore
           fbox.render( /*#__PURE__*/React.createElement(component.nav.navMenu, {
             id: id,
             className: "navFloatingMenu",
@@ -67,7 +68,7 @@ const main = () => {
               //@ts-ignore
               left: $('aside').width() + $('aside').width() / 100 * 15,
               //@ts-ignore
-              top: document.querySelector(`#${id}`).getBoundingClientRect().top
+              top: document.querySelector(`div.asdButton#${id}`).getBoundingClientRect().top
             }
           }));
           const tOut = setTimeout(() => {

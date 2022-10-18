@@ -8,13 +8,19 @@ import { button } from './button.js'
 // Root's
 const mainRoot = global.root('article#main');
 const fbox = global.root('div.floatBoxesController');
-const asdRoot = global.root('aside')
+const asdRoot = global.root('aside');
 
 /**
  * @param {Function} individualPlaylist - Página da Playlist individual
  *
  *
 **/
+declare namespace JSX {
+    interface ElementClass {
+        render: any
+    }
+}
+
 
 const main = () => {
     const obj = {
@@ -24,11 +30,11 @@ const main = () => {
             });
         },
         mainPagePlaylists: () => {
-            data.getPlaylistList((list: string) => {
+            data.getPlaylistList((list: string[]) => {
                 var containers: any[] = [];
                 for (let i of list) {
                     data.getPlaylist(i, (data: any) => {
-                        containers.push(//@ts-ignore
+                        containers.push(
                             <component.main.PlaylistContainer key={i} id={i} data={data} />
                         );
                     })
@@ -43,17 +49,20 @@ const main = () => {
             });
         },
         navegation: () => {
-            asdRoot.render(<component.nav.Navegation  />)
+            data.getUiData((data: object) => {
+                asdRoot.render(<component.nav.Navegation data={data} />)
+                setTimeout(() => button.asideButtons(), 100);
+            });
         },
         navMenu: () => {
             const obj = {
                 unmount: () => {
                     fbox.render(null);
                 },
-                mount: (id: string) => {//@ts-ignore
+                mount: (id: string) => {
                     fbox.render(<component.nav.navMenu id={id} className="navFloatingMenu" style={{//@ts-ignore
                         left: $('aside').width() + ($('aside').width() / 100 * 15),//@ts-ignore
-                        top: document.querySelector(`#${id}`).getBoundingClientRect().top
+                        top: document.querySelector(`div.asdButton#${id}`).getBoundingClientRect().top
                     }} />);
                     const tOut = setTimeout(() => {
                         button.clickOutside(`.navFloatingMenu`, () => {

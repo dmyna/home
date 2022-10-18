@@ -40,7 +40,6 @@ const main = () => {
       });
     }
   };
-  obj.asideButtons();
   return obj;
 };
 export const button = main();

@@ -1,9 +1,8 @@
 'use strict';
 
-const {
-  waitForDebugger
-} = require('inspector');
-const request = require('request');
+var request = require('request');
+var fs = require('fs');
+var myGlobal = require('../modules/global.js');
 const jsonDir = `${myGlobal.__rootdir}data/json/`;
 
 /** Documentação do Módulo

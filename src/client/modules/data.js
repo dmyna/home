@@ -1,3 +1,3 @@
 "use strict";const jsonDir="./data/json/";const main=()=>{const obj={// Funções
-get:(reqUrl,callback,data)=>{$.getJSON(reqUrl,data,data=>{callback(data)})},getPlaylist:(id,callback)=>{obj.get(`${jsonDir}playlists/${id}.json`,callback)},getPlaylistList:callback=>{obj.get(`${jsonDir}playlists.json`,data=>{var list=[];for(let i of data.items){list.push(i.id)}callback(list)})},getUserData:callback=>{obj.get(`${jsonDir}user.json`,callback)}};return obj};export const data=main();
+get:(reqUrl,callback,data)=>{$.getJSON(reqUrl,data,data=>{callback(data)})},getPlaylist:(id,callback)=>{obj.get(`${jsonDir}playlists/${id}.json`,callback)},getPlaylistList:callback=>{obj.get(`${jsonDir}playlists.json`,data=>{var list=[];for(let i of data.items){list.push(i.id)}callback(list)})},getUserData:callback=>{obj.get(`${jsonDir}user.json`,callback)},getUiData:callback=>{obj.get(`${jsonDir}uidata.json`,callback)}};return obj};export const data=main();
 //# sourceMappingURL=data.js.map

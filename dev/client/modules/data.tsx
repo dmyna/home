@@ -25,6 +25,9 @@ const main = () => {
         },
         getUserData: (callback: Function) => {
             obj.get(`${jsonDir}user.json`, callback);
+        },
+        getUiData: (callback: Function) => {
+            obj.get(`${jsonDir}uidata.json`, callback);
         }
     }
     return obj;

@@ -41,7 +41,6 @@ const main = () => {
             });
         }
     }
-    obj.asideButtons();
     return obj;
 }
 
