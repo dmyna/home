@@ -1,5 +1,5 @@
 // Importações
-const fs = require('fs');
+var fs = require('fs');
 // const path = require('path');
 // const https = require('https');
 // const express = require('express');
@@ -7,11 +7,11 @@ const fs = require('fs');
 // const router = express.Router();
 
 // Variáveis Globais / Envs
-const myGlobal = require('../../modules/global.js');
+var myGlobal = require('./modules/global.js');
 require('dotenv').config({ path: `${myGlobal.__rootdir}.env` });
 
 // Módulos
-const spotifyData = require('./modules/spotify.js');
+var spotifyData = require('./modules/spotify.js');
 
 // app.get('/', (req, res) => {
 //     res.sendFile(`index.html`);
@@ -21,9 +21,33 @@ const spotifyData = require('./modules/spotify.js');
 // app.listen(process.env.PORT, () => {
 //     console.log(`> Servidor iniciado na porta: ${process.env.PORT}`);
 // });
+const http = require("http");
+const express = require("express");
+const app = express();
 
 const main = () => {
     spotifyData.updatePlaylistsList();
     spotifyData.writeUserArchive();
 }
+
+app.use(express.static(path.join(__dirname, "/")))
+
+app.get('/', function(req:any, res:any){
+    var options = {
+        root: path.join(__dirname)
+    };
+
+    var fileName = './index.html';
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+});
+
+http.createServer(app).listen(3000, () => console.log("Servidor rodando local na porta 3000"));
+
+
 module.exports = main;

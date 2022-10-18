@@ -6,9 +6,7 @@
 /* Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 /* Configs */
-/* Importações */ /* Media Width's */
-/* Media Height's */
-/* Padding's */
+/* Importações */
 /* Padrões */
 body {
   /* Remoção da Margem Padrão */
@@ -30,6 +28,11 @@ a:visited {
   text-decoration: none;
 }
 
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
 /* Declarações */
 body {
   height: 100vh;
@@ -37,14 +40,13 @@ body {
   overflow: hidden;
 }
 body aside {
-  width: 45.5333333333px;
   position: relative;
   z-index: 3;
   flex-shrink: 0;
 }
 body aside nav {
+  width: 45.5333333333px;
   height: 100vh;
-  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -74,6 +76,7 @@ body aside nav div.asdButton {
   width: 45.5333333333px;
   height: 45.5333333333px;
   cursor: pointer;
+  user-select: none;
 }
 body aside nav div.asdButton > div, body aside nav div.asdButton > a {
   height: 100%;
@@ -83,21 +86,21 @@ body aside nav div.asdButton > div, body aside nav div.asdButton > a {
   font: 450 1.9em "Ubuntu", sans-serif;
 }
 body aside nav div.asdButton > div > img, body aside nav div.asdButton > a > img {
-  width: 80%;
-  height: 80%;
+  width: 75%;
+  height: 75%;
 }
 body aside nav hr.asdHr {
   width: 90%;
   border-radius: 25%;
   margin: 4.26875px 0px;
 }
-body main {
+body div#main-flex {
   /* Conteúdo */
   width: 100%;
   height: 100vh;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
-body main header {
+body div#main-flex header {
   /* Cabeçalho */
   height: 45.5333333333px;
   width: 100%;
@@ -106,7 +109,7 @@ body main header {
   position: relative;
   z-index: 3;
 }
-body main header div {
+body div#main-flex header div {
   /* Conteúdo do Cabeçalho */
   display: flex;
   justify-content: center;
@@ -114,42 +117,41 @@ body main header div {
   width: 100%;
   height: 100%;
 }
-body main section:first-of-type {
+body div#main-flex main {
   position: relative;
-  height: calc(100vh - 45.5333333333px);
+  height: 100%;
   overflow-x: hidden;
-  position: relative;
   z-index: 1;
 }
-body main section:first-of-type > * {
+body div#main-flex main > * {
   width: 100%;
   height: 100%;
   position: absolute;
   z-index: 1;
 }
-body main section:first-of-type article#main {
-  height: 100%;
+body div#main-flex main article#main {
+  height: calc(100vh - 45.5333333333px);
   position: absolute;
   z-index: 2;
-  border-radius: 0.6em 0em 0em 0.6em;
 }
-body main section:first-of-type article#main div#playlistBg {
+body div#main-flex main article#main div#playlistBg {
   background: no-repeat center;
   background-size: 100%;
   height: 100%;
   border-radius: 0.6em 0em 0em 0.6em;
 }
-body main section:first-of-type article#main div#playlistBg > div#playlistBgGradient {
+body div#main-flex main article#main div#playlistBg > div#playlistBgGradient {
   height: 100%;
   border-radius: 0.6em 0em 0em 0.6em;
 }
-body main section:first-of-type article#main div#playlistsSpace {
+body div#main-flex main article#main div#playlistsSpace {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  padding: 2rem;
 }
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList {
+body div#main-flex main article#main div#playlistsSpace > div#playlistsList {
   width: 100%;
   height: max-content;
   padding: 1.25em 1em;
@@ -158,25 +160,24 @@ body main section:first-of-type article#main div#playlistsSpace > div#playlistsL
   display: flex;
   flex-direction: row;
 }
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList::-webkit-scrollbar {
+body div#main-flex main article#main div#playlistsSpace > div#playlistsList::-webkit-scrollbar {
   width: 0px;
 }
-body main section:first-of-type article#main div#playlistsSpace > div#playlistsList > div.playlistContainer {
+body div#main-flex main article#main div#playlistsSpace > div#playlistsList > div.playlistContainer {
   margin-right: 1rem;
 }
-body main section:first-of-type article#main div#playlistsSpace > div#allPlaylists {
+body div#main-flex main article#main div#playlistsSpace > div#allPlaylists {
   width: 100%;
   height: 100%;
   display: grid;
   grid-template-columns: auto auto auto;
   justify-content: center;
   grid-gap: 1rem;
-  margin: 2rem;
 }
-body main section:first-of-type article#main div#playlistsSpace > div#allPlaylists > div.playlistContainer {
+body div#main-flex main article#main div#playlistsSpace > div#allPlaylists > div.playlistContainer {
   margin-right: 0px;
 }
-body main section:first-of-type article#main div.playlistContainer {
+body div#main-flex main article#main div.playlistContainer {
   min-width: 398.4166666667px;
   max-width: 398.4166666667px;
   height: max-content;
@@ -184,24 +185,25 @@ body main section:first-of-type article#main div.playlistContainer {
   display: flex;
   cursor: pointer;
 }
-body main section:first-of-type article#main div.playlistContainer > div.playlistLeftSpace {
+body div#main-flex main article#main div.playlistContainer > div.playlistLeftSpace {
   padding: 0.5rem;
   height: 100%;
   display: flex;
 }
-body main section:first-of-type article#main div.playlistContainer > div.playlistLeftSpace > div.playlistImage {
+body div#main-flex main article#main div.playlistContainer > div.playlistLeftSpace > div.playlistImage {
   width: calc(20vh - 1rem);
   height: calc(20vh - 1rem);
   background-size: 100% 100%;
   border-radius: 0.5rem;
 }
-body main section:first-of-type article#main div.playlistContainer > div.playlistRightSpace {
+body div#main-flex main article#main div.playlistContainer > div.playlistRightSpace {
   display: flex;
   flex-direction: column;
   width: max-content;
   padding: 0.5rem;
+  overflow: hidden;
 }
-body main section:first-of-type article#main div.playlistContainer > div.playlistRightSpace > div.playlistTitle {
+body div#main-flex main article#main div.playlistContainer > div.playlistRightSpace > div.playlistTitle {
   width: 100%;
   height: 38%;
   display: flex;
@@ -209,59 +211,54 @@ body main section:first-of-type article#main div.playlistContainer > div.playlis
   margin-bottom: 4%;
   font: bold 1.4rem "Ubuntu", sans-serif;
 }
-body main section:first-of-type article#main div.playlistContainer > div.playlistRightSpace > div.playlistDescription {
+body div#main-flex main article#main div.playlistContainer > div.playlistRightSpace > div.playlistDescription {
   height: 46.5%;
   display: flex;
   align-items: flex-start;
 }
-body main section:first-of-type article#main div.playlistContainer > div.playlistRightSpace > div.playlistDescription > p {
+body div#main-flex main article#main div.playlistContainer > div.playlistRightSpace > div.playlistDescription > p {
   display: -webkit-box;
   margin: 0px;
   font: 0.85rem "Ubuntu", sans-serif;
   text-overflow: ellipsis;
-  overflow: hidden;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
-body main section:first-of-type > div.dev-alert {
+body div#main-flex main > div.dev-alert {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-body main section:first-of-type > div.dev-alert > div {
+body div#main-flex main > div.dev-alert > div {
   text-align: center;
   width: 100%;
   padding: 0px 28.4583333333px;
 }
-body main section:first-of-type > div.dev-alert > div:first-child {
+body div#main-flex main > div.dev-alert > div:first-child {
   font: 500 3em "Ubuntu", sans-serif;
   margin: 0px 0px 14.2291666667px 0px;
 }
-body main section:first-of-type > div.dev-alert > div:last-child > span {
+body div#main-flex main > div.dev-alert > div:last-child > span {
   font: 400 1.25em "Ubuntu", sans-serif;
 }
 @media screen and (max-width: 500px) {
-  body main section:first-of-type > div.dev-alert > div:first-child {
+  body div#main-flex main > div.dev-alert > div:first-child {
     font: 500 2.25em "Ubuntu", sans-serif;
   }
-  body main section:first-of-type > div.dev-alert > div:last-child > span {
+  body div#main-flex main > div.dev-alert > div:last-child > span {
     font: 400 0.75em "Ubuntu", sans-serif;
   }
 }
-body main div.radiusOne {
-  top: 0px;
-}
-
-div.floatBoxesController {
+body div.floatBoxesController {
   position: absolute;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
 }
-div.floatBoxesController > div.navFloatingMenu {
+body div.floatBoxesController > div.navFloatingMenu {
   position: absolute;
   z-index: 2;
   width: 313.0416666667px;
@@ -270,8 +267,7 @@ div.floatBoxesController > div.navFloatingMenu {
 }
 
 /* Theme */
-/* Importações */ /* Cores De Fundo */
-/* Cores de Texto */
+/* Importações */
 ::selection {
   /* Seleção do Texto */
   background: #90f;
@@ -294,6 +290,20 @@ a:visited {
   color: none;
 }
 
+*::-webkit-scrollbar {
+  background: rgba(51, 51, 51, 0.0666666667);
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(85, 85, 85, 0.1333333333);
+}
+
+*:hover::-webkit-scrollbar {
+  background: rgba(51, 51, 51, 0.2);
+}
+*:hover::-webkit-scrollbar-thumb {
+  background: rgba(85, 85, 85, 0.1333333333);
+}
+
 body {
   color: #bbb;
 }
@@ -306,35 +316,32 @@ body aside nav hr.asdHr {
 body aside nav div.asdButton a:link {
   color: #ccc;
 }
-body main header {
+body div#main-flex header {
   background: #161616;
   color: #ccc;
   z-index: 3;
 }
-body main section:first-of-type article#main {
-  background: #2a2a2a;
+body div#main-flex main {
+  background: #161616;
 }
-body main section:first-of-type article#main div#playlistBg > div#playlistBgGradient {
+body div#main-flex main article#main div#playlistBg > div#playlistBgGradient {
   background: radial-gradient(rgba(0, 0, 0, 0.0666666667), rgba(42, 42, 42, 0.3137254902));
   backdrop-filter: blur(20px);
 }
-body main section:first-of-type article#main div#playlistsSpace div.playlistContainer {
+body div#main-flex main article#main div#playlistsSpace div.playlistContainer {
   background: rgba(51, 51, 51, 0.5333333333);
   border: 2px solid rgba(0, 0, 0, 0);
   box-shadow: 0.1em 0.1em 0.75em rgba(0, 0, 0, 0.1333333333);
 }
-body main section:first-of-type article#main div#playlistsSpace div.playlistContainer div.playlistImage {
+body div#main-flex main article#main div#playlistsSpace div.playlistContainer div.playlistImage {
   box-shadow: 0em 0em 0.5em rgba(0, 0, 0, 0.2666666667);
 }
-body main section:first-of-type article#main div#playlistsSpace div.playlistContainer:hover {
+body div#main-flex main article#main div#playlistsSpace div.playlistContainer:hover {
   background: rgba(34, 34, 34, 0.5333333333);
   border: 2px solid #70d;
   box-shadow: 0.1em 0.1em 1em rgba(0, 0, 0, 0.3333333333);
 }
-body main section:first-of-type div.radiusOne {
-  background: #161616;
-}
-body main footer {
+body div#main-flex footer {
   background: #333;
   color: #ccc;
 }

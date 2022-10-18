@@ -2,12 +2,6 @@
 
 import { global } from './global.js';
 import { button } from './button.js';
-/**
- *
- *
- *
-**/
-
 const main = () => {
   const obj = {
     main: {
@@ -89,6 +83,7 @@ const main = () => {
       Navegation: class navegation extends React.Component {
         constructor(props) {
           super(props);
+          this.data = props.data;
         }
         render() {
           return /*#__PURE__*/React.createElement("nav", {
@@ -104,23 +99,38 @@ const main = () => {
             className: "asdHr"
           }), /*#__PURE__*/React.createElement("div", {
             className: "navCenterDivision"
-          }, /*#__PURE__*/React.createElement("div", {
-            id: "mainPage",
-            className: "asdButton"
-          }, /*#__PURE__*/React.createElement("a", {
-            id: "mainPlaylistsPage"
-          }, /*#__PURE__*/React.createElement("img", {
-            src: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/571e5943-4616-4654-bf99-10b3c98f8686/d98301o-426f05ca-8fe5-4636-9009-db9dd1fca1f3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzU3MWU1OTQzLTQ2MTYtNDY1NC1iZjk5LTEwYjNjOThmODY4NlwvZDk4MzAxby00MjZmMDVjYS04ZmU1LTQ2MzYtOTAwOS1kYjlkZDFmY2ExZjMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0._SlX6x3jb9hDMoBDw92f_N0pVlwkrn-bMncfkRdFDXo"
-          }))), /*#__PURE__*/React.createElement("div", {
-            id: "backToCentral",
-            className: "asdButton"
-          }, /*#__PURE__*/React.createElement("a", null, /*#__PURE__*/React.createElement("p", null, "C"))), /*#__PURE__*/React.createElement("div", {
-            id: "productionPage",
-            className: "asdButton"
-          }, /*#__PURE__*/React.createElement("a", null, /*#__PURE__*/React.createElement("p", null, "P")))), /*#__PURE__*/React.createElement("div", {
+          }, /*#__PURE__*/React.createElement(obj.nav.AllAsdButtons, {
+            data: this.data
+          })), /*#__PURE__*/React.createElement("div", {
             className: "navBottomDivision"
           }));
         }
+      },
+      AsdButton: props => {
+        return /*#__PURE__*/React.createElement("div", {
+          id: props.id,
+          className: "asdButton"
+        }, /*#__PURE__*/React.createElement("a", null, props.index));
+      },
+      AllAsdButtons: props => {
+        var container = [];
+        const selectLogo = (i, element) => {
+          container.push( /*#__PURE__*/React.createElement(obj.nav.AsdButton, {
+            key: i.id,
+            id: i.id,
+            index: element
+          }));
+        };
+        for (let i of props.data.nav.items) {
+          if (i.image) {
+            selectLogo(i, /*#__PURE__*/React.createElement("img", {
+              src: i.image[0].url
+            }));
+          } else if (i.symbol) {
+            selectLogo(i, /*#__PURE__*/React.createElement("p", null, i.symbol));
+          }
+        }
+        return container;
       },
       navMenu: class navMenu extends React.Component {
         constructor(props) {

@@ -23,6 +23,9 @@ const main = () => {
     },
     getUserData: callback => {
       obj.get(`${jsonDir}user.json`, callback);
+    },
+    getUiData: callback => {
+      obj.get(`${jsonDir}uidata.json`, callback);
     }
   };
   return obj;

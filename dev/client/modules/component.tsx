@@ -8,6 +8,12 @@ import { render } from './render.js'
  *
  *
 **/
+interface Props {
+    id?: string,
+    data?: any,
+    className?: any,
+    style?: object
+}
 
 const main = () => {
     const obj = {
@@ -58,11 +64,11 @@ const main = () => {
                     )
                 }
             },
-            PlaylistContainer: class PlaylistContainer extends React.Component {
+            PlaylistContainer: class PlaylistContainer extends React.Component<Props, {}> {
                 id: string;
                 data: any;
                 key: React.Key | null | undefined;
-                constructor(props: { id: string, data: string }) {
+                constructor(props: any) {
                     super(props)
                     this.id = props.id;
                     this.data = props.data;
@@ -94,9 +100,11 @@ const main = () => {
             }
         },
         nav: {
-            Navegation: class navegation extends React.Component {
+            Navegation: class navegation extends React.Component<Props, {}> {
+                data: object;
                 constructor(props: any) {
                     super(props);
+                    this.data = props.data;
                 }
                 render() {
                     return (
@@ -108,22 +116,7 @@ const main = () => {
                             </div>
                             <hr className="asdHr" />
                             <div className="navCenterDivision">
-                                <div id="mainPage" className="asdButton">
-                                    <a id="mainPlaylistsPage">
-                                        <img
-                                            src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/571e5943-4616-4654-bf99-10b3c98f8686/d98301o-426f05ca-8fe5-4636-9009-db9dd1fca1f3.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzU3MWU1OTQzLTQ2MTYtNDY1NC1iZjk5LTEwYjNjOThmODY4NlwvZDk4MzAxby00MjZmMDVjYS04ZmU1LTQ2MzYtOTAwOS1kYjlkZDFmY2ExZjMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0._SlX6x3jb9hDMoBDw92f_N0pVlwkrn-bMncfkRdFDXo" />
-                                    </a>
-                                </div>
-                                <div id="backToCentral" className="asdButton">
-                                    <a>
-                                        <p>C</p>
-                                    </a>
-                                </div>
-                                <div id="productionPage" className="asdButton">
-                                    <a>
-                                        <p>P</p>
-                                    </a>
-                                </div>
+                                <obj.nav.AllAsdButtons data={this.data} />
                             </div>
                             <div className="navBottomDivision">
 
@@ -132,7 +125,34 @@ const main = () => {
                     )
                 }
             },
-            navMenu: class navMenu extends React.Component {
+            AsdButton: (props: any) => {
+                return (
+                    <div id={props.id} className="asdButton">
+                        <a>
+                            {props.index}
+                        </a>
+                    </div>
+                )
+            },
+            AllAsdButtons: (props: any) => {
+                var container: any = [];
+                const selectLogo = (i: any, element: JSX.Element) => {
+                    container.push(
+                        <obj.nav.AsdButton key={i.id} id={i.id} index={element} />
+                    );
+                }
+                for (let i of props.data.nav.items) {
+                    if (i.image) {
+                        selectLogo(i, <img src={i.image[0].url} />)
+                    } else if (i.symbol) {
+                        selectLogo(i, <p>{i.symbol}</p>)
+                    }
+                }
+                return (
+                    container
+                )
+            },
+            navMenu: class navMenu extends React.Component<Props, {}> {
                 id: string;
                 style: any;
                 className: any;
