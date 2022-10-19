@@ -1,4 +1,4 @@
-const path = require('path');
+var path = require('path');
 
 const globalMain = () => {
     const obj = {
@@ -7,4 +7,5 @@ const globalMain = () => {
     return obj;
 }
 console.log()
-module.exports = globalMain();
+
+export default globalMain();

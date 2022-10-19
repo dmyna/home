@@ -1,7 +1,7 @@
 'use strict'
-import { global } from './global.js'
-import { button } from './button.js'
-import { render } from './render.js'
+import { global } from './global.jsx'
+import { button } from './button.jsx'
+import { render } from './render.jsx'
 
 /**
  *
@@ -18,51 +18,43 @@ interface Props {
 const main = () => {
     const obj = {
         main: {
-            Background: (p: any) => {
-                return (
-                    <div id="playlistBg" style={{ backgroundImage: `url(${p.data.images[0].url})` }}>
-                        <div id="playlistBgGradient">
-                            {p.component}
+            Background: (p: any) => (
+                <div id="playlistBg" style={{ backgroundImage: `url(${p.data.images[0].url})` }}>
+                    <div id="playlistBgGradient">
+                        {p.children}
+                    </div>
+                </div>
+            ),
+            IndividualPlaylist: (p: any) => (
+                <obj.main.Background data={p.data} component={
+                    <div id="playlistSpace">
+                        <div id="playlistImgSpace">
+                            <img src={p.data.images[0].url}></img>
+                        </div>
+                        <div id="playlistDataSpace">
+                            <div id="playlistName">
+                                {p.data.name}
+                            </div>
+                            <div id="playlistDescription">
+                                {global.convertHexToHTML(p.data, p.data.description)}
+                            </div>
                         </div>
                     </div>
-                )
-            },
-            IndividualPlaylist: (p: any) => {
-                return (
-                    <obj.main.Background data={p.data} component={
-                        <div id="playlistSpace">
-                            <div id="playlistImgSpace">
-                                <img src={p.data.images[0].url}></img>
-                            </div>
-                            <div id="playlistDataSpace">
-                                <div id="playlistName">
-                                    {p.data.name}
-                                </div>
-                                <div id="playlistDescription">
-                                    {global.convertHexToHTML(p.data, p.data.description)}
-                                </div>
-                            </div>
-                        </div>
-                    } />
-                )
-            },
-            MainPage: (p: any) => {
-                return (
-                    <obj.main.Background data={p.bgData} component={
-                        <div id="playlistsSpace">
-                            {p.component}
-                        </div>
-                    } />
-                )
-            },
+                } />
+            ),
+            MainPage: (p: any) => (
+                <obj.main.Background data={p.bgData}>
+                    <div id="playlistsSpace">
+                        {p.children}
+                    </div>
+                </obj.main.Background>
+            ),
             pages: {
-                AllPlaylists: (p: any) => {
-                    return (
-                        <div id="allPlaylists">
-                            {p.component}
-                        </div>
-                    )
-                }
+                AllPlaylists: (p: any) => (
+                    <div id="allPlaylists">
+                        {p.children}
+                    </div>
+                )
             },
             PlaylistContainer: class PlaylistContainer extends React.Component<Props, {}> {
                 id: string;
@@ -125,27 +117,27 @@ const main = () => {
                     )
                 }
             },
-            AsdButton: (props: any) => {
-                return (
-                    <div id={props.id} className="asdButton">
-                        <a>
-                            {props.index}
-                        </a>
-                    </div>
-                )
-            },
+            AsdButton: (props: any) => (
+                <div id={props.id} className="asdButton">
+                    <a>
+                        {props.children}
+                    </a>
+                </div>
+            ),
             AllAsdButtons: (props: any) => {
                 var container: any = [];
-                const selectLogo = (i: any, element: JSX.Element) => {
+                const setLogo = (i: any, element: JSX.Element) => {
                     container.push(
-                        <obj.nav.AsdButton key={i.id} id={i.id} index={element} />
+                        <obj.nav.AsdButton key={i.id} id={i.id}>
+                            {element}
+                        </obj.nav.AsdButton>
                     );
                 }
                 for (let i of props.data.nav.items) {
                     if (i.image) {
-                        selectLogo(i, <img src={i.image[0].url} />)
+                        setLogo(i, <img src={i.image[0].url} />)
                     } else if (i.symbol) {
-                        selectLogo(i, <p>{i.symbol}</p>)
+                        setLogo(i, <p>{i.symbol}</p>)
                     }
                 }
                 return (

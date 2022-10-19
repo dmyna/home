@@ -94,7 +94,7 @@ const spotifyMain = () => {
             var text = body.description;
             var search = text.indexOf("&#x2F;&#x2F; (");
             if (search == -1) {
-                console.log(`${id}: Comentário não encontrado`);
+                console.log(`${body.name} - (${id}): Comentário não encontrado`);
             } else {
                 var comment = text.slice(search);
                 body.description = text.replace(comment, "");
@@ -122,4 +122,5 @@ const spotifyMain = () => {
     }
     return obj;
 }
-module.exports = spotifyMain();
+
+export default spotifyMain();
