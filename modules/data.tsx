@@ -1,5 +1,5 @@
 'use strict'
-import { global } from './global.js'
+import { global } from './global.jsx'
 
 const jsonDir = './data/json/';
 

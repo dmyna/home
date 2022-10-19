@@ -1,42 +1,43 @@
 /* Importações */
 @import "variables";
 
-::selection {
-    /* Seleção do Texto */
-    background: $bgPrimaryColor;
-    color: $txtSecondaryColor;
-}
-* {
-    scrollbar-color: $bgTertiaryColor $bgQuaternaryColor;
-}
-*:hover {
-    scrollbar-color: $bgPrimaryColor $bgQuaternaryColor;
-}
-a:link {
-    color: $txtPrimaryColor;
-}
-a:visited {
-    color: none;
-}
+div#__next {
+    ::selection {
+        /* Seleção do Texto */
+        background: $bgPrimaryColor;
+        color: $txtSecondaryColor;
+    }
+    * {
+        scrollbar-color: $bgTertiaryColor $bgQuaternaryColor;
+    }
+    *:hover {
+        scrollbar-color: $bgPrimaryColor $bgQuaternaryColor;
+    }
+    a:link {
+        color: $txtPrimaryColor;
+    }
+    a:visited {
+        color: none;
+    }
 
-* {
-    &::-webkit-scrollbar {
-        background: $bgScrollbar;
+    * {
+        &::-webkit-scrollbar {
+            background: $bgScrollbar;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: $bgScrollbarThumb;
+        }
     }
-    &::-webkit-scrollbar-thumb {
-        background: $bgScrollbarThumb;
+    *:hover {
+        &::-webkit-scrollbar {
+            background: $h-bgScrollbar;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: $bgScrollbarThumb;
+        }
     }
 }
-*:hover {
-    &::-webkit-scrollbar {
-        background: $h-bgScrollbar;
-    }
-    &::-webkit-scrollbar-thumb {
-        background: $bgScrollbarThumb;
-    }
-}
-
-div._next {
+div#__next {
     color: $txtTertiaryColor;
 
     aside {

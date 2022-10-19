@@ -2,32 +2,32 @@
 @import "variables";
 
 /* Padrões */
-body {
+div#__next {
     /* Remoção da Margem Padrão */
     margin: 0px;
-}
-* {
-    /* Regras Padrões */
-    box-sizing: border-box;
-    transition: 0.2s;
-}
-img {
-    user-select: none;
-}
-a:link,
-a:visited {
-    text-decoration: none;
-}
+    * {
+        /* Regras Padrões */
+        box-sizing: border-box;
+        transition: 0.2s;
+    }
+    img {
+        user-select: none;
+    }
+    a:link,
+    a:visited {
+        text-decoration: none;
+    }
 
-::-webkit-scrollbar {
-}
-::-webkit-scrollbar-button {
-    width: 0px;
-    height: 0px;
+    ::-webkit-scrollbar {
+    }
+    ::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+    }
 }
 
 /* Declarações */
-div._next {
+div#__next {
     height: 100vh;
     display: flex;
     overflow: hidden;

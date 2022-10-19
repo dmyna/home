@@ -1,9 +1,9 @@
 'use strict'
-import { global } from './global.js'
-import { data } from './data.js'
-import { component } from './component.js'
-import { events } from './events.js'
-import { button } from './button.js'
+import { global } from './global.jsx'
+import { data } from './data.jsx'
+import { component } from './component.jsx'
+import { events } from './events.jsx'
+import { button } from './button.jsx'
 
 // Root's
 const mainRoot = global.root('article#main');
@@ -15,12 +15,6 @@ const asdRoot = global.root('aside');
  *
  *
 **/
-declare namespace JSX {
-    interface ElementClass {
-        render: any
-    }
-}
-
 
 const main = () => {
     const obj = {
@@ -40,11 +34,13 @@ const main = () => {
                     })
                 }
                 data.getUserData((user: any) => {
-                    mainRoot.render(<component.main.MainPage bgData={user} component={
-                        <component.main.pages.AllPlaylists component={
-                            containers
-                        } />
-                    } />)
+                    mainRoot.render(
+                        <component.main.MainPage bgData={user}>
+                            <component.main.pages.AllPlaylists>
+                                {containers}
+                            </component.main.pages.AllPlaylists>
+                        </component.main.MainPage>
+                    )
                 });
             });
         },
@@ -56,9 +52,6 @@ const main = () => {
         },
         navMenu: () => {
             const obj = {
-                unmount: () => {
-                    fbox.render(null);
-                },
                 mount: (id: string) => {
                     fbox.render(<component.nav.navMenu id={id} className="navFloatingMenu" style={{//@ts-ignore
                         left: $('aside').width() + ($('aside').width() / 100 * 15),//@ts-ignore
@@ -70,6 +63,9 @@ const main = () => {
                             clearInterval(tOut);
                         })
                     }, 50);
+                },
+                unmount: () => {
+                    fbox.render(null);
                 }
             }
             return obj;
