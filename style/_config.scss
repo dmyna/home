@@ -77,22 +77,23 @@ div#body {
                 cursor: pointer;
                 user-select: none;
 
-                & > div,
+                div,
                 & > a {
                     height: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    position: relative;
                     font: 450 1.9em "Ubuntu", sans-serif;
 
-                    & > img {
+                    img.asdImage {
                         width: 75%;
                         height: 75%;
                     }
                 }
             }
 
-            & hr.asdHr {
+            hr.asdHr {
                 width: 90%;
                 border-radius: 25%;
                 margin: calc($max-Width-normalPc / 24 * 0.075) 0px;
@@ -124,7 +125,7 @@ div#body {
                 height: 100%;
             }
         }
-        main {
+        main#main {
             position: relative;
             height: 100%;
             overflow-x: hidden;
