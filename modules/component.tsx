@@ -2,7 +2,8 @@
 import React from 'react';
 import { global } from './global'
 // import { button } from './button'
-// import { render } from './render'
+import style from '../style/css.module.scss'
+import Image from 'next/image';
 
 /**
  *
@@ -20,23 +21,23 @@ const main = () => {
     const obj = {
         main: {
             Background: (p: any) => (
-                <div id="playlistBg" style={{ backgroundImage: `url(${p.data.images[0].url})` }}>
-                    <div id="playlistBgGradient">
+                <div id={style.playlistBg} style={{ backgroundImage: `url(${p.data.images[0].url})` }}>
+                    <div id={style.playlistBgGradient}>
                         {p.children}
                     </div>
                 </div>
             ),
             IndividualPlaylist: (p: any) => (
                 <obj.main.Background data={p.data} component={
-                    <div id="playlistSpace">
-                        <div id="playlistImgSpace">
+                    <div id={style.playlistSpace}>
+                        <div id={style.playlistImgSpace}>
                             <img src={p.data.images[0].url}></img>
                         </div>
-                        <div id="playlistDataSpace">
-                            <div id="playlistName">
+                        <div id={style.playlistDataSpace}>
+                            <div id={style.playlistName}>
                                 {p.data.name}
                             </div>
-                            <div id="playlistDescription">
+                            <div id={style.playlistDescription}>
                                 {global.convertHexToHTML(p.data, p.data.description)}
                             </div>
                         </div>
@@ -45,14 +46,14 @@ const main = () => {
             ),
             MainPage: (p: any) => (
                 <obj.main.Background data={p.bgData}>
-                    <div id="playlistsSpace">
+                    <div id={style.playlistsSpace}>
                         {p.children}
                     </div>
                 </obj.main.Background>
             ),
             pages: {
                 AllPlaylists: (p: any) => (
-                    <div id="allPlaylists">
+                    <div id={style.allPlaylists}>
                         {p.children}
                     </div>
                 )
@@ -71,17 +72,17 @@ const main = () => {
                 }
                 render() {
                     return (
-                        <div key={this.key} id={this.id} className="playlistContainer">
-                            <div className="playlistLeftSpace">
-                                <div className="playlistImage" style={{
+                        <div key={this.key} id={this.id} className={style.playlistContainer}>
+                            <div className={style.playlistLeftSpace}>
+                                <div className={style.playlistImage} style={{
                                     backgroundImage: `url(${this.data.images[0].url})`
                                 }} />
                             </div>
-                            <div className="playlistRightSpace">
-                                <div className="playlistTitle">
+                            <div className={style.playlistRightSpace}>
+                                <div className={style.playlistTitle}>
                                     {this.data.name}
                                 </div>
-                                <div className="playlistDescription">
+                                <div className={style.playlistDescription}>
                                     <p>
                                         { this.data.description}
                                     </p>
@@ -98,20 +99,21 @@ const main = () => {
                 constructor(props: any) {
                     super(props);
                     this.data = props.data;
+
                 }
                 render() {
                     return (
-                        <nav id="navegation">
-                            <div className="navTopDivision">
-                                <a className="asdLogo" href="https://www.instagram.com/minatiuu">
+                        <nav id={style.navegation}>
+                            <div className={style.navTopDivision}>
+                                <a className={style.asdLogo} href="https://www.instagram.com/minatiuu">
                                     <img src="https://i.imgur.com/jPLx8fi.png" />
                                 </a>
                             </div>
-                            <hr className="asdHr" />
-                            <div className="navCenterDivision">
+                            <hr className={style.asdHr} />
+                            <div className={style.navCenterDivision}>
                                 <obj.nav.AllAsdButtons data={this.data} />
                             </div>
-                            <div className="navBottomDivision">
+                            <div className={style.navBottomDivision}>
 
                             </div>
                         </nav>
@@ -119,7 +121,7 @@ const main = () => {
                 }
             },
             AsdButton: (props: any) => (
-                <div id={props.id} className="asdButton">
+                <div id={props.id} className={style.asdButton}>
                     <a>
                         {props.children}
                     </a>
@@ -136,7 +138,7 @@ const main = () => {
                 }
                 for (let i of props.data.nav.items) {
                     if (i.image) {
-                        setLogo(i, <img src={i.image[0].url} />)
+                        setLogo(i, <img className={style.asdImage} src={i.image[0].url} />)
                     } else if (i.symbol) {
                         setLogo(i, <p>{i.symbol}</p>)
                     }
@@ -161,7 +163,7 @@ const main = () => {
                 }
                 render() {
                     return (
-                        <div id={this.id} className="navFloatingMenu" style={this.style}>
+                        <div id={this.id} className={style.navFloatingMenu} style={this.style}>
 
                         </div>
                     )

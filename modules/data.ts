@@ -2,7 +2,7 @@
 export const getServerSideProps = (context?: any) => {
     const fs = require('fs');
 
-    const jsonDir = './data/json/';
+    const jsonDir = 'data/json/';
     const data = () => {
         const obj = {
             // Funções
@@ -20,7 +20,7 @@ export const getServerSideProps = (context?: any) => {
             getPlaylistList: () => {
                 const data = obj.get(`${jsonDir}playlists.json`);
 
-                var list: any = [];
+                var list: string[] = [];
                 for (let i of data.items) {
                     list.push(i.id);
                 }

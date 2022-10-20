@@ -23,12 +23,12 @@ export const getServerSideProps = (context?: any) => {
                 return <component.main.IndividualPlaylist data={playlist} />;
             },
             mainPagePlaylists: () => {
-                const user = data.getUserData();
-                const list = data.getPlaylistList();
+                const user: object = data.getUserData();
+                const list: string[] = data.getPlaylistList();
 
-                var containers: any[] = [];
+                var containers: JSX.Element[] = [];
                 for (let i of list) {
-                    var playlist: any = data.getPlaylist(i);
+                    var playlist: object = data.getPlaylist(i);
                     containers.push(
                         <component.main.PlaylistContainer key={i} id={i} data={playlist} />
                     );
@@ -53,12 +53,12 @@ export const getServerSideProps = (context?: any) => {
             navMenu: () => {
                 const mnt = {
                     mount: (id: string) => {
-                        const tOut = setTimeout(() => {
-                            // button.clickOutside(`.navFloatingMenu`, () => {
-                            //     mnt.unmount();
-                            //     clearInterval(tOut);
-                            // })
-                        }, 50);
+                        // const tOut = setTimeout(() => {
+                        //     button.clickOutside(`.navFloatingMenu`, () => {
+                        //         mnt.unmount();
+                        //         clearInterval(tOut);
+                        //     })
+                        // }, 50);
                         return (
                             <component.nav.navMenu id={id} className="navFloatingMenu" style={{//@ts-ignore
                                 left: $('aside').width() + ($('aside').width() / 100 * 15),//@ts-ignore

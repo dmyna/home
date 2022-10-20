@@ -1,9 +1,14 @@
 import React from 'react'
+import ReactHtmlParser from 'react-html-parser';
+
 import Head from 'next/head'
 import Script from 'next/script'
+import Link from 'next/link'
+
 import style from '../style/css.module.scss'
 
-const Layout = ({ children }: any) => {
+
+const Layout = ({ children, NavAsdButtons }: any) => {
     return (
         <div id={style.body}>
             <Head>
@@ -11,9 +16,8 @@ const Layout = ({ children }: any) => {
                 <meta name="author" content="Dev Myna" />
                 <link rel="shortcut icon" href="https://i.imgur.com/jPLx8fi.png?1" type="image/x-icon" />
             </Head>
-
             <aside id={style.navegation}>
-                <nav></nav>
+                {ReactHtmlParser(NavAsdButtons)}
             </aside>
             <div id={style.mainFlex}>
                 <header>
