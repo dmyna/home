@@ -1,8 +1,8 @@
 'use strict'
 import React from 'react';
 import { global } from './global'
-import { button } from './button'
-import { render } from './render'
+// import { button } from './button'
+// import { render } from './render'
 
 /**
  *
@@ -67,7 +67,7 @@ const main = () => {
                     this.data = props.data;
                 }
                 componentDidMount() {
-                    button.individualPlaylist(this.id);
+                    // button.individualPlaylist(this.id);
                 }
                 render() {
                     return (

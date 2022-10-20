@@ -2,7 +2,7 @@
 import React from 'react';
 import { component } from './component'
 import { events } from './events'
-import { button } from './button'
+// import { button } from './button'
 
 // Root's
 
@@ -44,7 +44,7 @@ export const getServerSideProps = (context?: any) => {
             },
             navegation: () => {
                 const uiData = data.getUiData();
-                setTimeout(() => button.asideButtons(), 100);
+                // setTimeout(() => button.asideButtons(), 100);
 
                 return (
                     <component.nav.Navegation data={uiData} />
@@ -54,10 +54,10 @@ export const getServerSideProps = (context?: any) => {
                 const mnt = {
                     mount: (id: string) => {
                         const tOut = setTimeout(() => {
-                            button.clickOutside(`.navFloatingMenu`, () => {
-                                mnt.unmount();
-                                clearInterval(tOut);
-                            })
+                            // button.clickOutside(`.navFloatingMenu`, () => {
+                            //     mnt.unmount();
+                            //     clearInterval(tOut);
+                            // })
                         }, 50);
                         return (
                             <component.nav.navMenu id={id} className="navFloatingMenu" style={{//@ts-ignore
