@@ -1,7 +1,6 @@
 'use strict'
-
-import { global } from './global.jsx'
-import { render } from './render.jsx'
+import { global } from './global'
+import { render } from './render'
 
 /**
  *

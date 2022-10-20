@@ -2,7 +2,7 @@
 @import "variables";
 
 /* Padrões */
-div#__next {
+div#body {
     /* Remoção da Margem Padrão */
     margin: 0px;
     * {
@@ -27,12 +27,12 @@ div#__next {
 }
 
 /* Declarações */
-div#__next {
+div#body {
     height: 100vh;
     display: flex;
     overflow: hidden;
 
-    aside {
+    aside#navegation {
         position: relative;
         z-index: 3;
 
@@ -100,7 +100,7 @@ div#__next {
         }
         flex-shrink: 0;
     }
-    div#main-flex {
+    div#mainFlex {
         /* Conteúdo */
         width: 100%;
         height: 100vh;

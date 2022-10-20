@@ -1,7 +1,8 @@
 'use strict'
-import { global } from './global.jsx'
-import { button } from './button.jsx'
-import { render } from './render.jsx'
+import React from 'react';
+import { global } from './global'
+import { button } from './button'
+import { render } from './render'
 
 /**
  *
@@ -82,7 +83,7 @@ const main = () => {
                                 </div>
                                 <div className="playlistDescription">
                                     <p>
-                                        {global.convertHexToHTML(this.data, this.data.description)}
+                                        { this.data.description}
                                     </p>
                                 </div>
                             </div>
