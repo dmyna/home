@@ -84,7 +84,7 @@ const main = () => {
                                 </div>
                                 <div className={style.playlistDescription}>
                                     <p>
-                                        { this.data.description}
+                                        {this.data.description}
                                     </p>
                                 </div>
                             </div>
