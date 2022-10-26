@@ -64,6 +64,8 @@ div#body {
             background: $bgFifthColor;
 
             article#main {
+                background: $bgTertiaryColor;
+
                 div#playlistBg {
                     & > div#playlistBgGradient {
                         background: radial-gradient(#0001, #2a2a2a50);
