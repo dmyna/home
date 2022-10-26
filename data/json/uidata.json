@@ -5,7 +5,7 @@
                 "id": "mainPage",
                 "image": [
                     {
-                        "url": "data/src/spotify_icons_logos/icons/rgb/png/Spotify_Icon_RGB_Green.png"
+                        "url": "/Spotify_Icon_RGB_Green.png"
                     }
                 ]
             },

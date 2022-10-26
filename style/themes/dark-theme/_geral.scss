@@ -1,7 +1,7 @@
 /* Importações */
 @import "variables";
 
-div#__next {
+div#body {
     ::selection {
         /* Seleção do Texto */
         background: $bgPrimaryColor;
@@ -37,10 +37,10 @@ div#__next {
         }
     }
 }
-div#__next {
+div#body {
     color: $txtTertiaryColor;
 
-    aside {
+    aside#navegation {
         background: $bgFifthColor;
 
         nav {
@@ -54,13 +54,13 @@ div#__next {
             }
         }
     }
-    div#main-flex {
+    div#mainFlex {
         header {
             background: $bgFifthColor;
             color: $txtSecondaryColor;
             z-index: 3;
         }
-        main {
+        main#main {
             background: $bgFifthColor;
 
             article#main {
