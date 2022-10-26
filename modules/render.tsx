@@ -1,14 +1,10 @@
 'use strict'
-import { global } from './global.jsx'
-import { data } from './data.jsx'
-import { component } from './component.jsx'
-import { events } from './events.jsx'
-import { button } from './button.jsx'
+import React from 'react';
+import { component } from './component'
+import { events } from './events'
+// import { button } from './button'
 
 // Root's
-const mainRoot = global.root('article#main');
-const fbox = global.root('div.floatBoxesController');
-const asdRoot = global.root('aside');
 
 /**
  * @param {Function} individualPlaylist - Página da Playlist individual
@@ -16,61 +12,71 @@ const asdRoot = global.root('aside');
  *
 **/
 
-const main = () => {
-    const obj = {
-        individualPlaylist: (id: any) => {
-            data.getPlaylist(id, (data: any) => {
-                mainRoot.render(<component.main.IndividualPlaylist data={data} />);
-            });
-        },
-        mainPagePlaylists: () => {
-            data.getPlaylistList((list: string[]) => {
-                var containers: any[] = [];
+export const getServerSideProps = (context?: any) => {
+    const data = require('./data');
+
+    const render = () => {
+        const obj = {
+            individualPlaylist: (id: any) => {
+                const playlist = data.getPlaylist(id)
+
+                return <component.main.IndividualPlaylist data={playlist} />;
+            },
+            mainPagePlaylists: () => {
+                const user: object = data.getUserData();
+                const list: string[] = data.getPlaylistList();
+
+                var containers: JSX.Element[] = [];
                 for (let i of list) {
-                    data.getPlaylist(i, (data: any) => {
-                        containers.push(
-                            <component.main.PlaylistContainer key={i} id={i} data={data} />
+                    var playlist: object = data.getPlaylist(i);
+                    containers.push(
+                        <component.main.PlaylistContainer key={i} id={i} data={playlist} />
+                    );
+                }
+
+                return (
+                    <component.main.MainPage bgData={user}>
+                        <component.main.pages.AllPlaylists>
+                            {containers}
+                        </component.main.pages.AllPlaylists>
+                    </component.main.MainPage>
+                )
+            },
+            navegation: () => {
+                const uiData = data.getUiData();
+                // setTimeout(() => button.asideButtons(), 100);
+
+                return (
+                    <component.nav.Navegation data={uiData} />
+                )
+            },
+            navMenu: () => {
+                const mnt = {
+                    mount: (id: string) => {
+                        // const tOut = setTimeout(() => {
+                        //     button.clickOutside(`.navFloatingMenu`, () => {
+                        //         mnt.unmount();
+                        //         clearInterval(tOut);
+                        //     })
+                        // }, 50);
+                        return (
+                            <component.nav.navMenu id={id} className="navFloatingMenu" style={{//@ts-ignore
+                                left: $('aside').width() + ($('aside').width() / 100 * 15),//@ts-ignore
+                                top: document.querySelector(`div.asdButton#${id}`).getBoundingClientRect().top
+                            }} />
                         );
-                    })
+                    },
+                    unmount: () => {
+                        return (
+                            <></>
+                        );
+                    }
                 }
-                data.getUserData((user: any) => {
-                    mainRoot.render(
-                        <component.main.MainPage bgData={user}>
-                            <component.main.pages.AllPlaylists>
-                                {containers}
-                            </component.main.pages.AllPlaylists>
-                        </component.main.MainPage>
-                    )
-                });
-            });
-        },
-        navegation: () => {
-            data.getUiData((data: object) => {
-                asdRoot.render(<component.nav.Navegation data={data} />)
-                setTimeout(() => button.asideButtons(), 100);
-            });
-        },
-        navMenu: () => {
-            const obj = {
-                mount: (id: string) => {
-                    fbox.render(<component.nav.navMenu id={id} className="navFloatingMenu" style={{//@ts-ignore
-                        left: $('aside').width() + ($('aside').width() / 100 * 15),//@ts-ignore
-                        top: document.querySelector(`div.asdButton#${id}`).getBoundingClientRect().top
-                    }} />);
-                    const tOut = setTimeout(() => {
-                        button.clickOutside(`.navFloatingMenu`, () => {
-                            render.navMenu().unmount();
-                            clearInterval(tOut);
-                        })
-                    }, 50);
-                },
-                unmount: () => {
-                    fbox.render(null);
-                }
+                return mnt;
             }
-            return obj;
         }
+        return obj;
     }
-    return obj;
+    return render()
 }
-export const render = main();
+module.exports = getServerSideProps();
