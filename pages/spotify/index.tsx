@@ -17,7 +17,6 @@ export const getServerSideProps = () => {
 
 
 const Spotify = ({ MainPagePlaylists, NavAsdButtons }: any) => {
-    console.log(MainPagePlaylists)
     return (
         <Layout NavAsdButtons={NavAsdButtons}>
             {ReactHtmlParser(MainPagePlaylists)}

@@ -48,7 +48,7 @@ div#body {
                 border: 1px solid $h-bgRevertColor;
             }
             div.asdButton {
-                a:link {
+                * {
                     color: $txtSecondaryColor;
                 }
             }
