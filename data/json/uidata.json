@@ -1,8 +1,18 @@
 {
     "nav": {
+        "principal": {
+            "id": "mainPage",
+            "route": "/",
+            "image": [
+                {
+                    "url": "https://i.imgur.com/jPLx8fi.png"
+                }
+            ]
+        },
         "items": [
             {
-                "id": "mainPage",
+                "id": "spotifyPage",
+                "route": "/spotify",
                 "image": [
                     {
                         "url": "/Spotify_Icon_RGB_Green.png"

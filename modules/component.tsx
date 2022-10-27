@@ -4,7 +4,7 @@ import { global } from './global'
 // import { button } from './button'
 import style from '../style/css.module.scss'
 import Image from 'next/image';
-
+import Link from 'next/link';
 /**
  *
  *
@@ -105,9 +105,7 @@ const main = () => {
                     return (
                         <nav id={style.navegation}>
                             <div className={style.navTopDivision}>
-                                <a className={style.asdLogo} href="https://www.instagram.com/minatiuu">
-                                    <img src="https://i.imgur.com/jPLx8fi.png" />
-                                </a>
+                                <obj.nav.MainPageButton data={this.data} />
                             </div>
                             <hr className={style.asdHr} />
                             <div className={style.navCenterDivision}>
@@ -120,27 +118,34 @@ const main = () => {
                     )
                 }
             },
+            MainPageButton: (props: any) => (
+                <Link href={props.data.nav.principal.route} passHref legacyBehavior>
+                    <a className={style.asdLogo}>
+                        <img src={props.data.nav.principal.image[0].url} />
+                    </a>
+                </Link>
+            ),
             AsdButton: (props: any) => (
                 <div id={props.id} className={style.asdButton}>
-                    <a>
-                        {props.children}
-                    </a>
+                    <Link href={props.route} passHref legacyBehavior>
+                        <a>{props.children}</a>
+                    </Link>
                 </div>
             ),
             AllAsdButtons: (props: any) => {
                 var container: any = [];
-                const setLogo = (i: any, element: JSX.Element) => {
+                const setLogo = (i: any, route: string, element: JSX.Element) => {
                     container.push(
-                        <obj.nav.AsdButton key={i.id} id={i.id}>
+                        <obj.nav.AsdButton key={i.id} id={i.id} route={route}>
                             {element}
                         </obj.nav.AsdButton>
                     );
                 }
                 for (let i of props.data.nav.items) {
                     if (i.image) {
-                        setLogo(i, <img className={style.asdImage} src={i.image[0].url} />)
+                        setLogo(i, i.route || "", <img className={style.asdImage} src={i.image[0].url} />)
                     } else if (i.symbol) {
-                        setLogo(i, <p>{i.symbol}</p>)
+                        setLogo(i, i.route || "", <p>{i.symbol}</p>)
                     }
                 }
                 return (
