@@ -28,7 +28,7 @@ const main = () => {
                 </div>
             ),
             IndividualPlaylist: (p: any) => (
-                <obj.main.Background data={p.data} component={
+                <obj.main.Background data={p.data}>
                     <div id={style.playlistSpace}>
                         <div id={style.playlistImgSpace}>
                             <img src={p.data.images[0].url}></img>
@@ -38,11 +38,11 @@ const main = () => {
                                 {p.data.name}
                             </div>
                             <div id={style.playlistDescription}>
-                                {global.convertHexToHTML(p.data, p.data.description)}
+                                {p.data.description}
                             </div>
                         </div>
                     </div>
-                } />
+                </obj.main.Background>
             ),
             MainPage: (p: any) => (
                 <obj.main.Background data={p.bgData}>
@@ -72,23 +72,25 @@ const main = () => {
                 }
                 render() {
                     return (
-                        <div key={this.key} id={this.id} className={style.playlistContainer}>
-                            <div className={style.playlistLeftSpace}>
-                                <div className={style.playlistImage} style={{
-                                    backgroundImage: `url(${this.data.images[0].url})`
-                                }} />
-                            </div>
-                            <div className={style.playlistRightSpace}>
-                                <div className={style.playlistTitle}>
-                                    {this.data.name}
+                        <Link href={`/spotify/playlist/${this.id}`} passHref legacyBehavior>
+                            <a key={this.key} id={this.id} className={style.playlistContainer}>
+                                <div className={style.playlistLeftSpace}>
+                                    <div className={style.playlistImage} style={{
+                                        backgroundImage: `url(${this.data.images[0].url})`
+                                    }} />
                                 </div>
-                                <div className={style.playlistDescription}>
-                                    <p>
-                                        {this.data.description}
-                                    </p>
+                                <div className={style.playlistRightSpace}>
+                                    <div className={style.playlistTitle}>
+                                        {this.data.name}
+                                    </div>
+                                    <div className={style.playlistDescription}>
+                                        <p>
+                                            {this.data.description}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </a>
+                        </Link>
                     )
                 };
             }
