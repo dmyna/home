@@ -5,7 +5,7 @@ import ReactHtmlParser from 'react-html-parser';
 import Layout from '../../components/layout'
 
 
-export const getServerSideProps = () => {
+export const getServerSideProps = async () => {
     const render = require('../../modules/render');
     const data = require('../../modules/data');
 

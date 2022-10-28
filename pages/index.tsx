@@ -4,7 +4,7 @@ import ReactHtmlParser from 'react-html-parser';
 import Layout from '../components/layout'
 import style from '../style/css.module.scss'
 
-export const getServerSideProps = () => {
+export const getServerSideProps = async () => {
     const render = require('../modules/render')
 
     const NavAsdButtons = ReactDomServer.renderToString(render.navegation());

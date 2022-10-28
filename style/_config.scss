@@ -173,7 +173,7 @@ div#body {
                             width: 0px;
                         }
 
-                        & > div.playlistContainer {
+                        & > a.playlistContainer {
                             margin-right: 1rem;
                         }
                     }
@@ -185,12 +185,12 @@ div#body {
                         justify-content: center;
                         grid-gap: 1rem;
 
-                        & > div.playlistContainer {
+                        & > a.playlistContainer {
                             margin-right: 0px;
                         }
                     }
                 }
-                div.playlistContainer {
+                a.playlistContainer {
                     min-width: calc($max-Width-normalPc / 24 * 7);
                     max-width: calc($max-Width-normalPc / 24 * 7);
                     height: max-content;
