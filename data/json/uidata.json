@@ -18,14 +18,6 @@
                         "url": "/Spotify_Icon_RGB_Green.png"
                     }
                 ]
-            },
-            {
-                "id": "backToCentral",
-                "symbol": "C"
-            },
-            {
-                "id": "productionPage",
-                "symbol": "P"
             }
         ]
     }
