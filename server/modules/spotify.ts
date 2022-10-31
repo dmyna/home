@@ -1,9 +1,3 @@
-'use strict';
-var request = require('request');
-var fs = require('fs');
-
-const jsonDir = `data/json/`;
-
 /** Documentação do Módulo
     @param {Factory} spotifyMain - Factory das funções gerais do spotify
         @param {Object} authOptions - Opções de autenticação do spotify
@@ -15,7 +9,12 @@ const jsonDir = `data/json/`;
         @param {Function} writeAllPlaylists - Escreve os dados de todas as playlists em seus devidos arquivos
 
 **/
-const getServerSideProps = () => {
+export const getServerSideProps = () => {
+    var request = require('request');
+    var fs = require('fs');
+
+    const jsonDir = `data/json/`;
+
     const spotifyMain = () => {
         const client_id = process.env.DEVMYNA_PAGE_SPOTIFY_CLIENT_ID;
         const client_secret = process.env.DEVMYNA_PAGE_SPOTIFY_CLIENT_SECRET;
