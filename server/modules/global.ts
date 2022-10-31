@@ -6,6 +6,5 @@ const globalMain = () => {
     }
     return obj;
 }
-console.log()
 
 export default globalMain();

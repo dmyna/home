@@ -89,6 +89,25 @@ div#body {
                         box-shadow: 0.1em 0.1em 1em #0005;
                     }
                 }
+                div#mainPageSpace {
+                    div#perfilBg {
+                        div#bgGradient {
+                            background: linear-gradient(180deg, #0000, $bgTertiaryColor)                        }
+                    }
+                    div#perfilSpace {
+                        div#avatarSpace {
+                            div#avatarImg {
+                                box-shadow: 0px 0px 1rem #0005;
+                            }
+                        }
+                        div#nameSpace {
+                            div#username {
+                                color: $txtSecondaryColor;
+                                text-shadow: 0px 0px 1rem #0005;
+                            }
+                        }
+                    }
+                }
             }
         }
         footer {

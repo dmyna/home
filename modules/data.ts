@@ -12,13 +12,23 @@ export const getServerSideProps = (context?: any) => {
 
                 return json;
             },
+            verifyStatus: (data: any) => {
+                if (data.status) {
+                    if (data.status === 200) {
+                        return data;
+                    } else {
+                        return console.log(`Error: ${data.status} - ${data.message}`);
+                    }
+                }
+                return data;
+            },
             getPlaylist: (id: string) => {
-                const data = obj.get(`${jsonDir}playlists/${id}.json`);
+                const data = obj.verifyStatus(obj.get(`${jsonDir}playlists/${id}.json`));
 
                 return data;
             },
             getPlaylistList: () => {
-                const data = obj.get(`${jsonDir}playlists.json`);
+                const data = obj.verifyStatus(obj.get(`${jsonDir}playlists.json`));
 
                 var list: string[] = [];
                 for (let i of data.items) {
@@ -28,12 +38,17 @@ export const getServerSideProps = (context?: any) => {
                 return list;
             },
             getUserData: () => {
-                const data = obj.get(`${jsonDir}user.json`);
+                const data = obj.verifyStatus(obj.get(`${jsonDir}user.json`));
 
                 return data;
             },
             getUiData: () => {
-                const data = obj.get(`${jsonDir}uidata.json`);
+                const data = obj.verifyStatus(obj.get(`${jsonDir}uidata.json`));
+
+                return data;
+            },
+            getUserPerfil: () => {
+                const data = obj.verifyStatus(obj.get(`${jsonDir}perfil.json`));
 
                 return data;
             }
