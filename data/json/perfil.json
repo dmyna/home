@@ -1,0 +1,26 @@
+{
+    "username": "Dev Myna",
+    "description": "",
+    "avatar": [
+        {
+            "url": "https://i.imgur.com/V9aEDHD.png"
+        }
+    ],
+    "perfilbg": [
+        {
+            "url": "https://media.tenor.com/1LEq5lVgWJ8AAAAC/art.gif"
+        }
+    ],
+    "socialMedias": [
+        {
+            "name": "Discord",
+            "username": "Dev Myna#0001",
+            "url": "https://discordapp.com/users/855638247937409065",
+            "img": [
+                {
+                    "url": ""
+                }
+            ]
+        }
+    ]
+}

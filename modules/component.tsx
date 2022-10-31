@@ -1,10 +1,10 @@
 'use strict'
-import React from 'react';
+import React from 'react'
 import { global } from './global'
 // import { button } from './button'
 import style from '../style/css.module.scss'
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 /**
  *
  *
@@ -44,7 +44,7 @@ const main = () => {
                     </div>
                 </obj.main.Background>
             ),
-            MainPage: (p: any) => (
+            SpotifyMainPage: (p: any) => (
                 <obj.main.Background data={p.bgData}>
                     <div id={style.playlistsSpace}>
                         {p.children}
@@ -66,9 +66,6 @@ const main = () => {
                     super(props)
                     this.id = props.id;
                     this.data = props.data;
-                }
-                componentDidMount() {
-                    // button.individualPlaylist(this.id);
                 }
                 render() {
                     return (
@@ -107,7 +104,7 @@ const main = () => {
                     return (
                         <nav id={style.navegation}>
                             <div className={style.navTopDivision}>
-                                <obj.nav.MainPageButton data={this.data} />
+                                <obj.nav.SpotifyMainPageButton data={this.data} />
                             </div>
                             <hr className={style.asdHr} />
                             <div className={style.navCenterDivision}>
@@ -120,7 +117,7 @@ const main = () => {
                     )
                 }
             },
-            MainPageButton: (props: any) => (
+            SpotifyMainPageButton: (props: any) => (
                 <Link href={props.data.nav.principal.route} passHref legacyBehavior>
                     <a className={style.asdLogo}>
                         <img src={props.data.nav.principal.image[0].url} />
