@@ -1,5 +1,5 @@
 'use strict'
-import React from 'react';
+import React from 'react'
 import { component } from './component'
 import { events } from './events'
 // import { button } from './button'
@@ -35,11 +35,11 @@ export const getServerSideProps = (context?: any) => {
                 }
 
                 return (
-                    <component.main.MainPage bgData={user}>
+                    <component.main.SpotifyMainPage bgData={user}>
                         <component.main.pages.AllPlaylists>
                             {containers}
                         </component.main.pages.AllPlaylists>
-                    </component.main.MainPage>
+                    </component.main.SpotifyMainPage>
                 )
             },
             navegation: () => {
