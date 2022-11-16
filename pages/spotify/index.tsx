@@ -5,10 +5,10 @@ import MainPagePlaylists from '../../components/mainPagePlaylists';
 
 export const getServerSideProps = async () => {
     const data = await require('/modules/data');
-    const spotifyData = await require('/server/modules/spotify');
+    // const spotifyData = await require('/server/modules/spotify');
 
-    await spotifyData.updatePlaylistsList();
-    await spotifyData.updateUserArchive();
+    // await spotifyData.updatePlaylistsList();
+    // await spotifyData.updateUserArchive();
 
     const playlistList = data.getPlaylistsList();
     const userData = data.getUserData();
