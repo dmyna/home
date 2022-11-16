@@ -1,29 +1,27 @@
 import * as React from 'react'
-import * as ReactDomServer from 'react-dom/server'
-import ReactHtmlParser from 'react-html-parser'
 
 import Layout from '../../components/layout'
-
+import MainPagePlaylists from '../../components/mainPagePlaylists';
 
 export const getServerSideProps = async () => {
-    const render = await require('/modules/render');
     const data = await require('/modules/data');
-    const spotifyData = await require('/server/modules/spotify');
+    // const spotifyData = await require('/server/modules/spotify');
 
-    await spotifyData.updatePlaylistsList();
-    await spotifyData.updateUserArchive();
+    // await spotifyData.updatePlaylistsList();
+    // await spotifyData.updateUserArchive();
 
-    const MainPagePlaylists = ReactDomServer.renderToString(render.mainPagePlaylists());
-    const NavAsdButtons = ReactDomServer.renderToString(render.navegation());
+    const playlistList = data.getPlaylistList();
+    const userData = data.getUserData();
+    const navAsdData = data.getUiData();
 
-    return { props: { MainPagePlaylists, NavAsdButtons } }
+    return { props: { navAsdData, userData, playlistList } }
 }
 
 
-const Spotify = ({ MainPagePlaylists, NavAsdButtons }: any) => {
+const Spotify = ({ navAsdData, userData, playlistList }: any) => {
     return (
-        <Layout NavAsdButtons={NavAsdButtons}>
-            {ReactHtmlParser(MainPagePlaylists)}
+        <Layout navAsdData={navAsdData}>
+            <MainPagePlaylists userData={userData} playlistList={playlistList} />
         </Layout>
     )
 }

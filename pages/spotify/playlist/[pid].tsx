@@ -1,21 +1,19 @@
 import * as React from 'react'
 import * as ReactDomServer from 'react-dom/server'
-import ReactHtmlParser from 'react-html-parser'
 
 import Layout from '../../../components/layout'
 
 export const getServerSideProps = async ({params: {pid} }: any) => {
-    const render = require('../../../modules/render');
+    const data = require('/modules/render');
 
-    const NavAsdButtons = ReactDomServer.renderToString(render.navegation());
-    const playlistPage = ReactDomServer.renderToString(render.individualPlaylist(pid))
+    const navAsdData = data.getUiData();
 
-    return { props: { NavAsdButtons, playlistPage } };
+    return { props: { navAsdData } };
 }
-const Playlist = ({ NavAsdButtons, playlistPage }: any) => {
+const Playlist = ({ navAsdData }: any) => {
     return (
-        <Layout NavAsdButtons={NavAsdButtons}>
-            {ReactHtmlParser(playlistPage)}
+        <Layout navAsdData={navAsdData}>
+
         </Layout>
     )
 }
