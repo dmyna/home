@@ -279,8 +279,10 @@ div#body {
                             display: flex;
                             flex-direction: row;
 
-                            div#contentHeight {
-                                width: 0px;
+                            div#avatarImg::before {
+                                content: "";
+                                height: 0;
+                                float: left;
                                 padding-bottom: 100%;
                             }
                             div#avatarImg {
@@ -291,6 +293,11 @@ div#body {
                                 overflow: hidden;
                                 position: relative;
                                 height: auto;
+                            }
+                            div#avatarImg::after {
+                                content: "";
+                                display: block;
+                                clear: both;
                             }
                         }
                         div#nameSpace {
