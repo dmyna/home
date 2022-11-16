@@ -50,7 +50,6 @@ const MainPage = class MainPage extends React.Component<Props, {}> {
                 <div id={style.perfilSpace} ref={this.perfilSpace}
                     style={{ gridTemplateRows: this.state.perfilSpaceRows }}>
                     <div id={style.avatarSpace}>
-                        <div id={style.contentHeight} />
                         <div id={style.avatarImg} ref={this.avatarImg}
                             style={{ }}>
                             <Image src={this.data.avatar[0].url}
