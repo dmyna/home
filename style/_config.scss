@@ -276,14 +276,21 @@ div#body {
                             grid-column-start: 1;
                             grid-column-end: 2;
                             padding: 10%;
+                            display: flex;
+                            flex-direction: row;
 
+                            div#contentHeight {
+                                width: 0px;
+                                padding-bottom: 100%;
+                            }
                             div#avatarImg {
+                                width: 100%;
                                 border-radius: 100%;
                                 user-select: none;
                                 pointer-events: none;
                                 overflow: hidden;
                                 position: relative;
-
+                                height: auto;
                             }
                         }
                         div#nameSpace {

@@ -31,12 +31,9 @@ const MainPage = class MainPage extends React.Component<Props, {}> {
             perfilSpaceRows: ''
         }
     }
-    componentDidMount() {
-        const avatarHeight = this.avatarImg.current.clientWidth;
+    componentDidMount(): void {
         const perfilSpaceHeight = this.perfilSpace.current.clientHeight;
-        console.log(perfilSpaceHeight)
 
-        this.setState({ avatarHeight });
         if (perfilSpaceHeight >= 2000) {
             this.setState({ perfilSpaceRows: '100vh auto' })
         } else if (perfilSpaceHeight >= 1000) {
@@ -53,8 +50,9 @@ const MainPage = class MainPage extends React.Component<Props, {}> {
                 <div id={style.perfilSpace} ref={this.perfilSpace}
                     style={{ gridTemplateRows: this.state.perfilSpaceRows }}>
                     <div id={style.avatarSpace}>
+                        <div id={style.contentHeight} />
                         <div id={style.avatarImg} ref={this.avatarImg}
-                            style={{ height: this.state.avatarHeight }}>
+                            style={{ }}>
                             <Image src={this.data.avatar[0].url}
                                 alt="User Image"
                                 layout="fill"
