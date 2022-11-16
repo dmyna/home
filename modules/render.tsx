@@ -22,34 +22,6 @@ export const getServerSideProps = (context?: any) => {
 
                 return <component.main.IndividualPlaylist data={playlist} />;
             },
-            mainPagePlaylists: () => {
-                const user: object = data.getUserData();
-                const list: string[] = data.getPlaylistList();
-
-                var containers: JSX.Element[] = [];
-                for (let i of list) {
-                    var playlist: object = data.getPlaylist(i);
-                    containers.push(
-                        <component.main.PlaylistContainer key={i} id={i} data={playlist} />
-                    );
-                }
-
-                return (
-                    <component.main.SpotifyMainPage bgData={user}>
-                        <component.main.pages.AllPlaylists>
-                            {containers}
-                        </component.main.pages.AllPlaylists>
-                    </component.main.SpotifyMainPage>
-                )
-            },
-            navegation: () => {
-                const uiData = data.getUiData();
-                // setTimeout(() => button.asideButtons(), 100);
-
-                return (
-                    <component.nav.Navegation data={uiData} />
-                )
-            },
             navMenu: () => {
                 const mnt = {
                     mount: (id: string) => {
