@@ -13,7 +13,7 @@ export const getServerSideProps = async ({params: {pid} }: any) => {
 const Playlist = ({ navAsdData }: any) => {
     return (
         <Layout navAsdData={navAsdData}>
-
+            
         </Layout>
     )
 }

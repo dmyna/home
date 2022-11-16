@@ -1,6 +1,12 @@
-export const handler = (req: any, res: any) => {
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+const handler = (req: NextApiRequest, res: NextApiResponse) => {
     const data = require('/modules/data');
 
     const { pid } = req.query;
-    res.end(pid);
+
+    const content = data.getPlaylist(pid)
+
+    res.status(200).json(content);
 }
+export default handler;
