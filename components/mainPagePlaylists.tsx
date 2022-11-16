@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Background from './Background'
 
 import style from '../style/css.module.scss';
-import { setRevalidateHeaders } from 'next/dist/server/send-payload';
+
 
 
 interface Props {
@@ -14,7 +14,8 @@ interface Props {
     className?: any,
     style?: object,
     userData?: object,
-    playlistList?: string[]
+    playlistList?: string[],
+    playlistsData?: object[]
 }
 
 const SpotifyMainPage = (p: any) => (
@@ -30,11 +31,11 @@ const PlaylistContainer = class PlaylistContainer extends React.Component<Props,
     data: any;
     key: React.Key | null | undefined;
     constructor(props: any) {
-        super(props)
+        super(props);
         this.id = props.id;
-        this.data = props.data;
+        this.data = props.data
     }
-    render() {
+    render(): JSX.Element {
         return (
             <Link href={`/spotify/playlist/${this.id}`} passHref legacyBehavior>
                 <a key={this.key} id={this.id} className={style.playlistContainer}>
@@ -58,31 +59,25 @@ const PlaylistContainer = class PlaylistContainer extends React.Component<Props,
         )
     };
 }
-
-const getPlaylist = async (id: string, callback: Function) => {
-    const [playlist, setData] = useState(null);
-
-    useEffect(() => {
-        fetch(`/api/playlists/${id}`)
-            .then((res) => res.json()
-            .then((data) => {
-                setData(data);
-            }))
-    })
-
-    callback(playlist);
-}
 const Containers = (props: any) => {
     const user: object = props.userData;
     const list: string[] = props.playlistList;
+    const playlistsData: any = props.playlistsData;
 
     var containers: JSX.Element[] = [];
-    for (let i of list) {
-        getPlaylist(i, (playlist: object) => {
-            containers.push(
-                <PlaylistContainer key={i} id={i} data={playlist} />
-            );
-        });
+    for (let id of list) {
+        var playlist = {};
+
+        for (let i = 0; i < playlistsData.length; i++) {
+            if (id === playlistsData[i].id) {
+                playlist = playlistsData[i].body;
+            } else {
+                continue;
+            }
+        }
+        containers.push(
+            <PlaylistContainer key={id} id={id} data={playlist}/>
+        );
     }
 
     return (
@@ -97,16 +92,18 @@ const Containers = (props: any) => {
 const MainPagePlaylists = class MainPagePlaylists extends React.Component<Props, {}> {
     userData: any;
     playlistList: string[];
+    playlistsData: object;
 
     constructor(props: any) {
         super(props);
         this.userData = props.userData;
         this.playlistList = props.playlistList;
+        this.playlistsData = props.playlistsData;
     }
 
     render() {
         return (
-            <Containers userData={this.userData} playlistList={this.playlistList} />
+            <Containers userData={this.userData} playlistList={this.playlistList} playlistsData={this.playlistsData} />
         )
     }
 }

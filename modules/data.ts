@@ -27,7 +27,7 @@ export const getServerSideProps = (context?: any) => {
 
                 return data;
             },
-            getPlaylistList: () => {
+            getPlaylistsList: () => {
                 const data = obj.verifyStatus(obj.get(`${jsonDir}playlists.json`));
 
                 var list: string[] = [];
@@ -36,6 +36,19 @@ export const getServerSideProps = (context?: any) => {
                 }
 
                 return list;
+            },
+            getPlaylistsData: () => {
+                const playlists = obj.getPlaylistsList();
+                const data: object[] = [];
+
+                for (let i of playlists) {
+                    data.push({
+                        id: i,
+                        body: obj.getPlaylist(i)
+                    })
+                }
+
+                return data;
             },
             getUserData: () => {
                 const data = obj.verifyStatus(obj.get(`${jsonDir}user.json`));
