@@ -11,6 +11,14 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'media.tenor.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'raw.github.com'
             }
         ]
     }
