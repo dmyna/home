@@ -14,7 +14,7 @@ const Layout = ({ navAsdData, children }: any) => (
         <Head>
             <title>Dev Myna</title>
             <meta name="author" content="Dev Myna" />
-            <link rel="shortcut icon" href="https://i.imgur.com/jPLx8fi.png?1" type="image/x-icon" />
+            <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/72279988" type="image/x-icon" />
         </Head>
         <aside id={style.navegation}>
             <NavAsdButtons data={navAsdData} />
