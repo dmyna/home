@@ -21,7 +21,12 @@ const nextConfig = {
                 hostname: 'raw.github.com'
             }
         ]
-    }
+    },
+    webpack: (config) => {
+        config.resolve.modules.push(__dirname + '/src');
+
+        return config;
+    },
 }
 
 module.exports = nextConfig
