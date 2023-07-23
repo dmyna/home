@@ -23,7 +23,7 @@
   },
   "include": [
     "./**/*"
-  ],
+, "src/pages/spotify/.index.tsx"  ],
   "exclude": [
     "node_modules"
   ]

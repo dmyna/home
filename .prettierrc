@@ -1,0 +1,8 @@
+{
+    "printWidth": 80,
+    "tabWidth": 4,
+    "jsxSingleQuote": true,
+    "insertPragma": true,
+    "endOfLine": "lf",
+    "parser": "typescript"
+}
