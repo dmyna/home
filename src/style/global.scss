@@ -1,0 +1,19 @@
+/* Remoção da Margem Padrão */
+div.body {
+    * {
+        /* Regras Padrões */
+        box-sizing: border-box;
+        transition: 0.2s;
+    }
+    img {
+        user-select: none;
+    }
+    a:link,
+    a:visited {
+        text-decoration: none;
+    }
+    ::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+    }
+}

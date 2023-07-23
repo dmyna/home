@@ -12,13 +12,13 @@ const filter = () => {
                     ],
                     name: data.name,
                     description: data.description
-                }
+                };
                 return newData;
             }
         }
-    }
+    };
     return obj;
-}
+};
 
-module.exports = filter()
+module.exports = filter();
 export default filter();

@@ -16,6 +16,6 @@ var spotifyData = require('./modules/spotify.js');
 const main = () => {
     spotifyData.updatePlaylistsList();
     spotifyData.writeUserArchive();
-}
+};
 
 export default main;

@@ -13,6 +13,6 @@ export namespace data {
 
 export namespace render {
     type RenderFuns = {
-        individualPlaylist: (id: string)
+        individualPlaylist: (id: string) => any
     }
 }

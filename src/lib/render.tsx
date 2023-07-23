@@ -1,7 +1,7 @@
-'use strict'
-import React from 'react'
-import { component } from './component'
-import { events } from './events'
+'use strict';
+import React from 'react';
+import { component } from './component';
+import { events } from './events';
 // import { button } from './button'
 
 // Root's
@@ -18,7 +18,7 @@ const Default = async (context?: any) => {
     const render = () => {
         const obj = {
             individualPlaylist: (id: string) => {
-                const playlist = data.getPlaylist(id)
+                const playlist = data.getPlaylist(id);
 
                 return <component.main.IndividualPlaylist data={playlist} />;
             },
@@ -43,12 +43,12 @@ const Default = async (context?: any) => {
                             <></>
                         );
                     }
-                }
+                };
                 return mnt;
             }
-        }
+        };
         return obj;
-    }
-    return render()
-}
+    };
+    return render();
+};
 export default Default();

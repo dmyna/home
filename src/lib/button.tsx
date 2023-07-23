@@ -44,4 +44,4 @@
 // }
 
 // export const button = main();
-export {}
+export {};

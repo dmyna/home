@@ -1,4 +1,4 @@
-import style from '../style/css.module.scss'
+import style from '../style/css.module.scss';
 
 const Background = ({ children, image }: any) => (
     <div id={style.playlistBg} style={{ backgroundImage: image }}>
@@ -6,5 +6,5 @@ const Background = ({ children, image }: any) => (
             {children}
         </div>
     </div>
-)
+);
 export default Background;

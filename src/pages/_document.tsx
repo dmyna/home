@@ -1,5 +1,5 @@
 import React from 'react';
-import * as doc from 'next/document'
+import * as doc from 'next/document';
 
 const Document = () => {
     return (
@@ -12,6 +12,6 @@ const Document = () => {
                 <doc.NextScript />
             </body>
         </doc.Html>
-    )
-}
+    );
+};
 export default Document;

@@ -7,6 +7,6 @@ const Background = ({ children, data }: any) => (
             {children}
         </div>
     </div>
-)
+);
 
 export default Background;

@@ -43,11 +43,11 @@ export const getServerSideProps = () => {
                             'Authorization': 'Bearer ' + token
                         },
                         json: true
-                    }
+                    };
                     request.get(options, (err: any, res: any, body: object) => {
                         callback(res, body, err);
-                    })
-                })
+                    });
+                });
             },
             updatePlaylistsList: () => {// Atualizar as playlists
                 obj.requestSpotify(`${apiBase}users/${myUser}/playlists?limit=50`, (res: any, body: object) => {
@@ -59,7 +59,7 @@ export const getServerSideProps = () => {
             updateUserArchive: () => {
                 obj.getUserData((body: object) => {
                     fs.writeFileSync(`${jsonDir}user.json`, JSON.stringify(body));
-                })
+                });
             },
             repeatRequestIfNextExists: () => {
                 fs.readFile(`${jsonDir}/playlists.json`, 'utf-8', (err: any, data: string) => {
@@ -82,7 +82,7 @@ export const getServerSideProps = () => {
                 fs.readFile(`${jsonDir}playlists.json`, 'utf-8', (err: any, data: string) => {
                     const dataJSON = JSON.parse(data);
                     var playlists = [];
-                    for (let i of dataJSON.items) {
+                    for (const i of dataJSON.items) {
                         playlists.push(i.id);
                     }
                     callback(playlists);
@@ -112,14 +112,14 @@ export const getServerSideProps = () => {
             },
             writeAllPlaylists: () => {
                 obj.listPlaylistsId((playlists: string) => {
-                    for (let i of playlists) {
+                    for (const i of playlists) {
                         obj.writePlaylistArchive(i);
                     }
-                })
+                });
             }
-        }
+        };
         return obj;
-    }
-    return spotifyMain()
-}
+    };
+    return spotifyMain();
+};
 module.exports = getServerSideProps();

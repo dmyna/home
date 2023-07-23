@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const main = () => {
     const obj = {
@@ -13,11 +13,11 @@ const main = () => {
                         x: e.clientX,
                         y: e.clientY
                     }
-                }
+                };
                 callback(mouse);
             });
         },
-    }
+    };
     return obj;
-}
+};
 export const events = main();

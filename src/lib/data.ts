@@ -1,18 +1,16 @@
-'use strict'
+'use strict';
 import { data } from "../utils/types/modules";
 
 import fs from 'fs';
-import filter from '../lib/filter'
+import filter from '../lib/filter';
 
 const jsonDir = 'data/json/';
 const data: Factory<data.DataFuns> = () => {
     const obj = {
         // Funções
-        get: (reqUrl: string, encoding?: any) => {
-            if (!encoding) {
-                encoding = 'utf-8';
-            }
-            const data = fs.readFileSync(reqUrl, encoding);
+        get: (reqUrl: string) => {
+            const data = fs.readFileSync(reqUrl, 'utf-8');
+
             const json = JSON.parse(data);
 
             return json;
@@ -36,7 +34,7 @@ const data: Factory<data.DataFuns> = () => {
             const data = obj.verifyStatus(obj.get(`${jsonDir}playlists.json`));
 
             var list: string[] = [];
-            for (let i of data.items) {
+            for (const i of data.items) {
                 list.push(i.id);
             }
 
@@ -46,7 +44,7 @@ const data: Factory<data.DataFuns> = () => {
             const playlists = obj.getPlaylistsList();
             const data: object[] = [];
 
-            for (let i of playlists) {
+            for (const i of playlists) {
                 data.push({
                     id: i,
                     body: filter.data.playlists(obj.getPlaylist(i))
@@ -70,9 +68,8 @@ const data: Factory<data.DataFuns> = () => {
 
             return data;
         }
-    }
+    };
     return obj;
-}
+};
 
-module.exports = data();
 export default data();

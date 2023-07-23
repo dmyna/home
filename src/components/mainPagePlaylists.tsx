@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
-import Background from './Background'
+import Background from './Background';
 
 import style from '../style/css.module.scss';
 
@@ -24,7 +24,7 @@ const SpotifyMainPage = (p: any) => (
             {p.children}
         </div>
     </Background>
-)
+);
 
 const PlaylistContainer = class PlaylistContainer extends React.Component<Props, {}> {
     id: string;
@@ -33,7 +33,7 @@ const PlaylistContainer = class PlaylistContainer extends React.Component<Props,
     constructor(props: any) {
         super(props);
         this.id = props.id;
-        this.data = props.data
+        this.data = props.data;
     }
     render(): JSX.Element {
         return (
@@ -56,16 +56,16 @@ const PlaylistContainer = class PlaylistContainer extends React.Component<Props,
                     </div>
                 </a>
             </Link>
-        )
+        );
     };
-}
+};
 const Containers = (props: any) => {
     const user: object = props.userData;
     const list: string[] = props.playlistList;
     const playlistsData: any = props.playlistsData;
 
     var containers: JSX.Element[] = [];
-    for (let id of list) {
+    for (const id of list) {
         var playlist = {};
 
         for (let i = 0; i < playlistsData.length; i++) {
@@ -86,8 +86,8 @@ const Containers = (props: any) => {
                 {containers}
             </div>
         </SpotifyMainPage>
-    )
-}
+    );
+};
 
 const MainPagePlaylists = class MainPagePlaylists extends React.Component<Props, {}> {
     userData: any;
@@ -104,7 +104,7 @@ const MainPagePlaylists = class MainPagePlaylists extends React.Component<Props,
     render() {
         return (
             <Containers userData={this.userData} playlistList={this.playlistList} playlistsData={this.playlistsData} />
-        )
+        );
     }
-}
+};
 export default MainPagePlaylists;

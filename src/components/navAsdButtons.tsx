@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import style from '../style/components/asd_buttons.module.scss'
+import style from '../style/components/asd_buttons.module.scss';
 
 
 interface Props {
@@ -43,19 +43,19 @@ const NavAsdButtons = class NavAsdButtons extends React.Component<Props, {}> {
                             {element}
                         </props.AsdButton>
                     );
-                }
-                for (let i of props.data.nav.items) {
+                };
+                for (const i of props.data.nav.items) {
                     if (i.image) {
-                        setLogo(i, i.route || "", <img className={style.asdImage} src={i.image[0].url} />)
+                        setLogo(i, i.route || "", <img className={style.asdImage} src={i.image[0].url} />);
                     } else if (i.symbol) {
-                        setLogo(i, i.route || "", <p>{i.symbol}</p>)
+                        setLogo(i, i.route || "", <p>{i.symbol}</p>);
                     }
                 }
                 return (
                     container
-                )
+                );
             }
-        }
+        };
     }
 
     render() {
@@ -74,7 +74,7 @@ const NavAsdButtons = class NavAsdButtons extends React.Component<Props, {}> {
 
                 </div>
             </nav>
-        )
+        );
     }
-}
+};
 export default NavAsdButtons;

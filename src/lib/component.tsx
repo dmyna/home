@@ -1,10 +1,10 @@
-'use strict'
-import React from 'react'
-import { global } from './global'
+'use strict';
+import React from 'react';
+import { global } from './global';
 // import { button } from './button'
-import style from '../style/css.module.scss'
-import Image from "next/image"
-import Link from 'next/link'
+import style from '../style/css.module.scss';
+import Image from "next/image";
+import Link from 'next/link';
 /**
  *
  *
@@ -63,7 +63,7 @@ const main = () => {
                 data: any;
                 key: React.Key | null | undefined;
                 constructor(props: any) {
-                    super(props)
+                    super(props);
                     this.id = props.id;
                     this.data = props.data;
                 }
@@ -88,7 +88,7 @@ const main = () => {
                                 </div>
                             </a>
                         </Link>
-                    )
+                    );
                 };
             }
         },
@@ -114,7 +114,7 @@ const main = () => {
 
                             </div>
                         </nav>
-                    )
+                    );
                 }
             },
             SpotifyMainPageButton: (props: any) => (
@@ -139,17 +139,17 @@ const main = () => {
                             {element}
                         </obj.nav.AsdButton>
                     );
-                }
-                for (let i of props.data.nav.items) {
+                };
+                for (const i of props.data.nav.items) {
                     if (i.image) {
-                        setLogo(i, i.route || "", <img className={style.asdImage} src={i.image[0].url} />)
+                        setLogo(i, i.route || "", <img className={style.asdImage} src={i.image[0].url} />);
                     } else if (i.symbol) {
-                        setLogo(i, i.route || "", <p>{i.symbol}</p>)
+                        setLogo(i, i.route || "", <p>{i.symbol}</p>);
                     }
                 }
                 return (
                     container
-                )
+                );
             },
             navMenu: class navMenu extends React.Component<Props, {}> {
                 id: string;
@@ -170,12 +170,12 @@ const main = () => {
                         <div id={this.id} className={style.navFloatingMenu} style={this.style}>
 
                         </div>
-                    )
+                    );
                 }
             }
         }
-    }
-    return obj
-}
+    };
+    return obj;
+};
 
 export const component = main();
