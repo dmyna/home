@@ -33,16 +33,22 @@ div.generalSpace {
 
         & > a {
             width: 20vw;
-            font: bold 1em 'Arial', sans-serif;
+            font: bold 1.3em 'Arial', sans-serif;
             text-align: center;
             padding: 1.5em 2rem;
             text-shadow: 2px 2px 5px #0003;
 
             &:link {
-                color: $mistBg-lgt-txtPrimaryColor;
+                color: $txtPrimaryColor;
             }
             &:visited {
-                color: $mistBg-lgt-txtPrimaryColor;
+                color: $txtPrimaryColor;
+            }
+            &:hover {
+                color: $h-txtSecondaryColor;
+            }
+            &:active {
+                color: $a-txtColor;
             }
         }
     }

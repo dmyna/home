@@ -1,14 +1,15 @@
-import React from 'react';
+/** @format */
 
-import Head from 'next/head';
-import Script from 'next/script';
-import Link from 'next/link';
+import React from "react";
 
-import NavAsdButtons from './navAsdButtons';
+import Head from "next/head";
+import Script from "next/script";
+import Link from "next/link";
 
-import style from '../style/components/layout.normal.module.scss';
-import fullStyle from '../style/components/layout.full.module.scss';
+import NavAsdButtons from "./navAsdButtons";
 
+import style from "../style/components/layout.normal.module.scss";
+import fullStyle from "../style/components/layout.full.module.scss";
 
 const Layout = ({ fullview, navAsdData, children }: any) => {
     const element = {
@@ -16,8 +17,12 @@ const Layout = ({ fullview, navAsdData, children }: any) => {
             <div className={"body " + fullStyle.body}>
                 <Head>
                     <title>Dev Myna</title>
-                    <meta name="author" content="Dev Myna" />
-                    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/72279988" type="image/x-icon" />
+                    <meta name='author' content='Dev Myna' />
+                    <link
+                        rel='shortcut icon'
+                        href='https://avatars.githubusercontent.com/u/72279988'
+                        type='image/x-icon'
+                    />
                 </Head>
                 <div className={"mainFlex " + fullStyle.mainFlex}>
                     <main className={"main " + fullStyle.main}>
@@ -26,17 +31,23 @@ const Layout = ({ fullview, navAsdData, children }: any) => {
                         </article>
                     </main>
                 </div>
-                <div className={"floatBoxesController " + fullStyle.floatBoxesController}>
-
-                </div>
+                <div
+                    className={
+                        "floatBoxesController " + fullStyle.floatBoxesController
+                    }
+                ></div>
             </div>
         ),
         normal: (
             <div className={"body " + style.body}>
                 <Head>
                     <title>Dev Myna</title>
-                    <meta name="author" content="Dev Myna" />
-                    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/72279988" type="image/x-icon" />
+                    <meta name='author' content='Dev Myna' />
+                    <link
+                        rel='shortcut icon'
+                        href='https://avatars.githubusercontent.com/u/72279988'
+                        type='image/x-icon'
+                    />
                 </Head>
                 <aside className={"navegation " + style.navegation}>
                     <NavAsdButtons data={navAsdData} />
@@ -50,14 +61,17 @@ const Layout = ({ fullview, navAsdData, children }: any) => {
                             {children}
                         </article>
                     </main>
-                    <footer className={"mainFooter " + style.mainFooter}>
-                    </footer>
+                    <footer
+                        className={"mainFooter " + style.mainFooter}
+                    ></footer>
                 </div>
-                <div className={"floatBoxesController " + style.floatBoxesController}>
-
-                </div>
+                <div
+                    className={
+                        "floatBoxesController " + style.floatBoxesController
+                    }
+                ></div>
             </div>
-        )
+        ),
     };
 
     if (fullview) {

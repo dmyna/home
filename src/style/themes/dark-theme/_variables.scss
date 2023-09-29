@@ -8,7 +8,7 @@ $a-bgSecondaryColor: #1f1f1f;
 $bgTertiaryColor: #262626;
 $h-bgTertiaryColor: #161616;
 $a-bgTertiaryColor: #0b0b0b;
-$bgQuaternaryColor: #333;
+$bgQuaternaryColor: #393939;
 $h-bgQuaternaryColor: #303030;
 $a-bgQuaternaryColor: #1c1c1c;
 $bgFifthColor: #161616;
@@ -25,13 +25,10 @@ $bgScrollbarThumb: #5552;
 $h-bgScrollbarThumb: #5556;
 
 // Cores de Texto
-$txtPrimaryColor: #a0f;
-$mistBg-lgt-txtPrimaryColor: #80b;
+$txtPrimaryColor: #fff;
+$txtSecondaryColor: #eee;
+
 $h-txtPrimaryColor: #80d;
-$a-txtPrimaryColor: #70b;
-$txtSecondaryColor: #ddd;
-$h-txtSecondaryColor: #aaa;
-$a-txtSecondaryColor: #999;
-$txtTertiaryColor: #bbb;
-$h-txtTertiaryColor: #999;
-$a-txtTertiaryColor: #888;
+$h-txtSecondaryColor: #bbb;
+
+$a-txtColor: #70b;

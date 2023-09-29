@@ -38,7 +38,7 @@ div#body {
     }
 }
 div.body {
-    color: $txtTertiaryColor;
+    color: $txtSecondaryColor;
 
     aside.navegation {
         background: $bgFifthColor;
@@ -75,7 +75,7 @@ div.body {
                 div#playlistsSpace {
                     a.playlistContainer {
                         background: #3338;
-                        color: $txtTertiaryColor;
+                        color: $txtSecondaryColor;
                         border: 2px solid #0000;
                         box-shadow: 0.1em 0.1em 0.75em #0002;
 

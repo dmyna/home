@@ -1,0 +1,9 @@
+@import "../global_vars";
+@import "../themes//dark-theme/_variables";
+
+div.bioPageBox {
+    background: $bgQuaternaryColor;
+    border-radius: 1em;
+    box-shadow: 0em 0em 1em #0002;
+    height: 500px;
+}
