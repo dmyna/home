@@ -32,16 +32,13 @@ div#body {
         overflow: hidden;
     
         aside.navegation {
-            position: relative;
-            z-index: 3;
             flex-shrink: 0;
         }
         div.mainFlex {
             /* Conteúdo */
             width: 100%;
             height: 100vh;
-            overflow-y: hidden;
-    
+
             header.mainHeader {
                 /* Cabeçalho */
                 height: calc($maxWidthPC / 24 * 0.7);
@@ -49,7 +46,6 @@ div#body {
                 font: 700 1.25em "Ubuntu", sans-serif;
                 user-select: none;
                 position: relative;
-                z-index: 3;
     
                 div {
                     /* Conteúdo do Cabeçalho */
@@ -60,27 +56,15 @@ div#body {
                     height: 100%;
                 }
             }
-            main.main {
-                position: relative;
-                height: 100%;
-                overflow-x: hidden;
-                z-index: 1;
-    
-                & > * {
-                    width: 100%;
-                    height: 100%;
-                    position: absolute;
-                    z-index: 1;
-                }
-                & > article.main {
+            main {
+                height: calc(100vh - ($maxWidthPC / 24 * 0.7));
+                border-radius: 0.6em 0em 0em 0em;
+                overflow-y: auto;
+
+                & > article.mainContent {
                     // Main
-                    height: calc(100vh - ($maxWidthPC / 24 * 0.7));
-                    position: absolute;
-                    border-radius: 0.6em 0em 0em 0em;
                     padding: 2em 10vw;
-                    overflow: hidden;
-                    z-index: 2;
-    
+
                     & > * {
                         overflow: auto;
                     }
@@ -185,21 +169,6 @@ div#body {
                         }
                     }
                 }
-            }
-        }
-        div.floatBoxesController {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-    
-            & > div.navFloatingMenu {
-                position: absolute;
-                z-index: 2;
-                width: calc($maxWidthPC / 24 * 5.5);
-                height: 400px; // TEMP
-                border-radius: 0.75rem;
             }
         }
     }

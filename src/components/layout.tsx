@@ -25,8 +25,8 @@ const Layout = ({ fullview, navAsdData, children }: any) => {
                     />
                 </Head>
                 <div className={"mainFlex " + fullStyle.mainFlex}>
-                    <main className={"main " + fullStyle.main}>
-                        <article className={"main " + fullStyle.main}>
+                    <main className={fullStyle.main}>
+                        <article className={"mainContent " + fullStyle.main}>
                             {children}
                         </article>
                     </main>
@@ -56,8 +56,8 @@ const Layout = ({ fullview, navAsdData, children }: any) => {
                     <header className={"mainHeader " + style.mainHeader}>
                         <div></div>
                     </header>
-                    <main className={"main " + style.main}>
-                        <article className={"main " + style.main}>
+                    <main className={"mainContent"}>
+                        <article className={style.mainContent}>
                             {children}
                         </article>
                     </main>

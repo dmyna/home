@@ -55,17 +55,17 @@ div.body {
         }
     }
     div.mainFlex {
+        background: $bgFifthColor;
+
         header.mainHeader {
             background: $bgFifthColor;
             color: $txtSecondaryColor;
             z-index: 3;
         }
-        main.main {
-            background: $bgFifthColor;
+        main {
+            background: $bgTertiaryColor;
 
-            article.main {
-                background: $bgTertiaryColor;
-
+            article.mainContent {
                 div#playlistBg {
                     & > div#playlistBgGradient {
                         background: radial-gradient(#0001, #2a2a2a50);
