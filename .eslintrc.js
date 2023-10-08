@@ -30,6 +30,7 @@ module.exports = {
     globals: {
         AnyFunction: true,
         AnyObj: true,
+        UnkObj: true,
         AnyOk: true,
         AnyErr: true,
         UnknownObj: true,

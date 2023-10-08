@@ -37,7 +37,7 @@ class MainPage extends React.Component<Props> {
                 <div
                     className={"perfilBg " + style.perfilBg}
                     style={{
-                        backgroundImage: `url(${this.data.perfilbg[0].url})`,
+                        backgroundImage: `url(${this.data.perfilBg[0].url})`,
                     }}
                 >
                     <div className={"bgEffect " + style.bgEffect}></div>
