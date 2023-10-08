@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src/client/",
     "jsx": "preserve",
     "module": "esnext",
     "target": "es2016",
@@ -21,9 +20,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
+  "typeRoots": [
+    "src/types/"
+  ],
   "include": [
-    "./**/*"
-, "src/pages/spotify/.index.tsx"  ],
+    "src/**/*",
+    "src/types/**/*.d.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

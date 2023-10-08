@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import PresentationDiv from "../components/PresentationDiv";
 import LinksSquare from "../components/LinksSquare";
 import Profile from "../components/Profile";

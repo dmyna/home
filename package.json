@@ -20,7 +20,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "request": "^2.88.2",
-    "sass": "^1.50.0"
+    "sass": "^1.50.0",
+    "ts-results": "^3.3.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",

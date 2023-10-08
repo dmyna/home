@@ -1,6 +1,14 @@
+// * External Modules
+import { JSX } from 'react';
+
+// * Typing
+import { MainBackground } from 'dmyna/components';
+
+// * Style
 import style from '../style/css.module.scss';
 
-const Background = ({ children, image }: any) => (
+// * Main
+const Background = ({ children, image }: MainBackground.receive): JSX.Element => (
     <div id={style.playlistBg} style={{ backgroundImage: image }}>
         <div id={style.playlistBgGradient}>
             {children}

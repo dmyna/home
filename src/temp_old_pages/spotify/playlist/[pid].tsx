@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDomServer from 'react-dom/server';
 
-import Layout from '../../../components/layout';
+import Layout from "../../../components/Layout";
 
 export const getServerSideProps = async ({params: {pid} }: any) => {
     const data = (await import('../../../lib/data')).default;

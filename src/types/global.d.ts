@@ -1,9 +1,9 @@
 type AnyFunction = (...args: any[]) => any
 type AnyObj = Record<string, any>
+type UnkObj = Record<string, unknown>
 type AnyErr = {
     message: string
 }
-
 type FactoryObj<T> = {
     [key: string]: T[keyof T] extends AnyFunction
     ? T[keyof T]

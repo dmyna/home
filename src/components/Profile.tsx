@@ -1,17 +1,21 @@
 /** @format */
-import * as React from "react";
-import { JSX } from "react";
-
+// * External Modules
 import Image from "next/image";
+import { JSX } from "react";
+import * as React from "react";
 
+// * Typing
+import { Profile } from "dmyna/components";
+import { PerfilData } from "dmyna/utils/data";
+
+// * Style
 import style from "../style/components/profile.module.scss";
 
-type Props = React.HTMLProps<HTMLDivElement> & { data: any };
+// * Main
+class ProfileClass extends React.Component<Profile.Props> {
+    data: PerfilData;
 
-class Profile extends React.Component<Props> {
-    data: any;
-
-    constructor(props: Props) {
+    constructor(props: Profile.Props) {
         super(props);
 
         this.data = props.data;
@@ -38,4 +42,4 @@ class Profile extends React.Component<Props> {
         );
     }
 }
-export default Profile;
+export default ProfileClass;

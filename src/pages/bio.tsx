@@ -5,7 +5,7 @@ import { JSX } from "react";
 
 import Image from "next/image";
 
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import Profile from "../components/Profile";
 import BiographyText from "../md/BiographyText.mdx";
 

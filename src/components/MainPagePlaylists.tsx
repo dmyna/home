@@ -1,35 +1,30 @@
-import React, { useEffect, useState } from 'react';
+/** @format */
+// * External Modules
+import Link from "next/link";
+import React, { JSX } from "react";
 
-import Link from 'next/link';
+// * Internal Modules
+import Background from "./Background";
 
-import Background from './Background';
+// * Typing
+import { SpotifyUserImage } from "external/spotify";
+import { MainPagePlaylists } from "dmyna/components";
 
-import style from '../style/css.module.scss';
+// * Style
+import style from "../style/css.module.scss";
 
-
-
-interface Props {
-    id?: string,
-    data?: any,
-    className?: any,
-    style?: object,
-    userData?: object,
-    playlistList?: string[],
-    playlistsData?: object[]
-}
-
-const SpotifyMainPage = (p: any) => (
+// * Main
+const SpotifyMainPage = (p: any): JSX.Element => (
     <Background data={p.bgData}>
-        <div id={style.playlistsSpace}>
-            {p.children}
-        </div>
+        <div id={style.playlistsSpace}>{p.children}</div>
     </Background>
 );
 
-const PlaylistContainer = class PlaylistContainer extends React.Component<Props, {}> {
+class PlaylistContainer extends React.Component<MainPagePlaylists.Props> {
     id: string;
     data: any;
     key: React.Key | null | undefined;
+
     constructor(props: any) {
         super(props);
         this.id = props.id;
@@ -38,29 +33,34 @@ const PlaylistContainer = class PlaylistContainer extends React.Component<Props,
     render(): JSX.Element {
         return (
             <Link href={`/spotify/playlist/${this.id}`} passHref legacyBehavior>
-                <a key={this.key} id={this.id} className={style.playlistContainer}>
+                <a
+                    key={this.key}
+                    id={this.id}
+                    className={style.playlistContainer}
+                >
                     <div className={style.playlistLeftSpace}>
-                        <div className={style.playlistImage} style={{
-                            backgroundImage: `url(${this.data.images[0].url})`
-                        }} />
+                        <div
+                            className={style.playlistImage}
+                            style={{
+                                backgroundImage: `url(${this.data.images[0].url})`,
+                            }}
+                        />
                     </div>
                     <div className={style.playlistRightSpace}>
                         <div className={style.playlistTitle}>
                             {this.data.name}
                         </div>
                         <div className={style.playlistDescription}>
-                            <p>
-                                {this.data.description}
-                            </p>
+                            <p>{this.data.description}</p>
                         </div>
                     </div>
                 </a>
             </Link>
         );
-    };
-};
+    }
+}
 const Containers = (props: any) => {
-    const user: object = props.userData;
+    const user = props.userData;
     const list: string[] = props.playlistList;
     const playlistsData: any = props.playlistsData;
 
@@ -75,22 +75,18 @@ const Containers = (props: any) => {
                 continue;
             }
         }
-        containers.push(
-            <PlaylistContainer key={id} id={id} data={playlist}/>
-        );
+        containers.push(<PlaylistContainer key={id} id={id} data={playlist} />);
     }
 
     return (
         <SpotifyMainPage bgData={user}>
-            <div id={style.allPlaylists}>
-                {containers}
-            </div>
+            <div id={style.allPlaylists}>{containers}</div>
         </SpotifyMainPage>
     );
 };
 
-const MainPagePlaylists = class MainPagePlaylists extends React.Component<Props, {}> {
-    userData: any;
+class MainPagePlaylistsClass extends React.Component<MainPagePlaylists.Props> {
+    userData: SpotifyUserImage[];
     playlistList: string[];
     playlistsData: object;
 
@@ -103,8 +99,12 @@ const MainPagePlaylists = class MainPagePlaylists extends React.Component<Props,
 
     render() {
         return (
-            <Containers userData={this.userData} playlistList={this.playlistList} playlistsData={this.playlistsData} />
+            <Containers
+                userData={this.userData}
+                playlistList={this.playlistList}
+                playlistsData={this.playlistsData}
+            />
         );
     }
-};
-export default MainPagePlaylists;
+}
+export default MainPagePlaylistsClass;

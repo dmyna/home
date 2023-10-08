@@ -13,6 +13,7 @@ const filter = () => {
                     name: data.name,
                     description: data.description
                 };
+
                 return newData;
             }
         }

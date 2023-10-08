@@ -1,3 +1,4 @@
+
 export namespace data {
     type DataFuns = {
         get: (requrl: string, encoding?: string) => AnyObj
@@ -16,3 +17,4 @@ export namespace render {
         individualPlaylist: (id: string) => any
     }
 }
+

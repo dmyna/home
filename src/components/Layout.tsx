@@ -1,17 +1,21 @@
 /** @format */
-
+// * External Modules
 import React from "react";
-
+import { JSX } from "react";
 import Head from "next/head";
-import Script from "next/script";
-import Link from "next/link";
 
-import NavAsdButtons from "./navAsdButtons";
+// * Internal Modules
+import NavAsdButtons from "./NavAsdButtons";
 
+// * Typing
+import { Layout } from "dmyna/components";
+
+// * Style
 import style from "../style/components/layout.normal.module.scss";
 import fullStyle from "../style/components/layout.full.module.scss";
 
-const Layout = ({ fullview, navAsdData, children }: any) => {
+// * Main
+const Layout = ({ fullview, navAsdData, children }: Layout.receive): JSX.Element => {
     const element = {
         fullview: (
             <div className={"body " + fullStyle.body}>
@@ -74,10 +78,6 @@ const Layout = ({ fullview, navAsdData, children }: any) => {
         ),
     };
 
-    if (fullview) {
-        return element.fullview;
-    } else {
-        return element.normal;
-    }
+    return fullview ? element.fullview : element.normal;
 };
 export default Layout;

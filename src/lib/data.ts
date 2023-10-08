@@ -1,5 +1,5 @@
 'use strict';
-import { data } from "../utils/types/modules";
+import { data } from "../types/modules";
 
 import fs from 'fs';
 import filter from '../lib/filter';
@@ -42,7 +42,7 @@ const data: Factory<data.DataFuns> = () => {
         },
         getPlaylistsData: () => {
             const playlists = obj.getPlaylistsList();
-            const data: object[] = [];
+            const data = [];
 
             for (const i of playlists) {
                 data.push({

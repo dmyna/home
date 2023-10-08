@@ -4,7 +4,7 @@ import * as React from "react";
 
 import Image from "next/image";
 
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import PresentationDiv from "../components/PresentationDiv";
 import LinksSquare from "../components/LinksSquare";
 

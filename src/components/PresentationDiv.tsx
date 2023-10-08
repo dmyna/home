@@ -1,36 +1,34 @@
+/** @format */
 
-// * Folhas de Estilo
-import style from "../style/components/presentation_div.module.scss";
-
-// * Tipagem
+// * External Modules
 import React from "react";
 import { JSX } from "react";
-interface Props {
-    data: any;
-}
 
-// * Classe Principal
-class PresentationDiv extends React.Component<Props, Record<string, any>> {
-    data: any;
+// * Style
+import style from "../style/components/presentation_div.module.scss";
 
-    constructor(props: any) {
+// * Text
+import PresentationText from "../md/PresentationText.mdx";
+import PresentationObs from "../md/PresentationObs.mdx";
+
+// * Main
+class PresentationDivClass extends React.Component<UnkObj> {
+    constructor(props: UnkObj) {
         super(props);
-
-        this.data = props.data;
     }
 
     render(): JSX.Element {
         return (
             <div className={style.presentationDiv}>
                 <div id={style.presentationText}>
-                    {this.data.main.presentationText}
+                    <PresentationText />
                 </div>
                 <div id={style.presentationObs}>
-                    {this.data.main.presentationObs}
+                    <PresentationObs />
                 </div>
-            </div >
+            </div>
         );
     }
 }
 
-export default PresentationDiv;
+export default PresentationDivClass;
