@@ -5,7 +5,7 @@ import { JSX } from "react";
 import * as React from "react";
 
 // * Typing
-import { Profile } from "dmyna/components";
+import { Profile } from "dmyna/client/components";
 import { PerfilData } from "dmyna/utils/data";
 
 // * Style

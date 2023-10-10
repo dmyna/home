@@ -12,34 +12,16 @@
  * @param {Function} writeAllPlaylists - Escreve os dados de todas as playlists em seus devidos arquivos
  */
 
-export const getServerSideProps = () => {
-    var request = require("request");
-    var fs = require("fs");
+export const getServerSideProps = async () => {
+    var request = (await import("request")).default;
+    var fs = (await import("fs")).default;
 
     const jsonDir = `data/json/`;
 
     const spotifyMain = () => {
-        const client_id = process.env.DEVMYNA_PAGE_SPOTIFY_CLIENT_ID;
-        const client_secret = process.env.DEVMYNA_PAGE_SPOTIFY_CLIENT_SECRET;
-        const myUser = process.env.DEVMYNA_PAGE_SPOTIFY_USER;
-        const apiBase = "https://api.spotify.com/v1/";
-        const authorization = client_id + ":" + client_secret;
-
         const obj = {
             authOptions: {
-                url: "https://accounts.spotify.com/api/token",
-                headers: {
-                    Authorization:
-                        "Basic " + //@ts-ignore
-                        new Buffer.alloc(
-                            authorization.length,
-                            authorization,
-                        ).toString("base64"),
-                },
-                form: {
-                    grant_type: "client_credentials",
-                },
-                json: true,
+                
             },
             requestSpotify: (url: string, callback: Function) => {
                 request.post(
@@ -171,6 +153,7 @@ export const getServerSideProps = () => {
         };
         return obj;
     };
+
     return spotifyMain();
 };
-module.exports = getServerSideProps();
+export default getServerSideProps();

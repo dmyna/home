@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
-    const data = require('/modules/data');
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+    const data = (await import('../../lib/data')).default;
 
     const { pid } = req.query;
 

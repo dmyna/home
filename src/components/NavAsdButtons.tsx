@@ -6,7 +6,7 @@ import { JSX } from "react";
 import Link from "next/link";
 
 import style from "../style/components/asd_buttons.module.scss";
-import { NavAsdButtons } from "dmyna/components";
+import { NavAsdButtons } from "dmyna/client/components";
 import { NavAsdData, NavAsdItem } from "dmyna/utils/data";
 
 class NavAsdButtonsClass extends React.Component<NavAsdButtons.Props> {

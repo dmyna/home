@@ -6,16 +6,22 @@ import Head from "next/head";
 
 // * Internal Modules
 import NavAsdButtons from "./NavAsdButtons";
+import Background from "./Background";
 
 // * Typing
-import { Layout } from "dmyna/components";
+import { Layout } from "dmyna/client/components";
 
 // * Style
 import style from "../style/components/layout.normal.module.scss";
 import fullStyle from "../style/components/layout.full.module.scss";
 
 // * Main
-const Layout = ({ fullview, navAsdData, children }: Layout.receive): JSX.Element => {
+const Layout = ({
+    fullview,
+    navAsdData,
+    children,
+    background,
+}: Layout.receive): JSX.Element => {
     const element = {
         fullview: (
             <div className={"body " + fullStyle.body}>
@@ -30,9 +36,13 @@ const Layout = ({ fullview, navAsdData, children }: Layout.receive): JSX.Element
                 </Head>
                 <div className={"mainFlex " + fullStyle.mainFlex}>
                     <main className={fullStyle.main}>
-                        <article className={"mainContent " + fullStyle.main}>
-                            {children}
-                        </article>
+                        <Background url={background}>
+                            <article
+                                className={"mainContent " + fullStyle.main}
+                            >
+                                {children}
+                            </article>
+                        </Background>
                     </main>
                 </div>
                 <div
@@ -61,9 +71,11 @@ const Layout = ({ fullview, navAsdData, children }: Layout.receive): JSX.Element
                         <div></div>
                     </header>
                     <main className={"mainContent"}>
-                        <article className={style.mainContent}>
-                            {children}
-                        </article>
+                        <Background url={background}>
+                            <article className={style.mainContent}>
+                                {children}
+                            </article>
+                        </Background>
                     </main>
                     <footer
                         className={"mainFooter " + style.mainFooter}

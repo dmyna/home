@@ -3,6 +3,8 @@ type AnyObj = Record<string, any>
 type UnkObj = Record<string, unknown>
 type AnyErr = {
     message: string
+    type: "user" | "internal" | "external" | "unknown"
+    obj?: unknown
 }
 type FactoryObj<T> = {
     [key: string]: T[keyof T] extends AnyFunction

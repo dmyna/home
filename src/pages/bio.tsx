@@ -14,9 +14,9 @@ import style from "../style/pages/bio.module.scss";
 export const getServerSideProps = async () => {
     const data = (await import("../lib/data")).default;
 
-    const navAsdData = data.getUiData();
-    const userData = data.getUserPerfil();
-    const uiData = data.getUiData();
+    const navAsdData = data.getUiData().val;
+    const userData = data.getUserPerfil().val;
+    const uiData = data.getUiData().val;
 
     return { props: { navAsdData, userData, uiData } };
 };

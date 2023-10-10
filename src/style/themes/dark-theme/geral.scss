@@ -65,13 +65,14 @@ div.body {
         main {
             background: $bgTertiaryColor;
 
-            article.mainContent {
-                div#playlistBg {
-                    & > div#playlistBgGradient {
-                        background: radial-gradient(#0001, #2a2a2a50);
-                        backdrop-filter: blur(20px);
-                    }
+            div#playlistBg {
+                & > div#playlistBgGradient {
+                    background: radial-gradient(#0001, #2a2a2a50);
+                    backdrop-filter: blur(12px);
                 }
+            }
+
+            article.mainContent {
                 div#playlistsSpace {
                     a.playlistContainer {
                         background: #3338;

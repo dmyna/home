@@ -3,23 +3,14 @@
 import Link from "next/link";
 import React, { JSX } from "react";
 
-// * Internal Modules
-import Background from "./Background";
-
 // * Typing
 import { SpotifyUserImage } from "external/spotify";
-import { MainPagePlaylists } from "dmyna/components";
+import { MainPagePlaylists } from "dmyna/client/components";
 
 // * Style
 import style from "../style/css.module.scss";
 
 // * Main
-const SpotifyMainPage = (p: any): JSX.Element => (
-    <Background data={p.bgData}>
-        <div id={style.playlistsSpace}>{p.children}</div>
-    </Background>
-);
-
 class PlaylistContainer extends React.Component<MainPagePlaylists.Props> {
     id: string;
     data: any;
@@ -31,6 +22,7 @@ class PlaylistContainer extends React.Component<MainPagePlaylists.Props> {
         this.data = props.data;
     }
     render(): JSX.Element {
+        console.log(this.data);
         return (
             <Link href={`/spotify/playlist/${this.id}`} passHref legacyBehavior>
                 <a
@@ -60,39 +52,30 @@ class PlaylistContainer extends React.Component<MainPagePlaylists.Props> {
     }
 }
 const Containers = (props: any) => {
-    const user = props.userData;
     const list: string[] = props.playlistList;
     const playlistsData: any = props.playlistsData;
 
     var containers: JSX.Element[] = [];
     for (const id of list) {
-        var playlist = {};
+        var playlist;
 
         for (let i = 0; i < playlistsData.length; i++) {
             if (id === playlistsData[i].id) {
                 playlist = playlistsData[i].body;
-            } else {
-                continue;
             }
         }
         containers.push(<PlaylistContainer key={id} id={id} data={playlist} />);
     }
 
-    return (
-        <SpotifyMainPage bgData={user}>
-            <div id={style.allPlaylists}>{containers}</div>
-        </SpotifyMainPage>
-    );
+    return <div id={style.allPlaylists}>{containers}</div>;
 };
 
 class MainPagePlaylistsClass extends React.Component<MainPagePlaylists.Props> {
-    userData: SpotifyUserImage[];
     playlistList: string[];
     playlistsData: object;
 
     constructor(props: any) {
         super(props);
-        this.userData = props.userData;
         this.playlistList = props.playlistList;
         this.playlistsData = props.playlistsData;
     }
@@ -100,7 +83,6 @@ class MainPagePlaylistsClass extends React.Component<MainPagePlaylists.Props> {
     render() {
         return (
             <Containers
-                userData={this.userData}
                 playlistList={this.playlistList}
                 playlistsData={this.playlistsData}
             />

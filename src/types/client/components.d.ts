@@ -1,6 +1,6 @@
 /** @format */
 
-declare module "dmyna/components" {
+declare module "dmyna/client/components" {
     import React, { HTMLAttributes } from "react";
     import { Ok, Result } from "ts-results";
     import { JSX } from "react";
@@ -10,9 +10,7 @@ declare module "dmyna/components" {
     export namespace Background {
         type receive = {
             children: JSX.Element;
-            data: {
-                images: SpotifyUserImage[];
-            };
+            url?: string
         };
     }
     export namespace Layout {
@@ -20,6 +18,7 @@ declare module "dmyna/components" {
             fullview: boolean;
             navAsdData: NavAsdData;
             children: JSX.Element;
+            background?: string;
         };
     }
     export namespace LinkSquare {}
