@@ -4,17 +4,17 @@ import Link from "next/link";
 import React, { JSX } from "react";
 
 // * Internal Modules
-import Background from "./Background";
+import Background from "//components/Background";
 
 // * Typing
-import { SpotifyUserImage } from "external/spotify";
-import { MainPagePlaylists } from "dmyna/components";
+import { MainPagePlaylists } from "//components/types";
+import { types as spotifyTypes } from "//server/modules/spotify";
 
 // * Style
 import style from "../style/css.module.scss";
 
 // * Main
-const SpotifyMainPage = (p: any): JSX.Element => (
+const SpotifyMainPage = (p: unknown): JSX.Element => (
     <Background data={p.bgData}>
         <div id={style.playlistsSpace}>{p.children}</div>
     </Background>
@@ -22,10 +22,10 @@ const SpotifyMainPage = (p: any): JSX.Element => (
 
 class PlaylistContainer extends React.Component<MainPagePlaylists.Props> {
     id: string;
-    data: any;
+    data: unknown;
     key: React.Key | null | undefined;
 
-    constructor(props: any) {
+    constructor(props: unknown) {
         super(props);
         this.id = props.id;
         this.data = props.data;
@@ -59,10 +59,10 @@ class PlaylistContainer extends React.Component<MainPagePlaylists.Props> {
         );
     }
 }
-const Containers = (props: any) => {
+const Containers = (props: unknown) => {
     const user = props.userData;
     const list: string[] = props.playlistList;
-    const playlistsData: any = props.playlistsData;
+    const playlistsData: unknown = props.playlistsData;
 
     var containers: JSX.Element[] = [];
     for (const id of list) {
@@ -86,11 +86,11 @@ const Containers = (props: any) => {
 };
 
 class MainPagePlaylistsClass extends React.Component<MainPagePlaylists.Props> {
-    userData: SpotifyUserImage[];
+    userData: spotifyTypes.SpotifyUserImage[];
     playlistList: string[];
     playlistsData: object;
 
-    constructor(props: any) {
+    constructor(props: unknown) {
         super(props);
         this.userData = props.userData;
         this.playlistList = props.playlistList;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import * as doc from 'next/document';
 
-const Document = () => {
+const Document = (): JSX.Element => {
     return (
         <doc.Html>
             <doc.Head>

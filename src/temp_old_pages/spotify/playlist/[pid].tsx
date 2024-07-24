@@ -1,20 +1,17 @@
-import * as React from 'react';
-import * as ReactDomServer from 'react-dom/server';
+/** @format */
+
+import React, { JSX } from "react";
 
 import Layout from "../../../components/Layout";
 
-export const getServerSideProps = async ({params: {pid} }: any) => {
-    const data = (await import('../../../lib/data')).default;
+export const getServerSideProps = async (): Promise<{ props: UnknownObj }> => {
+    const data = (await import("../../../lib/data")).default;
 
     const navAsdData = data.getUiData();
 
     return { props: { navAsdData } };
 };
-const Playlist = ({ navAsdData }: any) => {
-    return (
-        <Layout navAsdData={navAsdData}>
-            
-        </Layout>
-    );
+const Playlist = ({ navAsdData }: UnknownObj): JSX.Element => {
+    return <Layout navAsdData={navAsdData}></Layout>;
 };
 export default Playlist;

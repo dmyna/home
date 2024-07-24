@@ -2,7 +2,7 @@
 import { JSX } from 'react';
 
 // * Typing
-import { MainBackground } from 'dmyna/components';
+import { MainBackground } from "//components/types";
 
 // * Style
 import style from '../style/css.module.scss';

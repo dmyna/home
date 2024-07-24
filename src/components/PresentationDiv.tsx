@@ -12,8 +12,8 @@ import PresentationText from "../md/PresentationText.mdx";
 import PresentationObs from "../md/PresentationObs.mdx";
 
 // * Main
-class PresentationDivClass extends React.Component<UnkObj> {
-    constructor(props: UnkObj) {
+class PresentationDivClass extends React.Component<UnknowObj> {
+    constructor(props: UnknowObj) {
         super(props);
     }
 

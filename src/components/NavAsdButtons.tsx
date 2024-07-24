@@ -5,19 +5,40 @@ import { JSX } from "react";
 
 import Link from "next/link";
 
-import style from "../style/components/asd_buttons.module.scss";
-import { NavAsdButtons } from "dmyna/components";
-import { NavAsdData, NavAsdItem } from "dmyna/utils/data";
+import style from "//style/components/asd_buttons.module.scss";
+import utilsTypes from "//utils/types";
 
-class NavAsdButtonsClass extends React.Component<NavAsdButtons.Props> {
-    private data: NavAsdData;
+export namespace types {
+    export type Props = {
+        id?: string;
+        style?: React.StyleHTMLAttributes<HTMLDivElement>;
+        className?: string;
+        data: utilsTypes.NavAsdData;
+    };
 
-    constructor(props: NavAsdButtons.Props) {
+    export type Buttons = {
+        MainPageButton: (
+            props: utilsTypes.Aliases.BaseProps<{ data: utilsTypes.NavAsdData }>,
+        ) => JSX.Element;
+        AsdButton: (props: utilsTypes.Aliases.BaseProps<UnknownObj>) => JSX.Element;
+        AllAsdButtons: (
+            props: utilsTypes.Aliases.BaseProps<{
+                data: utilsTypes.NavAsdData;
+                AsdButton: JSX.Element;
+            }>,
+        ) => JSX.Element[];
+    };
+}
+
+class NavAsdButtonsClass extends React.Component<types.Props> {
+    private data: utilsTypes.NavAsdData;
+
+    constructor(props: types.Props) {
         super(props);
         this.data = props.data;
     }
-    private Buttons(): NavAsdButtons.Buttons {
-        const factory: NavAsdButtons.Buttons = {
+    private Buttons(): types.Buttons {
+        const factory: types.Buttons = {
             MainPageButton: (props) => (
                 <Link
                     href={props.data.nav.principal.route}
@@ -39,7 +60,7 @@ class NavAsdButtonsClass extends React.Component<NavAsdButtons.Props> {
             AllAsdButtons: (props) => {
                 var container: JSX.Element[] = [];
                 const setLogo = (
-                    item: NavAsdItem,
+                    item: utilsTypes.NavAsdItem,
                     element: JSX.Element,
                 ): void => {
                     container.push(

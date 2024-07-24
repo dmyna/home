@@ -8,14 +8,20 @@ import Head from "next/head";
 import NavAsdButtons from "./NavAsdButtons";
 
 // * Typing
-import { Layout } from "dmyna/components";
-
+import utilsTypes from "../utils/types";
+export namespace types {
+    export type receive = {
+        fullview: boolean;
+        navAsdData:  utilsTypes.NavAsdData;
+        children: JSX.Element;
+    };
+}
 // * Style
 import style from "../style/components/layout.normal.module.scss";
 import fullStyle from "../style/components/layout.full.module.scss";
 
 // * Main
-const Layout = ({ fullview, navAsdData, children }: Layout.receive): JSX.Element => {
+const Layout = ({ fullview, navAsdData, children }: types.receive): JSX.Element => {
     const element = {
         fullview: (
             <div className={"body " + fullStyle.body}>

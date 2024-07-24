@@ -19,11 +19,11 @@ export const getServerSideProps = async () => {
     return { props: { navAsdData, userData, uiData } };
 };
 
-type Props = React.HTMLProps<HTMLDivElement> & { data: any };
+type Props = React.HTMLProps<HTMLDivElement> & { data: unknown };
 
 class MainPage extends React.Component<Props> {
     children: JSX.Element;
-    data: any;
+    data: unknown;
 
     constructor(props: Props) {
         super(props);
@@ -56,7 +56,7 @@ class MainPage extends React.Component<Props> {
     }
 }
 
-const main = ({ navAsdData, userData, uiData }: any) => {
+const main = ({ navAsdData, userData, uiData }: unknown) => {
     return (
         <Layout fullview={true} navAsdData={navAsdData}>
             <MainPage data={{ ...userData, uiData }} />

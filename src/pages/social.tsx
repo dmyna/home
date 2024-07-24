@@ -22,19 +22,19 @@ export const getServerSideProps = async () => {
 
 interface Props {
     id?: string;
-    data?: any;
-    className?: any;
+    data?: unknown;
+    className?: unknown;
     style?: object;
 }
 
 const SocialPage = class SocialPage extends React.Component<Props, object> {
     children: JSX.Element;
-    data: any;
-    avatarImg: any;
-    perfilSpace: any;
-    state: any;
+    data: unknown;
+    avatarImg: unknown;
+    perfilSpace: unknown;
+    state: unknown;
 
-    constructor(props: any) {
+    constructor(props: unknown) {
         super(props);
 
         this.children = props.children;
@@ -60,7 +60,7 @@ const SocialPage = class SocialPage extends React.Component<Props, object> {
     }
 };
 
-const main = ({ navAsdData, userData, uiData }: any) => {
+const main = ({ navAsdData, userData, uiData }: unknown) => {
     return <Layout fullview={false} navAsdData={navAsdData}></Layout>;
 };
 export default main;

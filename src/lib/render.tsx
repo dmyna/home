@@ -1,19 +1,9 @@
 'use strict';
 import React from 'react';
 import { component } from './component';
-import { events } from './events';
-// import { button } from './button'
 
-// Root's
-
-/**
- * @param {Function} individualPlaylist - Página da Playlist individual
- *
- *
-**/
-
-const Default = async (context?: any) => {
-    const data = (await import('./data')).default;
+const Default = async (context?: unknown) => {
+    const data = (await import("./data")).default;
 
     const render = () => {
         const obj = {
@@ -32,20 +22,27 @@ const Default = async (context?: any) => {
                         //     })
                         // }, 50);
                         return (
-                            <component.nav.navMenu id={id} className="navFloatingMenu" style={{//@ts-ignore
-                                left: $('aside').width() + ($('aside').width() / 100 * 15),//@ts-ignore
-                                top: document.querySelector(`div.asdButton#${id}`).getBoundingClientRect().top
-                            }} />
+                            <component.nav.navMenu
+                                id={id}
+                                className='navFloatingMenu'
+                                style={{
+                                    //@ts-ignore
+                                    left:
+                                        $("aside").width() +
+                                        ($("aside").width() / 100) * 15, //@ts-ignore
+                                    top: document
+                                        .querySelector(`div.asdButton#${id}`)
+                                        .getBoundingClientRect().top,
+                                }}
+                            />
                         );
                     },
                     unmount: () => {
-                        return (
-                            <></>
-                        );
-                    }
+                        return <></>;
+                    },
                 };
                 return mnt;
-            }
+            },
         };
         return obj;
     };

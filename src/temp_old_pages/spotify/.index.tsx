@@ -5,9 +5,9 @@ import * as React from "react";
 import Layout from "../../components/layout";
 import MainPagePlaylists from "../../components/mainPagePlaylists";
 
-export const getServerSideProps = async (context: any) => {
-    const data = (await import('../../lib/data')).default;
-    const spotifyData = await require('/server/modules/spotify');
+export const getServerSideProps = async (context: unknown) => {
+    const data = (await import("../../lib/data")).default;
+    const spotifyData = await require("/server/modules/spotify");
 
     await spotifyData.updatePlaylistsList();
     await spotifyData.updateUserArchive();
@@ -25,10 +25,14 @@ const Spotify = ({
     userData,
     playlistList,
     playlistsData,
-}: any) => {
+}: unknown) => {
     return (
         <Layout navAsdData={navAsdData}>
-            <MainPagePlaylists userData={userData} playlistList={playlistList} playlistsData={playlistsData} />
+            <MainPagePlaylists
+                userData={userData}
+                playlistList={playlistList}
+                playlistsData={playlistsData}
+            />
         </Layout>
     );
 };

@@ -3,20 +3,20 @@
 const filter = () => {
     const obj = {
         data: {
-            playlists: (data: any) => {
+            playlists: (data: unknown) => {
                 const newData = {
                     images: [
                         {
-                            url: data.images[0].url
-                        }
+                            url: data.images[0].url,
+                        },
                     ],
                     name: data.name,
-                    description: data.description
+                    description: data.description,
                 };
 
                 return newData;
-            }
-        }
+            },
+        },
     };
     return obj;
 };

@@ -5,17 +5,22 @@ import { JSX } from "react";
 import * as React from "react";
 
 // * Typing
-import { Profile } from "dmyna/components";
-import { PerfilData } from "dmyna/utils/data";
+import utilsTypes from "//utils/types";
 
 // * Style
 import style from "../style/components/profile.module.scss";
 
-// * Main
-class ProfileClass extends React.Component<Profile.Props> {
-    data: PerfilData;
+export namespace types {
+    export type Props = React.HTMLProps<HTMLDivElement> & {
+        data: utilsTypes.PerfilData;
+    };
+}
 
-    constructor(props: Profile.Props) {
+// * Main
+class ProfileClass extends React.Component<types.Props> {
+    data: utilsTypes.PerfilData;
+
+    constructor(props: types.Props) {
         super(props);
 
         this.data = props.data;

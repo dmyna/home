@@ -1,16 +1,10 @@
 /** @format */
 
-import * as React from "react";
-
-import Image from "next/image";
+import React, { JSX } from "react";
 
 import Layout from "../components/Layout";
-import PresentationDiv from "../components/PresentationDiv";
-import LinksSquare from "../components/LinksSquare";
 
-import style from "../style/pages/index.module.scss";
-
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (): Promise<UnknownObj> => {
     const data = (await import("../lib/data")).default;
 
     const navAsdData = data.getUiData();
@@ -20,21 +14,21 @@ export const getServerSideProps = async () => {
     return { props: { navAsdData, userData, uiData } };
 };
 
-interface Props {
+interface Props extends React.ComponentPropsWithRef<unknown> {
     id?: string;
-    data?: any;
-    className?: any;
+    data?: unknown;
+    className?: unknown;
     style?: object;
 }
 
 const MusicPage = class MusicPage extends React.Component<Props, object> {
     children: JSX.Element;
-    data: any;
-    avatarImg: any;
-    perfilSpace: any;
-    state: any;
+    data: unknown;
+    avatarImg: unknown;
+    perfilSpace: unknown;
+    state: UnknownObj;
 
-    constructor(props: any) {
+    constructor(props: Props) {
         super(props);
 
         this.children = props.children;
@@ -60,7 +54,7 @@ const MusicPage = class MusicPage extends React.Component<Props, object> {
     }
 };
 
-const main = ({ navAsdData, userData, uiData }: any) => {
+const main = ({ navAsdData, userData, uiData }: unknown) => {
     return <Layout fullview={false} navAsdData={navAsdData}></Layout>;
 };
 export default main;
