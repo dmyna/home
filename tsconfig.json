@@ -1,33 +1,55 @@
 {
-  "compilerOptions": {
-    "jsx": "preserve",
-    "module": "esnext",
-    "target": "es2016",
-    "strict": true,
-    "allowUmdGlobalAccess": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+    "compilerOptions": {
+        "jsx": "preserve",
+        "target": "ESNext",
+        "module": "commonjs",
+        "strict": true,
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "noEmitOnError": false,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "downlevelIteration": true,
+        "allowSyntheticDefaultImports": true,
+        "allowUmdGlobalAccess": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "baseUrl": ".",
+        "outDir": "dist",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "paths": {
+            "//*": [
+                "src/*"
+            ],
+            "@/*": [
+                "src/lib/*"
+            ],
+            "$/": [
+                "data/*"
+            ],
+        },
+    },
+    "tsc-alias": {
+        "transform": "js",
+        "format": "ESNext"
+    },
+    "typeRoots": [
+        "./src/types/",
+        "node_modules/@types/jest"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true
-  },
-  "typeRoots": [
-    "src/types/"
-  ],
-  "include": [
-    "src/**/*",
-    "src/types/**/*.d.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/types/**/*.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
 }

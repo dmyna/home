@@ -5,7 +5,7 @@ module.exports = {
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
         'prettier',
-        'plugin:jest/recommended'
+        'plugin:jest/recommended',
     ],
     settings: {
         'import/resolver': {
@@ -18,20 +18,18 @@ module.exports = {
     rules: {
         '@typescript-eslint/explicit-function-return-type': 'error',
         '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/no-namespace': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
         semi: 'error',
         eqeqeq: 'warn',
         'no-undef': 'error',
         'consistent-return': 'error',
         'no-var': 'off',
-        'no-unused-vars': 'off',
+        'no-unused-vars': 'warn',
         'max-len': ['warn', { code: 100 }],
-        // classInit: 'error'
     },
     globals: {
-        AnyFunction: true,
-        AnyObj: true,
-        AnyOk: true,
-        AnyErr: true,
+        UnknownFun: true,
         UnknownObj: true,
         Factory: true,
         FactoryObj: true,
