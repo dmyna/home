@@ -13,40 +13,43 @@ export namespace types {
         id?: string;
         style?: React.StyleHTMLAttributes<HTMLDivElement>;
         className?: string;
-        data: utilsTypes.NavAsdData;
+        uiData: utilsTypes.NavAsdData;
     };
 
     export type Buttons = {
         MainPageButton: (
-            props: utilsTypes.Aliases.BaseProps<{ data: utilsTypes.NavAsdData }>,
+            props: utilsTypes.Aliases.BaseProps<{
+                uiData: utilsTypes.NavAsdData;
+            }>,
         ) => JSX.Element;
-        AsdButton: (props: utilsTypes.Aliases.BaseProps<UnknownObj>) => JSX.Element;
+        AsdButton: (
+            props: utilsTypes.Aliases.BaseProps<utilsTypes.NavAsdItem>,
+        ) => JSX.Element;
         AllAsdButtons: (
             props: utilsTypes.Aliases.BaseProps<{
-                data: utilsTypes.NavAsdData;
-                AsdButton: JSX.Element;
+                uiData: utilsTypes.NavAsdData;
             }>,
         ) => JSX.Element[];
     };
 }
 
 class NavAsdButtonsClass extends React.Component<types.Props> {
-    private data: utilsTypes.NavAsdData;
+    private uiData: utilsTypes.NavAsdData;
 
     constructor(props: types.Props) {
         super(props);
-        this.data = props.data;
+        this.uiData = props.uiData;
     }
     private Buttons(): types.Buttons {
         const factory: types.Buttons = {
             MainPageButton: (props) => (
                 <Link
-                    href={props.data.nav.principal.route}
+                    href={props.uiData.nav.principal.route}
                     passHref
                     legacyBehavior
                 >
                     <a className={style.asdLogo}>
-                        <img src={props.data.nav.principal.image[0].url} />
+                        <img src={props.uiData.nav.principal.image[0].url} />
                     </a>
                 </Link>
             ),
@@ -64,27 +67,28 @@ class NavAsdButtonsClass extends React.Component<types.Props> {
                     element: JSX.Element,
                 ): void => {
                     container.push(
-                        <props.AsdButton key={item.id} id={item.id} route={item.route || ""}>
+                        <factory.AsdButton
+                            image={item.image}
+                            key={item.id}
+                            id={item.id}
+                            route={item.route || ""}
+                        >
                             {element}
-                        </props.AsdButton>,
+                        </factory.AsdButton>,
                     );
                 };
-                for (const item of props.data.nav.items) {
-                    if (item.image) {
-                        setLogo(
-                            item,
-                            <img
-                                className={style.asdImage}
-                                src={item.image[0].url}
-                            />,
-                        );
-                    } else if (item.symbol) {
-                        setLogo(item, <p>{item.symbol}</p>);
-                    }
+                for (const item of props.uiData.nav.items) {
+                    setLogo(
+                        item,
+                        <img
+                            className={style.asdImage}
+                            src={item.image[0].url}
+                        />,
+                    );
                 }
 
                 return container;
-            }
+            },
         };
 
         return factory;
@@ -96,13 +100,12 @@ class NavAsdButtonsClass extends React.Component<types.Props> {
         return (
             <nav className={style.navegation}>
                 <div className={style.navTopDivision}>
-                    <elements.MainPageButton data={this.data} />
+                    <elements.MainPageButton uiData={this.uiData} />
                 </div>
                 <hr className={style.asdHr} />
                 <div className={style.navCenterDivision}>
                     <elements.AllAsdButtons
-                        data={this.data}
-                        AsdButton={this.Buttons().AsdButton}
+                        uiData={this.uiData}
                     />
                 </div>
                 <div className={style.navBottomDivision}></div>
