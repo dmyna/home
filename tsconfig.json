@@ -15,6 +15,9 @@
         "allowSyntheticDefaultImports": true,
         "allowUmdGlobalAccess": true,
         "forceConsistentCasingInFileNames": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "incremental": true,
         "noEmit": true,
         "baseUrl": ".",
         "outDir": "dist",
@@ -24,16 +27,22 @@
             "esnext"
         ],
         "paths": {
-            "//*": [
+            "-/*": [
                 "src/*"
             ],
             "@/*": [
                 "src/lib/*"
             ],
+            "C/*": [
+                "src/components/*"
+            ],
+            "S/*": [
+                "src/style/*"
+            ],
             "$/": [
                 "data/*"
-            ],
-        },
+            ]
+        }
     },
     "tsc-alias": {
         "transform": "js",
