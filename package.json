@@ -44,7 +44,7 @@
         "jest-environment-jsdom": "^29.2.2",
         "tsc-alias": "^1.8.10",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "^4.8.4"
+        "typescript": "^5.5.4"
     },
     "scripts": {
         "dev": "clear; NODE_OPTIONS='--inspect' next dev",
