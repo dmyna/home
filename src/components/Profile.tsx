@@ -5,25 +5,25 @@ import { JSX } from "react";
 import * as React from "react";
 
 // * Typing
-import utilsTypes from "//utils/types";
+import utilsTypes from "-/utils/types";
 
 // * Style
 import style from "../style/components/profile.module.scss";
 
 export namespace types {
     export type Props = React.HTMLProps<HTMLDivElement> & {
-        data: utilsTypes.PerfilData;
+        perfilData: utilsTypes.PerfilData;
     };
 }
 
 // * Main
 class ProfileClass extends React.Component<types.Props> {
-    data: utilsTypes.PerfilData;
+    perfilData: utilsTypes.PerfilData;
 
     constructor(props: types.Props) {
         super(props);
 
-        this.data = props.data;
+        this.perfilData = props.perfilData;
     }
     render(): JSX.Element {
         return (
@@ -31,7 +31,7 @@ class ProfileClass extends React.Component<types.Props> {
                 <div className={"avatarSpace " + style.avatarSpace}>
                     <div className={"avatarImg " + style.avatarImg} style={{}}>
                         <Image
-                            src={this.data.avatar[0].url}
+                            src={this.perfilData.avatar[0].url}
                             alt='User Image'
                             fill
                             sizes='100vw'
@@ -40,7 +40,7 @@ class ProfileClass extends React.Component<types.Props> {
                 </div>
                 <div className={"nameSpace " + style.nameSpace}>
                     <div className={"username " + style.username}>
-                        {this.data.username}
+                        {this.perfilData.username}
                     </div>
                 </div>
             </div>
