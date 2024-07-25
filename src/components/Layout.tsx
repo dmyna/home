@@ -60,7 +60,7 @@ const Layout = ({ fullview, navAsdData, children }: types.receive): JSX.Element 
                     />
                 </Head>
                 <aside className={"navegation " + style.navegation}>
-                    <NavAsdButtons data={navAsdData} />
+                    <NavAsdButtons uiData={navAsdData} />
                 </aside>
                 <div className={"mainFlex " + style.mainFlex}>
                     <header className={"mainHeader " + style.mainHeader}>

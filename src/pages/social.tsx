@@ -67,10 +67,10 @@ const SocialPage = class SocialPage extends React.Component<
 export const getServerSideProps = (async (): Promise<
     GetServerSidePropsResult<utilsTypes.ServerReceivedData>
 > => {
-    const data = (await import("../lib/data")).default;
+    const data = (await import("../server/modules/data")).default;
 
-    const perfilData = data.getPerfil();
-    const uiData = data.getUiData();
+    const perfilData = (await data.getPerfil()).val;
+    const uiData = (await data.getUiData()).val;
 
     return { props: { perfilData, uiData } };
 }) satisfies GetServerSideProps;
