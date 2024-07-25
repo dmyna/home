@@ -6,7 +6,7 @@ declare type AnyErr = {
 declare type IsAny<T> = 0 extends 1 & T ? true : false;
 
 declare type FunctionsObj<T> = {
-    [K in keyof T]: T[K] extends AnyFunction
+    [K in keyof T]: T[K] extends UnknownFun
         ? T[K]
         : T[K] extends object
         ? FunctionsObj<T[K]>
