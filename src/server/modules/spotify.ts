@@ -1,5 +1,13 @@
 /** @format */
 
+import fsp from "fs/promises";
+import axios from "axios";
+import { Ok } from "ts-results";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
+
+
+import { Playlist, SimplifiedPlaylist } from "spotify-types";
+
 export namespace types {
     export type SpotifyUserImage = {
         height: number | null;
@@ -49,34 +57,40 @@ export namespace types {
         type: string;
         uri: string;
     };
-    export type SpotifyPlaylistsData = {
+    export type SpotifyPlaylistsListData = {
         href: string;
-        items: SpotifyPlaylistItem[];
+        items: SimplifiedPlaylist[];
         limit: number;
-        next: number | null;
+        next: string | null;
         offset: number;
         previous: number | null;
         total: number;
     };
     export type SpotifyPlaylistFunctions = {
-        requestSpotify: (url: string, callback: UnknownFun) => void;
-        updatePlaylistsList: () => void;
-        updateUserArchive: () => void;
-        repeatRequestIfNextExists: () => void;
-        listPlaylistsId: (callback: UnknownFun) => void;
-        getUserData: (callback: UnknownFun) => void;
-        descriptionFilter: (body: unknown, id: string) => unknown;
-        writePlaylistArchive: (currentPlaylist: string) => void;
-        writeAllPlaylists: () => void;
+        descriptionFilter: (playlist: Playlist) => unknown;
+        requestSpotify: <T = UnknownObj>(
+            url: string,
+        ) => Promise<Ok<AxiosResponse<T>>>;
+        getPlaylist: (id: string) => Promise<Ok<Playlist>>;
+        getUserData: () => Promise<Ok<SpotifyUserData>>;
+        getPlaylistsList: () => Promise<Ok<SimplifiedPlaylist[]>>;
+        listPlaylistsId: (playlists: SpotifyPlaylistsListData) => Ok<string[]>;
+        updatePlaylistsList: (playlistsList: SpotifyPlaylistsListData) => void;
+        updateUserArchive: () => Promise<Ok<void>>;
+        writePlaylistArchive: (playlist: Playlist) => Promise<Ok<void>>;
+        writeAllPlaylists: (playlists: SpotifyPlaylistsListData) => Promise<Ok<void>>;
+    };
+
+    export type SpotifyAuthResponse = {
+        access_token: string;
+        token_type: string;
+        scope: string;
+        expires_in: number;
+        refresh_token: string;
     };
 }
 
-export const getServerSideProps: Factory<
-    types.SpotifyPlaylistFunctions
-> = () => {
-    var request = require("request");
-    var fs = require("fs");
-
+const Default: Factory<types.SpotifyPlaylistFunctions> = () => {
     const jsonDir = `data/json/`;
 
     const client_id = process.env.DEVMYNA_PAGE_SPOTIFY_CLIENT_ID;
@@ -84,146 +98,139 @@ export const getServerSideProps: Factory<
     const myUser = process.env.DEVMYNA_PAGE_SPOTIFY_USER;
     const apiBase = "https://api.spotify.com/v1/";
     const authorization = client_id + ":" + client_secret;
+    const authURL = "https://accounts.spotify.com/api/token";
 
-    const authOptions = {
-        url: "https://accounts.spotify.com/api/token",
+    const authOptions: AxiosRequestConfig = {
         headers: {
             Authorization:
-                "Basic " + //@ts-ignore
-                new Buffer.alloc(authorization.length, authorization).toString(
+                "Basic " +
+                Buffer.alloc(authorization.length, authorization).toString(
                     "base64",
                 ),
         },
-        form: {
-            grant_type: "client_credentials",
-        },
-        json: true,
     };
 
-    const obj: FactoryObj<types.SpotifyPlaylistFunctions> = {
-        requestSpotify: (url: string, callback: UnknownFun) => {
-            request.post(
-                authOptions,
-                (err: unknown, res: unknown, body: unknown) => {
-                    const token = body.access_token;
-                    const options = {
-                        url: url,
-                        headers: {
-                            Authorization: "Bearer " + token,
-                        },
-                        json: true,
-                    };
-                    request.get(
-                        options,
-                        (err: unknown, res: unknown, body: object) => {
-                            callback(res, body, err);
-                        },
-                    );
-                },
-            );
-        },
-        updatePlaylistsList: () => {
-            // Atualizar as playlists
-            obj.requestSpotify(
-                `${apiBase}users/${myUser}/playlists?limit=50`,
-                (res: unknown, body: object) => {
-                    fs.writeFileSync(
-                        `${jsonDir}playlists.json`,
-                        JSON.stringify(body),
-                    );
-                    obj.repeatRequestIfNextExists();
-                    obj.writeAllPlaylists();
-                },
-            );
-        },
-        updateUserArchive: () => {
-            obj.getUserData((body: object) => {
-                fs.writeFileSync(`${jsonDir}user.json`, JSON.stringify(body));
-            });
-        },
-        repeatRequestIfNextExists: () => {
-            fs.readFile(
-                `${jsonDir}/playlists.json`,
-                "utf-8",
-                (err: unknown, data: string) => {
-                    var newJSON = JSON.parse(data);
-
-                    if (!newJSON.next) return;
-
-                    obj.requestSpotify(
-                        newJSON.next,
-                        (res: string, body: unknown) => {
-                            newJSON.items = newJSON.items.concat(body.items);
-                            newJSON.next = body.next;
-                            fs.writeFileSync(
-                                `${jsonDir}playlists.json`,
-                                JSON.stringify(newJSON),
-                            );
-
-                            if (!newJSON.next) return;
-
-                            obj.repeatRequestIfNextExists();
-                        },
-                    );
-                },
-            );
-        },
-        listPlaylistsId: (callback: UnknownFun) => {
-            fs.readFile(
-                `${jsonDir}playlists.json`,
-                "utf-8",
-                (err: unknown, data: string) => {
-                    const dataJSON = JSON.parse(data);
-                    var playlists = [];
-                    for (const i of dataJSON.items) {
-                        playlists.push(i.id);
-                    }
-                    callback(playlists);
-                },
-            );
-        },
-        getUserData: (callback: UnknownFun) => {
-            obj.requestSpotify(
-                `${apiBase}users/${myUser}`,
-                (res: unknown, body: object) => {
-                    callback(body);
-                },
-            );
-        },
-        descriptionFilter: (body: unknown, id: string) => {
-            var text = body.description;
+    const obj: types.SpotifyPlaylistFunctions = {
+        descriptionFilter: (playlist) => {
+            var text = playlist.description || "";
             var search = text.indexOf("&#x2F;&#x2F; (");
-            if (search == -1) {
+            if (search === -1) {
                 console.log(
-                    `${body.name} - (${id}): Comentário não encontrado`,
+                    `${playlist.name} - (${playlist.id}): Comentário não encontrado`,
                 );
             } else {
                 var comment = text.slice(search);
-                body.description = text.replace(comment, "");
+                playlist.description = text.replace(comment, "");
             }
-            return body;
+            return playlist;
         },
-        writePlaylistArchive: (currentPlaylist: string) => {
-            obj.requestSpotify(
-                `${apiBase}playlists/${currentPlaylist}`,
-                (res: unknown, body: object) => {
-                    fs.writeFileSync(
-                        `${jsonDir}playlists/${currentPlaylist}.json`,
-                        JSON.stringify(
-                            obj.descriptionFilter(body, currentPlaylist),
-                        ),
-                    );
+        requestSpotify: async <T>(getReqURL: string) => {
+            const res = await axios.post<types.SpotifyAuthResponse>(
+                authURL,
+                {
+                    grant_type: "client_credentials",
                 },
+                authOptions,
             );
+
+            const token = res.data.access_token;
+            const getReqConfig: AxiosRequestConfig = {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            };
+
+            const getRes: AxiosResponse<T> = await axios.get(
+                getReqURL,
+                getReqConfig,
+            );
+
+            if (getRes.status === 200) return Ok(getRes);
+            else throw getRes;
         },
-        writeAllPlaylists: () => {
-            obj.listPlaylistsId((playlists: string) => {
-                for (const i of playlists) {
-                    obj.writePlaylistArchive(i);
-                }
-            });
+        getPlaylist: async (id) => {
+            const playlist = (
+                await obj.requestSpotify<Playlist>(
+                    `${apiBase}playlists/${id}`,
+                )
+            ).val.data;
+
+            return Ok(playlist);
+        },
+        getPlaylistsList: async () => {
+            const getData = (
+                await obj.requestSpotify<types.SpotifyPlaylistsListData>(
+                    `${apiBase}users/${myUser}/playlists?limit=50`,
+                )
+            ).val.data;
+
+            let playlistsList = getData.items;
+
+            while (getData.next) {
+                const res = (
+                    await obj.requestSpotify<types.SpotifyPlaylistsListData>(
+                        getData.next,
+                    )
+                ).val.data;
+
+                playlistsList = playlistsList.concat(
+                    res.items,
+                );
+                getData.next = res.next;
+            }
+
+            return Ok(playlistsList);
+        },
+        getUserData: async () => {
+            const res = await obj.requestSpotify<types.SpotifyUserData>(
+                `${apiBase}users/${myUser}`,
+            );
+
+            return Ok(res.val.data);
+        },
+        listPlaylistsId: (playlists) => {
+            const playlistsIds = [];
+            for (const i of playlists.items) {
+                playlistsIds.push(i.id);
+            }
+
+            return Ok(playlistsIds);
+        },
+        updatePlaylistsList: async (playlists) => {
+            await fsp.writeFile(
+                `${jsonDir}playlists.json`,
+                JSON.stringify(playlists),
+            );
+
+            await obj.writeAllPlaylists(playlists);
+        },
+        updateUserArchive: async () => {
+            const userData = (await obj.getUserData()).val;
+
+            fsp.writeFile(`${jsonDir}user.json`, JSON.stringify(userData));
+
+            return Ok.EMPTY;
+        },
+        writePlaylistArchive: async (playlist: Playlist) => {
+            await fsp.writeFile(
+                `${jsonDir}playlists/${playlist.id}.json`,
+                JSON.stringify(obj.descriptionFilter(playlist)),
+            );
+
+            return Ok.EMPTY;
+        },
+        writeAllPlaylists: async (playlists) => {
+            const playlistsIds = obj.listPlaylistsId(playlists);
+
+            for (const id of playlistsIds) {
+                const playlist = (await obj.getPlaylist(id)).val;
+
+                await obj.writePlaylistArchive(playlist);
+            }
+
+            return Ok.EMPTY;
         },
     };
     return obj;
 };
-module.exports = getServerSideProps();
+export default Default();
