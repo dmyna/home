@@ -4,11 +4,11 @@ import Link from "next/link";
 import React, { JSX } from "react";
 
 // * Internal Modules
-import Background from "//components/Background";
+import Background from "C/Background";
 
 // * Typing
-import { MainPagePlaylists } from "//components/types";
-import { types as spotifyTypes } from "//server/modules/spotify";
+import { MainPagePlaylists } from "C/types";
+import { types as spotifyTypes } from "-/server/modules/spotify";
 
 // * Style
 import style from "../style/css.module.scss";

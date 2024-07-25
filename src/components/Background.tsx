@@ -2,7 +2,7 @@
 import { JSX } from "react";
 
 // * Typing
-import { types as spotifyTypes } from "//server/modules/spotify";
+import { types as spotifyTypes } from "-/server/modules/spotify";
 
 // * Style
 import style from '../style/css.module.scss';

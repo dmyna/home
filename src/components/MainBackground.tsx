@@ -2,7 +2,7 @@
 import { JSX } from 'react';
 
 // * Typing
-import { MainBackground } from "//components/types";
+import { MainBackground } from "C/types";
 
 // * Style
 import style from '../style/css.module.scss';

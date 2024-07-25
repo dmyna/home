@@ -5,8 +5,8 @@ import { JSX } from "react";
 
 import Link from "next/link";
 
-import style from "//style/components/asd_buttons.module.scss";
-import utilsTypes from "//utils/types";
+import style from "/src/style/components/asd_buttons.module.scss";
+import utilsTypes from "-/utils/types";
 
 export namespace types {
     export type Props = {
