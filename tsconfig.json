@@ -36,6 +36,9 @@
             "C/*": [
                 "src/components/*"
             ],
+            "M/*": [
+                "src/md/*"
+            ],
             "S/*": [
                 "src/style/*"
             ],

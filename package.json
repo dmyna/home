@@ -53,10 +53,5 @@
         "build": "clear; next build",
         "start": "clear; next start",
         "test": "clear; jest --watch"
-    },
-    "_moduleAliases": {
-        "/": "dist/src",
-        "@": "dist/src/lib",
-        "$": "dist/data"
     }
 }
