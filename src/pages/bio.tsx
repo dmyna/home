@@ -1,40 +1,42 @@
 /** @format */
+//#region               Imports
+import React, { JSX } from "react";
+//#endregion
+//#region               Modules
+import Layout from "C/Layout";
+import Profile from "C/Profile";
+import BiographyText from "-/md/BiographyText.mdx";
 
-import * as React from "react";
-import { JSX } from "react";
+import style from "S/pages/bio.module.scss";
+//#endregion
+//#region               Typing
+import utilsTypes from "-/utils/types";
+import { GetServerSideProps, GetServerSidePropsResult } from "next";
 
-import Image from "next/image";
+export namespace types {
+    export type Props = React.HTMLProps<HTMLDivElement> & {
+        serverData: utilsTypes.ServerReceivedData;
+    };
 
-import Layout from "../components/Layout";
-import Profile from "../components/Profile";
-import BiographyText from "../md/BiographyText.mdx";
+    export type SocialPageState = {
+        avatarHeight: string;
+        perfilSpaceRows: string;
+    };
+}
+//#endregion
+//#region               Implementation
+const BioPage = class BioPage extends React.Component<types.Props> {
+    serverData: utilsTypes.ServerReceivedData;
 
-import style from "../style/pages/bio.module.scss";
-
-export const getServerSideProps = async () => {
-    const data = (await import("../lib/data")).default;
-
-    const navAsdData = data.getUiData();
-    const userData = data.getUserPerfil();
-    const uiData = data.getUiData();
-
-    return { props: { navAsdData, userData, uiData } };
-};
-
-type Props = React.HTMLProps<HTMLDivElement> & { data: unknown };
-
-const BioPage = class BioPage extends React.Component<Props> {
-    data: unknown;
-
-    constructor(props: Props) {
+    constructor(props: types.Props) {
         super(props);
 
-        this.data = props.data;
+        this.serverData = props.serverData;
     }
     render(): JSX.Element {
         return (
             <div className={style.mainBox}>
-                <Profile data={this.data} />
+                <Profile perfilData={this.serverData.perfilData} />
                 <div className={style.textBox}>
                     <BiographyText />
                 </div>
@@ -43,11 +45,26 @@ const BioPage = class BioPage extends React.Component<Props> {
     }
 };
 
-const main = ({ navAsdData, userData, uiData }: unknown): JSX.Element => {
+export const getServerSideProps = (async (): Promise<
+    GetServerSidePropsResult<utilsTypes.ServerReceivedData>
+> => {
+    const data = (await import("../lib/data")).default;
+
+    const perfilData = data.getPerfil();
+    const uiData = data.getUiData();
+
+    return { props: { perfilData, uiData } };
+}) satisfies GetServerSideProps;
+
+const main = ({
+    perfilData,
+    uiData,
+}: utilsTypes.ServerReceivedData): JSX.Element => {
     return (
-        <Layout fullview={false} navAsdData={navAsdData}>
-            <BioPage data={{ ...userData, ...uiData }} />
+        <Layout fullview={false} navAsdData={uiData}>
+            <BioPage serverData={{ perfilData, uiData }} />
         </Layout>
     );
 };
 export default main;
+//#endregion
