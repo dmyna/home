@@ -1,9 +1,19 @@
-'use strict';
+/** @format */
 
-const filter = () => {
+"use strict";
+
+import { SimplifiedPlaylist } from "spotify-types";
+
+const filter = (): object => {
     const obj = {
         data: {
-            playlists: (data: unknown) => {
+            playlists: (
+                data: SimplifiedPlaylist,
+            ): {
+                images: { url: string }[];
+                name: string;
+                description: string | null;
+            } => {
                 const newData = {
                     images: [
                         {
@@ -21,5 +31,4 @@ const filter = () => {
     return obj;
 };
 
-module.exports = filter();
 export default filter();
