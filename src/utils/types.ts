@@ -35,6 +35,28 @@ namespace types {
             img: { url: string }[];
         }[];
     };
+    export type UiData = {
+        nav: {
+            principal: {
+                id: string;
+                route: string;
+                image: {
+                    url: string;
+                }[];
+            };
+            items: {
+                id: string;
+                route: string;
+                image: {
+                    url: string;
+                }[];
+            }[];
+        };
+    };
+    export type ServerReceivedData = {
+        perfilData: PerfilData;
+        uiData: UiData;
+    };
 }
 
 export default types;
