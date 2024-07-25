@@ -6,12 +6,19 @@ import { GetServerSideProps, GetServerSidePropsResult } from "next";
 //#region               Modules
 import Layout from "C/Layout";
 import utilsTypes from "-/utils/types";
+import PlaylistsContainer from "-/components/PlaylistsContainer";
 //#endregion
 //#region               Typing
+import { types as spotifyTypes } from "-/server/modules/spotify";
+import { types as playlistsContainerTypes } from "-/components/PlaylistsContainer";
+import { SimplifiedPlaylist } from "spotify-types";
+
 export namespace types {
-    export type Props = React.HTMLProps<HTMLDivElement> & {
-        serverData: utilsTypes.ServerReceivedData;
-    };
+    export type ServerSidePropsResult =
+        GetServerSidePropsResult<ServerSideProps>;
+    export type ServerSideProps = {
+        uiData: utilsTypes.UiData;
+    } & playlistsContainerTypes.MainPagePlaylistisProps;
 
     export type MusicPageState = {
         avatarHeight: string;
@@ -20,19 +27,30 @@ export namespace types {
 }
 //#endregion
 //#region               Implementation
-const MusicPage = class MusicPage extends React.Component<types.Props, object> {
+const MusicPage = class MusicPage extends React.Component<
+    React.HTMLProps<HTMLDivElement> &
+        playlistsContainerTypes.MainPagePlaylistisProps,
+    object
+> {
+    userImages?: spotifyTypes.SpotifyUserImage[];
+    playlistsIds: string[];
+    playlistsListData: SimplifiedPlaylist[];
+
     children: React.ReactNode;
-    serverData: utilsTypes.ServerReceivedData;
-    avatarImg: unknown;
     perfilSpace: React.RefObject<HTMLDivElement>;
     state: types.MusicPageState;
 
-    constructor(props: types.Props) {
+    constructor(
+        props: React.HTMLProps<HTMLDivElement> &
+            playlistsContainerTypes.MainPagePlaylistisProps,
+    ) {
         super(props);
 
+        this.userImages = props.userImages;
+        this.playlistsIds = props.playlistsIds;
+        this.playlistsListData = props.playlistsListData;
+
         this.children = props.children;
-        this.serverData = props.serverData;
-        this.avatarImg = React.createRef();
         this.perfilSpace = React.createRef();
         this.state = {
             avatarHeight: "",
@@ -56,29 +74,44 @@ const MusicPage = class MusicPage extends React.Component<types.Props, object> {
         }
     }
     render(): JSX.Element {
-        return <div></div>;
+        return (
+            <div>
+                <PlaylistsContainer
+                    userImages={this.userImages}
+                    playlistsIds={this.playlistsIds}
+                    playlistsListData={this.playlistsListData}
+                />
+            </div>
+        );
     }
 };
 
-
 export const getServerSideProps = (async (): Promise<
-    GetServerSidePropsResult<utilsTypes.ServerReceivedData>
+    GetServerSidePropsResult<types.ServerSideProps>
 > => {
-    const data = (await import("../lib/data")).default;
+    const data = (await import("../server/modules/data")).default;
 
-    const perfilData = data.getPerfil();
-    const uiData = data.getUiData();
+    const uiData = (await data.getUiData()).val;
+    const userImages = (await data.getUserData()).val.images;
+    const playlistsListData = (await data.getPlaylistsList()).val;
+    const playlistsIds = data.listPlaylistsIds(playlistsListData).val;
 
-    return { props: { perfilData, uiData } };
+    return { props: { uiData, userImages, playlistsIds, playlistsListData } };
 }) satisfies GetServerSideProps;
 
 const main = ({
-    perfilData,
     uiData,
-}: utilsTypes.ServerReceivedData): JSX.Element => {
+    userImages,
+    playlistsIds,
+    playlistsListData,
+}: types.ServerSideProps): JSX.Element => {
     return (
         <Layout fullview={false} navAsdData={uiData}>
-            <MusicPage serverData={{ perfilData, uiData }} />
+            <MusicPage
+                userImages={userImages}
+                playlistsIds={playlistsIds}
+                playlistsListData={playlistsListData}
+            />
         </Layout>
     );
 };
