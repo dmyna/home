@@ -1,32 +1,31 @@
 /** @format */
 import fs from "fs";
-import filter from "../lib/filter";
+import filter from "@/filter";
+
+import utilsTypes from "-/utils/types";
+import { types as indexPageTypes } from "-/pages/index";
+import { types as spotifyTypes } from "-/server/modules/spotify";
 
 export namespace types {
     export type DataFuns = {
-        get: (requrl: string, encoding?: string) => UnknownObj;
-        verifyStatus: (data: unknown) => unknown | void;
+        get: <T = UnknownObj>(requrl: string, encoding?: string) => T;
         getPlaylist: (id: string) => UnknownObj;
         getPlaylistsList: () => string[];
         getPlaylistsData: () => UnknownObj[];
         getUserData: () => UnknownObj;
-        getUiData: () => UnknownObj;
-        getUserPerfil: () => UnknownObj;
+        getUiData: () => utilsTypes.UiData;
+        getPerfil: () => utilsTypes.PerfilData;
     };
 }
 
 const jsonDir = "data/json/";
 const data: Factory<types.DataFuns> = () => {
     const obj: FactoryObj<types.DataFuns> = {
-        // Funções
         get: (reqUrl: string) => {
-            const data = fs.readFileSync(reqUrl, "utf-8");
+            const json = fs.readFileSync(reqUrl, "utf-8");
 
-            const json = JSON.parse(data);
+            const data = JSON.parse(json);
 
-            return json;
-        },
-        verifyStatus: (data: unknown) => {
             if (data.status) {
                 if (data.status === 200) {
                     return data;
@@ -36,17 +35,16 @@ const data: Factory<types.DataFuns> = () => {
                     );
                 }
             }
+
             return data;
         },
         getPlaylist: (id: string) => {
-            const data = obj.verifyStatus(
-                obj.get(`${jsonDir}playlists/${id}.json`),
-            );
+            const data = obj.get(`${jsonDir}playlists/${id}.json`);
 
             return data;
         },
         getPlaylistsList: () => {
-            const data = obj.verifyStatus(obj.get(`${jsonDir}playlists.json`));
+            const data = obj.get<spotifyTypes.SpotifyPlaylistsData>(`${jsonDir}playlists.json`);
 
             var list: string[] = [];
             for (const i of data.items) {
@@ -69,21 +67,22 @@ const data: Factory<types.DataFuns> = () => {
             return data;
         },
         getUserData: () => {
-            const data = obj.verifyStatus(obj.get(`${jsonDir}user.json`));
+            const data = obj.get(`${jsonDir}user.json`);
 
             return data;
         },
         getUiData: () => {
-            const data = obj.verifyStatus(obj.get(`${jsonDir}uidata.json`));
+            const data = obj.get<indexPageTypes.UiData>(`${jsonDir}uidata.json`);
 
             return data;
         },
-        getUserPerfil: () => {
-            const data = obj.verifyStatus(obj.get(`${jsonDir}perfil.json`));
+        getPerfil: () => {
+            const data = obj.get<utilsTypes.PerfilData>(`${jsonDir}perfil.json`);
 
             return data;
         },
     };
+
     return obj;
 };
 
