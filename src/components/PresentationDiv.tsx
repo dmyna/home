@@ -5,15 +5,15 @@ import React from "react";
 import { JSX } from "react";
 
 // * Style
-import style from "../style/components/presentation_div.module.scss";
+import style from "S/components/presentation_div.module.scss";
 
 // * Text
-import PresentationText from "../md/PresentationText.mdx";
-import PresentationObs from "../md/PresentationObs.mdx";
+import PresentationText from "M/PresentationText.mdx";
+import PresentationObs from "M/PresentationObs.mdx";
 
 // * Main
-class PresentationDivClass extends React.Component<UnknowObj> {
-    constructor(props: UnknowObj) {
+class PresentationDiv extends React.Component<React.HTMLProps<HTMLDivElement>> {
+    constructor(props: React.HTMLProps<HTMLDivElement>) {
         super(props);
     }
 
@@ -31,4 +31,4 @@ class PresentationDivClass extends React.Component<UnknowObj> {
     }
 }
 
-export default PresentationDivClass;
+export default PresentationDiv;
