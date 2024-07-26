@@ -1,6 +1,6 @@
 /** @format */
 
-import { Err, Ok, Result } from "ts-results";
+import { Err, Ok } from "ts-results";
 
 export class SpotifyHandler {
     private client_id?: string;
@@ -21,9 +21,9 @@ export class SpotifyHandler {
         this.authOptions = {};
     }
 
-    public async Auth(): Promise<Result<void, AnyErr>> {
+    public async Auth(): Promise<Ok<void>> {
         if (!this.client_id || !this.client_secret || !this.my_user) {
-            return Err({
+            throw Err({
                 message: "Some value between client_id, client_secret or my_user is missing",
                 type: "internal",
             });
