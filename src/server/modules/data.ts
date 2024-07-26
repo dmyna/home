@@ -39,13 +39,23 @@ const Default = (): types.DataFuns => {
             return Ok(data);
         },
         getPlaylistsList: async () => {
-            const playlists = (
-                await obj.get<spotifyTypes.SpotifyPlaylistsListData>(
-                    `${jsonDir}playlists.json`,
-                )
-            ).val.items;
+            try {
+                const playlists = (
+                    await obj.get<spotifyTypes.SpotifyPlaylistsListData>(
+                        `${jsonDir}playlists.json`,
+                    )
+                ).val.items;
 
-            return Ok(playlists);
+                return Ok(playlists);
+            } catch (error) {
+                if (error instanceof Error) {
+                    if (error.message.includes("ENOENT")) {
+                        return Ok([]);
+                    }
+                }
+
+                throw error;
+            }
         },
         getUserData: () => {
             const data = obj.get<PublicUser>(`${jsonDir}user.json`);
