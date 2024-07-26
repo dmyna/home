@@ -6,7 +6,6 @@ import Head from "next/head";
 
 // * Internal Modules
 import NavAsdButtons from "./NavAsdButtons";
-import Background from "./Background";
 
 // * Typing
 import utilsTypes from "../utils/types";
@@ -37,13 +36,9 @@ const Layout = ({ fullview, navAsdData, children }: types.receive): JSX.Element 
                 </Head>
                 <div className={"mainFlex " + fullStyle.mainFlex}>
                     <main className={fullStyle.main}>
-                        <Background url={background}>
-                            <article
-                                className={"mainContent " + fullStyle.main}
-                            >
-                                {children}
-                            </article>
-                        </Background>
+                        <article className={"mainContent " + fullStyle.main}>
+                            {children}
+                        </article>
                     </main>
                 </div>
                 <div
@@ -72,11 +67,9 @@ const Layout = ({ fullview, navAsdData, children }: types.receive): JSX.Element 
                         <div></div>
                     </header>
                     <main className={"mainContent"}>
-                        <Background url={background}>
-                            <article className={style.mainContent}>
-                                {children}
-                            </article>
-                        </Background>
+                        <article className={style.mainContent}>
+                            {children}
+                        </article>
                     </main>
                     <footer
                         className={"mainFooter " + style.mainFooter}
