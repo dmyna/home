@@ -1,31 +1,32 @@
-type AnyFunction = (...args: any[]) => any
-type AnyObj = Record<string, any>
-type UnkObj = Record<string, unknown>
-type AnyErr = {
+declare type UnknownFun = (...args: unknown[]) => unknown
+declare type UnknownObj = Record<string, unknown>
+declare type AnyErr = {
     message: string
     type: "user" | "internal" | "external" | "unknown"
     obj?: unknown
 }
-type FactoryObj<T> = {
-    [key: string]: T[keyof T] extends AnyFunction
-    ? T[keyof T]
-    : T[keyof T] extends object
-    ? FunctionsObj<T[keyof T]>
-    : never;
-} & {
-    [K in keyof T]: T[K] extends AnyFunction
-    ? T[K]
-    : T[K] extends object
-    ? FunctionsObj<T[K]>
-    : never;
+declare type IsAny<T> = 0 extends 1 & T ? true : false;
+
+declare type FunctionsObj<T> = {
+    [K in keyof T]: T[K] extends UnknownFun
+        ? T[K]
+        : T[K] extends object
+        ? FunctionsObj<T[K]>
+        : never;
 };
 
-type Factory<T> = () => FactoryObj<T>;
+declare type FactoryObj<T = UnknownObj> = IsAny<T> extends true
+    ? {
+          [K: string]: UnknownFun | { [L: string]: UnknownFun };
+      }
+    : FunctionsObj<T>;
 
-type JSONValue = string | number | boolean | null | JSONObject | JSONArray;
+declare type Factory<T> = () => FactoryObj<T>;
 
-interface JSONObject {
+declare type JSONValue = string | number | boolean | null | JSONObject | JSONArray;
+
+declare interface JSONObject {
     [x: string]: JSONValue;
 }
 
-interface JSONArray extends Array<JSONValue> {}
+declare interface JSONArray extends Array<JSONValue> {}

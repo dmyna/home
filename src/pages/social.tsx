@@ -1,44 +1,41 @@
 /** @format */
+//#region               External Modules
+import React, { JSX } from "react";
+import { GetServerSideProps, GetServerSidePropsResult } from "next";
+//#endregion
+//#region               Modules
+import Layout from "C/Layout";
+//#endregion
+//#region               Typing
+import utilsTypes from "-/utils/types";
 
-import * as React from "react";
+export namespace types {
+    export type Props = React.HTMLProps<HTMLDivElement> & {
+        serverData: utilsTypes.ServerReceivedData;
+    };
 
-import Image from "next/image";
-
-import Layout from "../components/Layout";
-import PresentationDiv from "../components/PresentationDiv";
-import LinksSquare from "../components/LinksSquare";
-
-import style from "../style/pages/index.module.scss";
-
-export const getServerSideProps = async () => {
-    const data = (await import("../lib/data")).default;
-
-    const navAsdData = data.getUiData().val;
-    const userData = data.getUserPerfil().val;
-    const uiData = data.getUiData().val;
-
-    return { props: { navAsdData, userData, uiData } };
-};
-
-interface Props {
-    id?: string;
-    data?: any;
-    className?: any;
-    style?: object;
+    export type SocialPageState = {
+        avatarHeight: string;
+        perfilSpaceRows: string;
+    };
 }
+//#endregion
+//#region               Implementation
+const SocialPage = class SocialPage extends React.Component<
+    types.Props,
+    object
+> {
+    children: React.ReactNode;
+    serverData: unknown;
+    avatarImg: unknown;
+    perfilSpace: React.RefObject<HTMLDivElement>;
+    state: types.SocialPageState;
 
-const SocialPage = class SocialPage extends React.Component<Props, object> {
-    children: JSX.Element;
-    data: any;
-    avatarImg: any;
-    perfilSpace: any;
-    state: any;
-
-    constructor(props: any) {
+    constructor(props: types.Props) {
         super(props);
 
         this.children = props.children;
-        this.data = props.data;
+        this.serverData = props.data;
         this.avatarImg = React.createRef();
         this.perfilSpace = React.createRef();
         this.state = {
@@ -47,11 +44,18 @@ const SocialPage = class SocialPage extends React.Component<Props, object> {
         };
     }
     componentDidMount(): void {
-        const perfilSpaceHeight = this.perfilSpace.current.clientHeight;
+        //! DEV
+        const perfilSpaceHeight = this.perfilSpace.current?.clientHeight;
 
-        if (perfilSpaceHeight >= 2000) {
+        if (
+            typeof perfilSpaceHeight === "number" &&
+            perfilSpaceHeight >= 2000
+        ) {
             this.setState({ perfilSpaceRows: "100vh auto" });
-        } else if (perfilSpaceHeight >= 1000) {
+        } else if (
+            typeof perfilSpaceHeight === "number" &&
+            perfilSpaceHeight >= 1000
+        ) {
             this.setState({ perfilSpaceRows: "75vh auto" });
         }
     }
@@ -60,7 +64,26 @@ const SocialPage = class SocialPage extends React.Component<Props, object> {
     }
 };
 
-const main = ({ navAsdData, userData, uiData }: any) => {
-    return <Layout fullview={false} navAsdData={navAsdData}></Layout>;
+export const getServerSideProps = (async (): Promise<
+    GetServerSidePropsResult<utilsTypes.ServerReceivedData>
+> => {
+    const data = (await import("../server/modules/data")).default;
+
+    const perfilData = (await data.getPerfil()).val;
+    const uiData = (await data.getUiData()).val;
+
+    return { props: { perfilData, uiData } };
+}) satisfies GetServerSideProps;
+
+const main = ({
+    perfilData,
+    uiData,
+}: utilsTypes.ServerReceivedData): JSX.Element => {
+    return (
+        <Layout fullview={false} navAsdData={uiData}>
+            <SocialPage serverData={{ perfilData, uiData }} />
+        </Layout>
+    );
 };
 export default main;
+//#endregion

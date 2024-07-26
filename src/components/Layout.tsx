@@ -9,19 +9,20 @@ import NavAsdButtons from "./NavAsdButtons";
 import Background from "./Background";
 
 // * Typing
-import { Layout } from "dmyna/client/components";
-
+import utilsTypes from "../utils/types";
+export namespace types {
+    export type receive = {
+        fullview: boolean;
+        navAsdData:  utilsTypes.NavAsdData;
+        children: JSX.Element;
+    };
+}
 // * Style
 import style from "../style/components/layout.normal.module.scss";
 import fullStyle from "../style/components/layout.full.module.scss";
 
 // * Main
-const Layout = ({
-    fullview,
-    navAsdData,
-    children,
-    background,
-}: Layout.receive): JSX.Element => {
+const Layout = ({ fullview, navAsdData, children }: types.receive): JSX.Element => {
     const element = {
         fullview: (
             <div className={"body " + fullStyle.body}>
@@ -64,7 +65,7 @@ const Layout = ({
                     />
                 </Head>
                 <aside className={"navegation " + style.navegation}>
-                    <NavAsdButtons data={navAsdData} />
+                    <NavAsdButtons uiData={navAsdData} />
                 </aside>
                 <div className={"mainFlex " + style.mainFlex}>
                     <header className={"mainHeader " + style.mainHeader}>

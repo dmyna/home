@@ -4,21 +4,29 @@
 import { JSX } from "react";
 
 // * Typing
-import { Background } from "dmyna/client/components";
+import { types as spotifyTypes } from "-/server/modules/spotify";
 
 // * Style
-import style from "../style/components/background.module.scss";
+import style from "../style/css.module.scss";
+
+export namespace types {
+    export type receive = {
+        children: JSX.Element;
+        userImages?: spotifyTypes.SpotifyUserImage[];
+    };
+}
 
 // * Main
-const Background = ({ children, url }: Background.receive): JSX.Element => (
+const Background = ({ children, userImages }: types.receive): JSX.Element => (
     <div
-        id='playlistBg'
-        className={style.playlistBg}
-        style={url ? { backgroundImage: `url(${url})` } : undefined}
+        id={style.playlistBg}
+        style={{
+            backgroundImage: userImages
+                ? `url(${userImages[0].url})`
+                : undefined,
+        }}
     >
-        <div id='playlistBgGradient' className={style.playlistBgGradient}>
-            {children}
-        </div>
+        <div id={style.playlistBgGradient}>{children}</div>
     </div>
 );
 

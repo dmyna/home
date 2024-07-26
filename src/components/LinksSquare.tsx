@@ -4,11 +4,11 @@ import Link from "next/link";
 import React, { JSX } from "react";
 
 // * Style
-import style from "../style/components/links_square.module.scss";
+import style from "S/components/links_square.module.scss";
 
 // * Main
-class LinksSquare extends React.Component<UnkObj, UnkObj> {
-    constructor(props: UnkObj) {
+class LinksSquare extends React.Component<UnknownObj, UnknownObj> {
+    constructor(props: UnknownObj) {
         super(props);
     }
 
