@@ -9,6 +9,7 @@ export default {
     theme: {
         fontFamily: {
             'display': ['Ubuntu', 'sans-serif'],
+            'arial': ['Arial', 'sans-serif'],
         },
         extend: {},
     },
