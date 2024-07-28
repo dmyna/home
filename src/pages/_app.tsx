@@ -1,7 +1,4 @@
 /** @format */
-
-import "-/style/themes/dark-theme/geral.scss";
-import "-/style/global.scss";
 import "-/tailwind.css";
 
 import { JSX } from "react";
