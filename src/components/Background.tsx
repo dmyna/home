@@ -1,33 +1,31 @@
 /** @format */
 
-// * External Modules
+//#region               External Modules
 import { JSX } from "react";
-
-// * Typing
+//#endregion
+//#region               Typing
 import { types as spotifyTypes } from "-/server/modules/spotify";
-
-// * Style
-import style from "../style/css.module.scss";
-
+//#endregion
 export namespace types {
     export type receive = {
         children: JSX.Element;
         userImages?: spotifyTypes.SpotifyUserImage[];
     };
 }
-
-// * Main
+//#endregion
+//#region               Implementation
 const Background = ({ children, userImages }: types.receive): JSX.Element => (
     <div
-        id={style.playlistBg}
+        className='bg-no-repeat bg-center bg-auto h-full rounded-ss-lg'
         style={{
             backgroundImage: userImages
                 ? `url(${userImages[0].url})`
                 : undefined,
         }}
     >
-        <div id={style.playlistBgGradient}>{children}</div>
+        <div className='h-full rounded-ss-lg'>{children}</div>
     </div>
 );
 
 export default Background;
+//#endregion
