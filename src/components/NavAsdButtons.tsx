@@ -1,11 +1,11 @@
 /** @format */
-
+//#region               External Modules
 import React from "react";
-import { JSX } from "react";
-
 import Link from "next/link";
-
+import { JSX } from "react";
+//#endregion
 import style from "/src/style/components/asd_buttons.module.scss";
+//#region               Typing
 import utilsTypes from "-/utils/types";
 
 export namespace types {
@@ -32,7 +32,8 @@ export namespace types {
         ) => JSX.Element[];
     };
 }
-
+//#endregion
+//#region               Implementation
 class NavAsdButtonsClass extends React.Component<types.Props> {
     private uiData: utilsTypes.NavAsdData;
 
@@ -113,4 +114,6 @@ class NavAsdButtonsClass extends React.Component<types.Props> {
         );
     }
 }
+
 export default NavAsdButtonsClass;
+//#endregion
