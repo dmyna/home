@@ -4,13 +4,10 @@ import { JSX } from 'react';
 // * Typing
 import { MainBackground } from "C/types";
 
-// * Style
-import style from '../style/css.module.scss';
-
 // * Main
 const Background = ({ children, image }: MainBackground.receive): JSX.Element => (
-    <div id={style.playlistBg} style={{ backgroundImage: image }}>
-        <div id={style.playlistBgGradient}>
+    <div style={{ backgroundImage: image }}>
+        <div>
             {children}
         </div>
     </div>

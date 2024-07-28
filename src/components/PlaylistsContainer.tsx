@@ -5,7 +5,6 @@ import React, { JSX } from "react";
 //#endregion
 //#region               Modules
 import Background from "C/Background";
-import generalStyle from "S/css.module.scss";
 //#endregion
 //#region               Typing
 import { types as spotifyTypes } from "-/server/modules/spotify";
@@ -45,24 +44,17 @@ class PlaylistContainer extends React.Component<
                 passHref
                 legacyBehavior
             >
-                <a
-                    key={this.key}
-                    id={this.playlistId}
-                    className={generalStyle.playlistContainer}
-                >
-                    <div className={generalStyle.playlistLeftSpace}>
+                <a key={this.key} id={this.playlistId}>
+                    <div>
                         <div
-                            className={generalStyle.playlistImage}
                             style={{
                                 backgroundImage: `url(${this.playlistData.images[0].url})`,
                             }}
                         />
                     </div>
-                    <div className={generalStyle.playlistRightSpace}>
-                        <div className={generalStyle.playlistTitle}>
-                            {this.playlistData.name}
-                        </div>
-                        <div className={generalStyle.playlistDescription}>
+                    <div>
+                        <div>{this.playlistData.name}</div>
+                        <div>
                             <p>{this.playlistData.description}</p>
                         </div>
                     </div>
@@ -114,8 +106,8 @@ class PlaylistsContainer extends React.Component<types.MainPagePlaylistisProps> 
 
         return (
             <Background userImages={this.userImages}>
-                <div id={generalStyle.playlistsSpace}>
-                    <div id={generalStyle.allPlaylists}>{containers}</div>
+                <div>
+                    <div>{containers}</div>
                 </div>
             </Background>
         );
