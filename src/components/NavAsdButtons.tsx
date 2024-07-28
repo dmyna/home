@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { JSX } from "react";
 //#endregion
-import style from "/src/style/components/asd_buttons.module.scss";
 //#region               Typing
 import utilsTypes from "-/utils/types";
 
@@ -32,6 +31,9 @@ export namespace types {
         ) => JSX.Element[];
     };
 }
+//#region               Constants
+export const vwWidth = "calc(100vw_/_24_*_0.7)";
+//#endregion
 //#endregion
 //#region               Implementation
 class NavAsdButtonsClass extends React.Component<types.Props> {
@@ -39,6 +41,7 @@ class NavAsdButtonsClass extends React.Component<types.Props> {
 
     constructor(props: types.Props) {
         super(props);
+
         this.uiData = props.uiData;
     }
     private Buttons(): types.Buttons {
@@ -49,15 +52,36 @@ class NavAsdButtonsClass extends React.Component<types.Props> {
                     passHref
                     legacyBehavior
                 >
-                    <a className={style.asdLogo}>
-                        <img src={props.uiData.nav.principal.image[0].url} />
+                    <a
+                        className={`flex w-[${vwWidth}] h-[${vwWidth}]`}
+                    >
+                        <img
+                            className={
+                                "w-full h-full p-[calc(100vw_/_24_*_0.065)] " +
+                                "rounded-full"
+                            }
+                            src={props.uiData.nav.principal.image[0].url}
+                        />
                     </a>
                 </Link>
             ),
             AsdButton: (props) => (
-                <div id={props.id} className={style.asdButton}>
+                <div
+                    id={props.id}
+                    className={
+                        `w-[${vwWidth}] h-[${vwWidth}] ` +
+                        "cursor-pointer select-none"
+                    }
+                >
                     <Link href={props.route} passHref legacyBehavior>
-                        <a>{props.children}</a>
+                        <a
+                            className={
+                                "font-normal text-3xl font-display " +
+                                "h-full flex justify-center align-middle relative"
+                            }
+                        >
+                            {props.children}
+                        </a>
                     </Link>
                 </div>
             ),
@@ -82,7 +106,7 @@ class NavAsdButtonsClass extends React.Component<types.Props> {
                     setLogo(
                         item,
                         <img
-                            className={style.asdImage}
+                            className='w-[75%] h-[75%]'
                             src={item.image[0].url}
                         />,
                     );
@@ -99,17 +123,19 @@ class NavAsdButtonsClass extends React.Component<types.Props> {
         const elements = this.Buttons();
 
         return (
-            <nav className={style.navegation}>
-                <div className={style.navTopDivision}>
+            <nav
+                className={`flex align-middle flex-col w-[${vwWidth}] h-dvh`}
+            >
+                <div className={`w-full h-[${vwWidth}]`}>
                     <elements.MainPageButton uiData={this.uiData} />
                 </div>
-                <hr className={style.asdHr} />
-                <div className={style.navCenterDivision}>
-                    <elements.AllAsdButtons
-                        uiData={this.uiData}
-                    />
+                <hr
+                    className={`w-[90%] rounded-[25%] my-[calc(100vw_/_24_*_0.065)] mx-0`}
+                />
+                <div className='w-full h-[calc(100vw_-_(100vh / 24 * 1.5))]'>
+                    <elements.AllAsdButtons uiData={this.uiData} />
                 </div>
-                <div className={style.navBottomDivision}></div>
+                <div className={`w-full h-[${vwWidth}]`}></div>
             </nav>
         );
     }
