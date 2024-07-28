@@ -7,7 +7,6 @@ import Layout from "C/Layout";
 import Profile from "C/Profile";
 import BiographyText from "-/md/BiographyText.mdx";
 
-import style from "S/pages/bio.module.scss";
 //#endregion
 //#region               Typing
 import utilsTypes from "-/utils/types";
@@ -35,9 +34,9 @@ const BioPage = class BioPage extends React.Component<types.Props> {
     }
     render(): JSX.Element {
         return (
-            <div className={style.mainBox}>
+            <div className='w-full flex justify-center flex-col'>
                 <Profile perfilData={this.serverData.perfilData} />
-                <div className={style.textBox}>
+                <div className='py-4 px-0 font-display text-lg text-justify'>
                     <BiographyText />
                 </div>
             </div>
