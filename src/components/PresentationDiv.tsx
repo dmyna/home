@@ -4,9 +4,6 @@
 import React from "react";
 import { JSX } from "react";
 
-// * Style
-import style from "S/components/presentation_div.module.scss";
-
 // * Text
 import PresentationText from "M/PresentationText.mdx";
 
@@ -18,8 +15,14 @@ class PresentationDiv extends React.Component<React.HTMLProps<HTMLDivElement>> {
 
     render(): JSX.Element {
         return (
-            <div className={style.presentationDiv}>
-                <div id={style.presentationText}>
+            <div className='flex justify-center align-middle fle-col w-full py-0 px-[10vw]'>
+                <div
+                    className={
+                        "font-display font-semibold " +
+                        "text-justify md:text-center text-sm md:text-xl " +
+                        "text-gray-200 drop-shadow-[0_0_3px_rgba(0,0,0,0.5)]"
+                    }
+                >
                     <PresentationText />
                 </div>
             </div>
