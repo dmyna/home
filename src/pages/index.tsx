@@ -7,8 +7,6 @@ import Layout from "C/Layout";
 import PresentationDiv from "C/PresentationDiv";
 import LinksSquare from "C/LinksSquare";
 import Profile from "C/Profile";
-
-import style from "S/pages/index.module.scss";
 //#endregion
 //#region               Typing
 import utilsTypes from "-/utils/types";
@@ -33,21 +31,29 @@ class MainPage extends React.Component<types.Props> {
     }
     render(): JSX.Element {
         return (
-            <div className={"mainPageSpace " + style.mainPageSpace}>
+            <div className='relative flex justify-center w-full h-dvh'>
                 <div
-                    className={"perfilBg " + style.perfilBg}
+                    className={
+                        "w-dvw h-dvh bg-gray-400 absolute " +
+                        "bg-center bg-cover bg-no-repeat bg-scroll"
+                    }
                     style={{
                         backgroundImage: `url(${this.serverData.perfilData.perfilBg[0].url})`,
                     }}
                 >
-                    <div className={"bgEffect " + style.bgEffect}></div>
+                    <div className='w-full h-full bg-[#0005] backdrop:filter blur(15px)'></div>
                 </div>
-                <div className={"elementsBody " + style.elementsBody}>
+                <div
+                    className={
+                        "flex flex-col justify-center align-middle " +
+                        "z-10 py-0 px-[5vw]"
+                    }
+                >
                     <Profile perfilData={this.serverData.perfilData} />
                     <div
-                        className={"mainContentSpace " + style.mainContentSpace}
+                        className='py-8 px-0'
                     >
-                        <PresentationDiv/>
+                        <PresentationDiv />
                     </div>
                     <LinksSquare />
                 </div>
