@@ -32,7 +32,6 @@ class MainPage extends React.Component<types.Props> {
         this.serverData = props.serverData;
     }
     render(): JSX.Element {
-        console.log(this.serverData);
         return (
             <div className={"mainPageSpace " + style.mainPageSpace}>
                 <div
