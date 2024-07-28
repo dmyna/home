@@ -3,13 +3,11 @@
 import type { Config } from "tailwindcss";
 
 export default {
-    content: [
-        "./src/**/*.{tsx,mdx}",
-    ],
+    content: ["./src/**/*.{tsx,mdx}"],
     theme: {
         fontFamily: {
-            'display': ['Ubuntu', 'sans-serif'],
-            'arial': ['Arial', 'sans-serif'],
+            display: ["Ubuntu", "sans-serif"],
+            arial: ["Arial", "sans-serif"],
         },
         extend: {},
     },
