@@ -54,9 +54,9 @@
         "typescript": "^5.5.4"
     },
     "scripts": {
-        "dev": "clear; NODE_OPTIONS='--inspect' next dev",
-        "build": "clear; next build",
-        "start": "clear; next start",
-        "test": "clear; jest --watch"
+        "dev": "docker rm mynahome_app mynahome_db; clear -x; docker-compose -f docker-compose.yml -f docker/docker-compose_dev.yml up --build",
+        "build": "clear -x; npx prisma generate; next build",
+        "start": "clear -x; next start",
+        "test": "clear -x; docker-compose run -f docker/docker-compose_test.yml app"
     }
 }
