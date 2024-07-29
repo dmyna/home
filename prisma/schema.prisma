@@ -1,0 +1,14 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+    provider = "mongodb"
+    url = env("DATABASE_URL")
+}
+
+model PrismaTest {
+    uuid    String @id @default(uuid()) @map("_id")
+    message String
+}
