@@ -1,8 +1,13 @@
-import { Component } from 'react';
-import '../style/themes/dark-theme/geral.scss';
-import '../style/global.scss';
+/** @format */
+import "-/tailwind.css";
 
-const MyApp = ({ Component, pageProps }: any) => {
-    return <Component {... pageProps} />;
+import { JSX } from "react";
+import { AppProps } from "next/app";
+
+const MyApp = ({
+    Component,
+    pageProps,
+}: AppProps): JSX.Element => {
+    return <Component {...pageProps} />;
 };
 export default MyApp;

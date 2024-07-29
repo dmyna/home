@@ -1,96 +1,87 @@
-import * as React from 'react';
+/** @format */
+//#region               External Modules
+import React, { JSX } from "react";
+//#endregion
+//#region               Modules
+import Layout from "C/Layout";
+import PresentationDiv from "C/PresentationDiv";
+import LinksSquare from "C/LinksSquare";
+import Profile from "C/Profile";
+//#endregion
+//#region               Typing
+import utilsTypes from "-/utils/types";
+import { GetServerSideProps, GetServerSidePropsResult } from "next";
 
-import Image from "next/image";
-
-import Layout from '../components/layout';
-import PresentationDiv from "../components/PresentationDiv";
-import LinksSquare from "../components/LinksSquare";
-
-import style from '../style/pages/index.module.scss';
-
-export const getServerSideProps = async () => {
-    const data = (await import('../lib/data')).default;
-
-    const navAsdData = data.getUiData();
-    const userData = data.getUserPerfil();
-    const uiData = data.getUiData();
-
-    return { props: { navAsdData, userData, uiData } };
-};
-
-
-interface Props {
-    id?: string,
-    data?: any,
-    className?: any,
-    style?: object
+export namespace types {
+    export type Props = React.HTMLProps<HTMLDivElement> & {
+        serverData: utilsTypes.ServerReceivedData;
+    };
 }
+//#endregion
+//#region               Implementation
+class MainPage extends React.Component<types.Props> {
+    children: React.ReactNode;
+    serverData: utilsTypes.ServerReceivedData;
 
-const MainPage = class MainPage extends React.Component<Props, {}> {
-    children: JSX.Element;
-    data: any;
-    avatarImg: any;
-    perfilSpace: any;
-    state: any;
-
-    constructor(props: any) {
+    constructor(props: types.Props) {
         super(props);
 
         this.children = props.children;
-        this.data = props.data;
-        this.avatarImg = React.createRef();
-        this.perfilSpace = React.createRef();
-        this.state = {
-            avatarHeight: '',
-            perfilSpaceRows: ''
-        };
+        this.serverData = props.serverData;
     }
-    componentDidMount(): void {
-        const perfilSpaceHeight = this.perfilSpace.current.clientHeight;
-
-        if (perfilSpaceHeight >= 2000) {
-            this.setState({ perfilSpaceRows: '100vh auto' });
-        } else if (perfilSpaceHeight >= 1000) {
-            this.setState({ perfilSpaceRows: '75vh auto' });
-        }
-    }
-    render() {
+    render(): JSX.Element {
         return (
-            <div className={"mainPageSpace " + style.mainPageSpace}>
-                <div className={"perfilBg " + style.perfilBg}
-                    style={{ backgroundImage: `url(${this.data.perfilbg[0].url})` }}>
-                    <div className={"bgEffect " + style.bgEffect}></div>
+            <div className='relative flex justify-center w-full h-dvh'>
+                <div
+                    className={
+                        "w-dvw h-dvh bg-gray-400 absolute " +
+                        "bg-center bg-cover bg-no-repeat bg-scroll"
+                    }
+                    style={{
+                        backgroundImage: `url(${this.serverData.perfilData.perfilBg[0].url})`,
+                    }}
+                >
+                    <div className='w-full h-full bg-[#0005] backdrop:filter blur(15px)'></div>
                 </div>
-                <div className={"elementsBody " + style.elementsBody}>
-                    <div className={"perfilSpace " + style.perfilSpace} ref={this.perfilSpace}
-                        style={{ gridTemplateRows: this.state.perfilSpaceRows }}>
-                        <div className={"avatarSpace " + style.avatarSpace}>
-                            <div className={"avatarImg " + style.avatarImg} ref={this.avatarImg}
-                                style={{}}>
-                                <Image src={this.data.avatar[0].url}
-                                    alt="User Image" fill sizes="100vw"
-                                />
-                            </div>
-                        </div>
-                        <div className={"nameSpace " + style.nameSpace}>
-                            <div className={"username " + style.username}>{this.data.username}</div>
-                        </div>
-                    </div>
-                    <div className={"mainContentSpace " + style.mainContentSpace}>
-                        <PresentationDiv data={this.data.uiData} />
+                <div
+                    className={
+                        "flex flex-col justify-center align-middle " +
+                        "z-10 py-0 px-[5vw]"
+                    }
+                >
+                    <Profile perfilData={this.serverData.perfilData} />
+                    <div
+                        className='py-8 px-0'
+                    >
+                        <PresentationDiv />
                     </div>
                     <LinksSquare />
                 </div>
             </div>
         );
     }
-};
+}
 
-const main = ({ navAsdData, userData, uiData }: any) => {
+export const getServerSideProps = (async (): Promise<
+    GetServerSidePropsResult<utilsTypes.ServerReceivedData>
+> => {
+    const data = (await import("../server/modules/data")).default;
+
+    const perfilData = (await data.getPerfil()).val;
+    const uiData = (await data.getUiData()).val;
+
+    return { props: { perfilData, uiData } };
+}) satisfies GetServerSideProps;
+
+const main = ({
+    perfilData,
+    uiData,
+}: utilsTypes.ServerReceivedData): JSX.Element => {
     return (
-        <Layout fullview={true} navAsdData={navAsdData}>
-            <MainPage data={{ ...userData, uiData }} />
+        <Layout fullview={true} navAsdData={uiData}>
+            <MainPage serverData={{ perfilData, uiData }} />
         </Layout>
     );
 };
 export default main;
+//#endregion

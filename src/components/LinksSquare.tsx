@@ -1,46 +1,31 @@
-import Link from 'next/link';
-
-import BuildingWarn from './BuildingWarn';
-
-// * Folhas de Estilo
-import style from '../style/components/links_square.module.scss';
-
-// * Tipagem
-import React, { JSX } from 'react';
-interface Props { }
-
-class LinksSquare extends React.Component<Props, Record<string, any>> {
-    constructor(props: any) {
+/** @format */
+//#region               External Modules
+import Link from "next/link";
+import React, { JSX } from "react";
+//#endregion
+//#region               Implementation
+class LinksSquare extends React.Component<UnknownObj, UnknownObj> {
+    constructor(props: UnknownObj) {
         super(props);
     }
 
     render(): JSX.Element {
         return (
-            <div className={style.generalSpace}>
-                {/* <div className={style.socialMediaDiv}>
-                    <div id={style.github} className={style.socialMediaBox}>Github</div>
-                    <div id={style.discord} className={style.socialMediaBox}>
-                        Discord
-                    </div>
-                    <div id={style.spotify} className={style.socialMediaBox}>Spotify</div>
-                </div> */}
-                <BuildingWarn />
-                <div className={style.redirects}>
-                    <Link href="/medias">
-                        Redes Sociais
-                    </Link>
-                    <Link href="/bio">
-                        Biografia Completa
-                    </Link>
-                    <Link href={
-                        "https://open.spotify.com/user/" +
-                        "ap0q3dp9xhg4jxaq0c5cs6f39?si=2cb5058497ef415c"
-                    } target='_blank'>
-                        Meu Spotify
-                    </Link>
+            <div className='w-full flex align-middle justify-center flex-col'>
+                <div
+                    className={
+                        "*:text-center flex flex-col align-middle justify-center md:flex-row " +
+                        "p-4 *:w-full md:*:w-[30%] py-6 px-8 " +
+                        "font-bold text-xl text-gray-200 drop-shadow-[2px_2px_5px_#0003]"
+                    }
+                >
+                    <Link href='/social'>Social Media</Link>
+                    <Link href='/bio'>Full Biography</Link>
+                    <Link href='/music'>Music Corner</Link>
                 </div>
             </div>
         );
     }
 }
 export default LinksSquare;
+//#endregion

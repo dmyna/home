@@ -1,0 +1,32 @@
+networks:
+    mynahome_net:
+        driver: bridge
+services:
+    database:
+        build: ./docker
+        networks:
+            - mynahome_net
+        container_name: mynahome_db
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: mynahome
+            MONGO_INITDB_DATABASE: mynahome_db
+            MONGO_REPLICA_HOST: mynahome_db
+            MONGO_REPLICA_PORT: 27017
+        ports:
+            - '27017:27017'
+    app:
+        build: .
+        user: root
+        container_name: mynahome_app
+        ports:
+            - '3000:3000'
+            - '9229:9229'
+        volumes:
+            - .:/app
+        networks:
+            - mynahome_net
+        depends_on:
+            - database
+volumes:
+    mynahome_vol:

@@ -22,15 +22,18 @@
             "command": "npx eslint . --ext .js,.jsx,.ts,.tsx",
             "problemMatcher": "$eslint-stylish",
             "group": {
-              "kind": "build",
-              "isDefault": true
+                "kind": "build",
+                "isDefault": true
             }
         },
         {
             "label": "Find Editor Errs",
             "type": "shell",
             "dependsOrder": "parallel",
-            "dependsOn": ["ESLint", "tsc"]
+            "dependsOn": [
+                "ESLint",
+                "tsc"
+            ]
         }
     ]
 }
